@@ -1,0 +1,106 @@
+<navbar currentPage="CARDS" />
+
+<div class="container-fluid d-flex justify-content-center p-3">
+   <div class="w-75 h-100">
+      <div class="content-header mb-5 border-bottom">
+         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" iconName="seta-esquerda" (click)="utilsService.back()" /> HEADER </h3>
+         <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de header que deve ser utilizado na V6</p>
+      </div>
+
+      <!-- #region CONTEUDO - TODO: Trocarei para JSON quando estiver pronto -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+
+         <ul>
+            <li>O seletor deste componente agora é <code class="text-code">{{ "\<lib-header>" }}</code> ele é uma versão melhorada do antigo componente <code class="text-code">{{ "\<app-simple-header>" }}</code></li>
+            <li>O antigo componente app-simple-header está no diretório project localmente dentro dos projetos</li>
+         </ul>
+      </div>
+
+      <div class="content mb-5">
+         <h5 class="fw-bold">COMO FUNCIONA?</h5>
+
+         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">breadcrumbList: string[]</code> - Lista de strings a serem informadas para preencher o breadcrumb corretamente</li>
+            <li class="my-2"><code class="text-code">pageTitle: string</code> - Título principal da página</li>
+            <li class="my-2"><code class="text-code">mode: "add" | "edit" | "list"</code> - Modo em que o Header será inicializado. Impacta em algumas situações como por exemplo a exibição dos botões padrão e o título. Por padrão, assume o valor "list"</li>
+            <li class="my-2"><code class="text-code">showSpinner: boolean</code> - Booleano para informar em caso de exibir o spinner no botão de Salvar</li>
+            <li class="my-2"><code class="text-code">hideButtons: string[]</code> (opcional) - Deve ser informada caso você deseje que um dos botões seja escondido</li>
+            <li class="my-2"><code class="text-code">formGroup: FormGroup</code> (opcional) - FormGroup deve ser informado caso deseje que o header tenha alguma interação com o formulário da tela <i>(ex.: botão de Salvar desabilitado em caso de form inválido)</i></li>
+         </ul>
+
+         <span><b>{{"@Output"}}</b> Lista de eventos:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">{{ "onReturn: EventEmitter\<void>" }}</code> - Emissor de evento ao clicar no <b>"Cancelar"</b></li>
+            <li class="my-2"><code class="text-code">{{ "onCreate: EventEmitter\<void>" }}</code> - Emissor de evento ao clicar no <b>"Salvar"</b> em modo de criação</li>
+            <li class="my-2"><code class="text-code">{{ "onUpdate: EventEmitter\<void>" }}</code> - Emissor de evento ao clicar no <b>"Salvar"</b> em modo de edição</li>
+         </ul>
+      </div>
+
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">EXEMPLOS</h5>
+
+         <div class="code-example">
+            <span class="">Header simples (por padrão ele assume o <code>mode = 'list'</code>):</span>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+                  <lib-container containerTitle="Exemplo de container" />
+               </div>
+
+               <div innerContent2>
+                  <textarea class="form-control" rows="5" resize="false" disabled>
+                     <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+                  </textarea>
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <span>Header simples com botões customizados:</span>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas'>
+                     <button customButton1 class="btn btn-outline-primary"> <lib-icon iconName="download" /> Importar </button>
+                     <button customButton2 class="ms-3 btn btn-outline-primary"> <lib-icon iconName="upload" /> Exportar </button>
+                     <button customButton3 class="ms-3 btn btn-primary"> <lib-icon iconName="mais" /> Adicionar </button>
+                  </lib-header>
+
+                  <lib-container containerTitle="Exemplo de container" />
+               </div>
+
+               <div innerContent2>
+                  <textarea class="form-control" rows="5" resize="false" disabled>
+                     <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas'>
+                        <button customButton1 class="btn btn-outline-primary"> <lib-icon iconName="download" /> Importar </button>
+                        <button customButton2 class="ms-3 btn btn-outline-primary"> <lib-icon iconName="upload" /> Exportar </button>
+                        <button customButton3 class="ms-3 btn btn-primary"> <lib-icon iconName="mais" /> Adicionar </button>
+                     </lib-header>
+                  </textarea>
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <span>Header em formulários de criação sem botões customizados:</span>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas', 'Formulário', 'Novo' ]" pageTitle='Nova pessoa' mode="add" />
+                  <lib-container containerTitle="Exemplo de container" />
+               </div>
+
+               <div innerContent2>
+                  <textarea class="form-control" rows="5" resize="false" disabled>
+                     <lib-header [breadcrumbList]="[ 'Painel de Pessoas', 'Formulário', 'Novo' ]" pageTitle='Nova pessoa' mode="add" />
+                  </textarea>
+               </div>
+            </lib-container>
+         </div>
+      </div>
+      <!-- #endregion CONTEUDO - TODO: Trocarei para JSON quando estiver pronto -->
+   </div>
+</div>
+
+<!-- <router-outlet></router-outlet> -->

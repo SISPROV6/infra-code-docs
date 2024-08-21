@@ -1,0 +1,11 @@
+<nav class="navbar bg-dark-blue" data-bs-theme="dark">
+   <div class="container-fluid d-flex align-items-center justify-content-between">
+      <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral" aria-label="Abrir menu lateral">
+        <lib-icon iconName="menu" iconColor="white" />
+      </button>
+
+      <span class="text-white"> {{ currentPage ? currentPage : "DEMONSTRAÇÃO DE COMPONENTES" }} </span>
+   </div>
+</nav>
+
+<side-menu #menuLateral></side-menu>

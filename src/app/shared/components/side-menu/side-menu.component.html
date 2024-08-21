@@ -1,0 +1,16 @@
+<div class="offcanvas offcanvas-start bg-dark-blue" tabindex="-1" id="menuLateral" aria-labelledby="offcanvasNavbarLabel" data-bs-theme="dark">
+   <div class="offcanvas-header border-bottom border-white">
+      <img src="assets/icons/logotipo-sispro.svg" alt="logo-sispro" class="offcanvas-title" id="offcanvasNavbarLabel" title="logo" width="136px" height="48px">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+   </div>
+   <div class="offcanvas-body">
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+         <li *ngFor="let item of menuItems" class="menu-item cursor-pointer nav-item my-1 p-2 border border-white rounded" [routerLink]="item.route" routerLinkActive="router-link-active">
+            <lib-icon [iconName]="item.icon" />
+            <span class="text-white ps-2"> {{ item.label }} </span>
+         </li>
+
+      </ul>
+   </div>
+</div>
