@@ -41,9 +41,9 @@ export class MenuConfig {
 
    public updateRouteSelection(currentRoute: string, currentList: IMenuItemStructure[]): IMenuItemStructure[] {
       currentList.forEach((item) => {
-         if (item.children) { item.children.forEach((child: any) => { child.isSelected = currentRoute.includes(child.route); }) }
+         if (item.children) { item.children.forEach((child: IMenuItemStructure) => { child.isSelected = currentRoute.includes(child.route); }) }
 
-         const anyChildSelected = item.children ? item.children.some((child: any) => child.isSelected === true ) : false;
+         const anyChildSelected = item.children ? item.children.some((child: IMenuItemStructure) => child.isSelected === true ) : false;
          item.isSelected = false;
 
          if (!item.children && currentRoute.includes(item.route)) { item.isSelected = true; }
@@ -57,6 +57,7 @@ export class MenuConfig {
      * @param primaryDropdownList Uma lista personalizada de opções do dropdown (opcional).
     * @returns As opções do dropdown inicializadas.
     */
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
    public initializeMenuDropdown(primaryDropdownList: Array<any>): Array<any>[] {
 
       primaryDropdownList = [
