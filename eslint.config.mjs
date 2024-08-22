@@ -5,7 +5,7 @@ import tseslint from "typescript-eslint";
 export default [
   {files: ["**/*.{js,mjs,cjs,ts}"]},
   
-  { ignores: [".angular/*"] },
+  { ignores: [".angular/*", "dist/*"] },
 
   {languageOptions: { globals: globals.browser }},
 
