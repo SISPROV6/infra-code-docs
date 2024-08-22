@@ -9,3 +9,10 @@ code.text-code {
 }
 
 .code-example { margin-bottom: 16px !important; }
+
+pre {
+   margin-bottom: 0 !important;
+   border-radius: 4px !important;
+}
+
+textarea.no-resize { resize: none !important; }

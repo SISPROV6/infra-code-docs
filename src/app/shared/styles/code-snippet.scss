@@ -1,0 +1,21 @@
+.custom-code {
+   color: #f8f8f2;
+   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+   background-color: #213b7026 !important;
+   padding: 4px !important;
+   border-radius: 4px !important;
+}
+
+.custom-code .keyword {
+   color: #66d9ef;
+   font-weight: bold;
+}
+
+.custom-code .string {
+   color: #a6e22e;
+}
+
+.custom-code .comment {
+   color: #75715e;
+}

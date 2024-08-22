@@ -3,11 +3,13 @@
 <div class="container-fluid d-flex justify-content-center p-3">
    <div class="w-75 h-100">
       <div class="content-header mb-5 border-bottom">
-         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" iconName="seta-esquerda" (click)="utilsService.back()" /> HEADER </h3>
+         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> HEADER </h3>
          <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de header que deve ser utilizado na V6</p>
       </div>
 
-      <!-- #region CONTEUDO - TODO: Trocarei para JSON quando estiver pronto -->
+      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+      <!-- #region ANTES DE COMEÇAR -->
       <div class="content mb-5">
          <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
          <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
@@ -17,13 +19,32 @@
             <li>O antigo componente app-simple-header está no diretório project localmente dentro dos projetos</li>
          </ul>
       </div>
+      <!-- #endregion COMO FUNCIONA -->
 
+      <!-- #region INSTALAÇÃO -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">INSTALAÇÃO</h5>
+         <span>Para o uso correto deste componente, certifique-se de:</span>
+
+         <ol>
+            <li>Atualizar o diretório 'INFRABIN' no SVN com um <b>SVN Update</b> <i>(esta etapa não será mais necessária após a migração para o git)</i></li>
+            <li>No seu projeto Angular: executar o comando <code class="fw-bold">{{ "npm install ngx-sp-infra@latest" }}</code></li>
+            <li>Certifique-se de que seu componente está importando o <code class="fw-bold">ProjectModule</code></li>
+            <li>
+               <p class="mb-0">Certifique-se de que seu componente está nas declarations do módulo da sua tela</p>
+               <pre class="rounded"><code [highlight]="codeSnippets[0]" language="typescript"> </code></pre>
+            </li>
+         </ol>
+      </div>
+      <!-- #endregion INSTALAÇÃO -->
+
+      <!-- #region COMO FUNCIONA -->
       <div class="content mb-5">
          <h5 class="fw-bold">COMO FUNCIONA?</h5>
 
          <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
          <ul>
-            <li class="my-2"><code class="text-code">breadcrumbList: string[]</code> - Lista de strings a serem informadas para preencher o breadcrumb corretamente</li>
+            <li class="my-2"><code class="text-code">breadcrumbList: string[]</code> (obrigatório) - Lista de strings a serem informadas para preencher o breadcrumb corretamente</li>
             <li class="my-2"><code class="text-code">pageTitle: string</code> - Título principal da página</li>
             <li class="my-2"><code class="text-code">mode: "add" | "edit" | "list"</code> - Modo em que o Header será inicializado. Impacta em algumas situações como por exemplo a exibição dos botões padrão e o título. Por padrão, assume o valor "list"</li>
             <li class="my-2"><code class="text-code">showSpinner: boolean</code> - Booleano para informar em caso de exibir o spinner no botão de Salvar</li>
@@ -38,12 +59,14 @@
             <li class="my-2"><code class="text-code">{{ "onUpdate: EventEmitter\<void>" }}</code> - Emissor de evento ao clicar no <b>"Salvar"</b> em modo de edição</li>
          </ul>
       </div>
+      <!-- #endregion COMO FUNCIONA -->
 
+      <!-- #region IMPLEMENTAÇÃO BÁSICA -->
       <div class="content mb-5">
-         <h5 class="fw-bold mb-3">EXEMPLOS</h5>
+         <h5 class="fw-bold mb-3">IMPLEMENTAÇÃO BÁSICA</h5>
 
          <div class="code-example">
-            <span class="">Header simples (por padrão ele assume o <code>mode = 'list'</code>):</span>
+            <span>Header simples (por padrão ele assume o <code>mode = 'list'</code>):</span>
             <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
                <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
                   <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
@@ -51,12 +74,11 @@
                </div>
 
                <div innerContent2>
-                  <textarea class="form-control" rows="5" resize="false" disabled>
-                     <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  </textarea>
+                  <pre><code [highlight]="codeSnippets[1]" language="xml"></code></pre>
                </div>
             </lib-container>
          </div>
+
 
          <div class="code-example">
             <span>Header simples com botões customizados:</span>
@@ -65,23 +87,20 @@
                   <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas'>
                      <button customButton1 class="btn btn-outline-primary"> <lib-icon iconName="download" /> Importar </button>
                      <button customButton2 class="ms-3 btn btn-outline-primary"> <lib-icon iconName="upload" /> Exportar </button>
-                     <button customButton3 class="ms-3 btn btn-primary"> <lib-icon iconName="mais" /> Adicionar </button>
+                     <button customButton3 class="ms-3 btn btn-outline-success"> <lib-icon iconName="prancheta" /> Gerar notas </button>
+                     <button customButton4 class="ms-3 btn btn-outline-success"> <lib-icon iconName="aviao-papel" /> Assinar documentos </button>
+                     <button customButton5 class="ms-3 btn btn-primary"> <lib-icon iconName="mais" /> Adicionar </button>
                   </lib-header>
 
                   <lib-container containerTitle="Exemplo de container" />
                </div>
 
                <div innerContent2>
-                  <textarea class="form-control" rows="5" resize="false" disabled>
-                     <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas'>
-                        <button customButton1 class="btn btn-outline-primary"> <lib-icon iconName="download" /> Importar </button>
-                        <button customButton2 class="ms-3 btn btn-outline-primary"> <lib-icon iconName="upload" /> Exportar </button>
-                        <button customButton3 class="ms-3 btn btn-primary"> <lib-icon iconName="mais" /> Adicionar </button>
-                     </lib-header>
-                  </textarea>
+                  <pre><code [highlight]="codeSnippets[2]" language="xml"></code></pre>
                </div>
             </lib-container>
          </div>
+
 
          <div class="code-example">
             <span>Header em formulários de criação sem botões customizados:</span>
@@ -92,14 +111,160 @@
                </div>
 
                <div innerContent2>
-                  <textarea class="form-control" rows="5" resize="false" disabled>
-                     <lib-header [breadcrumbList]="[ 'Painel de Pessoas', 'Formulário', 'Novo' ]" pageTitle='Nova pessoa' mode="add" />
-                  </textarea>
+                  <pre><code [highlight]="codeSnippets[3]" language="xml"></code></pre>
+               </div>
+            </lib-container>
+         </div>
+
+
+         <div class="code-example">
+            <span>Header em formulários de edição com botão de 'Cancelar' escondido:</span>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas', 'Formulário', 'Editar' ]" pageTitle='Editar configuração' mode="edit"
+                     [hideButtons]="[ 'Cancelar' ]" />
+                  <lib-container containerTitle="Exemplo de container" />
+               </div>
+
+               <div innerContent2>
+                  <pre><code [highlight]="codeSnippets[4]" language="xml"></code></pre>
                </div>
             </lib-container>
          </div>
       </div>
-      <!-- #endregion CONTEUDO - TODO: Trocarei para JSON quando estiver pronto -->
+      <!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
+
+      <!-- #region INTEGRAÇÃO COM FORMULÁRIOS -->
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">INTEGRAÇÃO COM FORMULÁRIOS</h5>
+
+         <div class="code-example">
+            <span>Header em formulários de criação e campos obrigatórios:</span>
+
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas', 'Formulário', 'Editar' ]" pageTitle='Editar configuração' mode="edit" [formGroup]="formCriacao1"/>
+                  <lib-container containerTitle="Exemplo de container">
+                     <form innerContent [formGroup]="formCriacao1">
+                        <div class="row">
+                           <div class="col-6">
+                              <label libRequired for="inputCriacao1Req" class="form-label">Nome</label>
+                              <input type="text" id="inputCriacao1Req" class="form-control" formControlName="inputCriacao1Req" placeholder="João Roberto Freitas"
+                                 [class.is-invalid]="FormUtils.isInvalidField(formCriacao1.get('inputCriacao1Req'))">
+                              <app-field-error-message [control]="formCriacao1.get('inputCriacao1Req')"></app-field-error-message>
+                           </div>
+                        </div>
+                     </form>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <pre><code [highlight]="codeSnippets[5]" language="xml"></code></pre>
+               </div>
+
+               <div innerContent3>
+                  <pre><code [highlight]="codeSnippets[6]" language="typescript"></code></pre>
+               </div>
+            </lib-container>
+         </div>
+      </div>
+      <!-- #endregion INTEGRAÇÃO COM FORMULÁRIOS -->
+
+      <!-- #region SPINNER -->
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">SPINNER</h5>
+
+         <div class="code-example">
+            <span>Botão de 'Salvar' exibindo spinner ao chamar requisição ou realizar processo:</span>
+
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas', 'Formulário', 'Novo' ]" pageTitle='Nova configuração' mode="add" [showSpinner]="showSpinner1" (onCreate)="create()" />
+                  <lib-container containerTitle="Exemplo de container">
+                     <form innerContent [formGroup]="formCriacao2">
+                        <div class="row">
+                           <div class="col-6">
+                              <label for="inputCriacao2" class="form-label">Nome</label>
+                              <input type="text" id="inputCriacao2" class="form-control" formControlName="inputCriacao2" placeholder="João Roberto Freitas">
+                           </div>
+                        </div>
+                     </form>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <pre><code [highlight]="codeSnippets[7]" language="xml"></code></pre>
+               </div>
+
+               <div innerContent3>
+                  <pre><code [highlight]="codeSnippets[8]" language="typescript"></code></pre>
+               </div>
+            </lib-container>
+         </div>
+      </div>
+      <!-- #endregion SPINNER -->
+
+      <!-- #region EVENTOS -->
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">EVENTOS</h5>
+
+         <div class="code-example">
+            <span>Utilização dos eventos dos botões internos do header:</span>
+
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div class="p-3 rounded bg-secondary" innerContent1 [class.pt-0]="showForm">
+                  <lib-header *ngIf="showForm" [breadcrumbList]="[ 'Painel de Pessoas', 'Formulário', editingMode ? 'Editar' : 'Novo' ]"
+                     [pageTitle]="editingMode ? 'Editar configuração' : 'Nova configuração'" [formGroup]="formCriacaoEdicao3"
+                     [mode]="editingMode ? 'edit' : 'add'" [showSpinner]="showSpinner2"
+                     (onReturn)="showForm = false" (onCreate)="create(2)" (onUpdate)="update(2)" />
+                  <lib-container containerTitle="Exemplo de container">
+
+                     @if (!showForm) {
+                        <div innerContent class="d-flex align-items-center justify-content-evenly">
+                           <button class="btn btn-outline-primary" (click)="editingMode = false; showForm = true"> <lib-icon iconName="mais" /> FORMULÁRIO DE CRIAÇÃO </button>
+                           <button class="btn btn-outline-primary" (click)="editingMode = true; showForm = true"> <lib-icon iconName="editar" /> FORMULÁRIO DE EDIÇÃO </button>
+                        </div>
+                     }
+                     @else if (!editingMode) {
+                        <form innerContent [formGroup]="formCriacaoEdicao3">
+                           <div class="row">
+                              <div class="col-6">
+                                 <label libRequired for="inputCriacaoEdicao3Req" class="form-label">Nome</label>
+                                 <input type="text" id="inputCriacaoEdicao3Req" class="form-control" formControlName="inputCriacaoEdicao3Req" placeholder="João Roberto Freitas"
+                                    [class.is-invalid]="FormUtils.isInvalidField(formCriacaoEdicao3.get('inputCriacaoEdicao3Req'))">
+                                 <app-field-error-message [control]="formCriacaoEdicao3.get('inputCriacaoEdicao3Req')"></app-field-error-message>
+                              </div>
+                           </div>
+                        </form>
+                     }
+                     @else if (editingMode) {
+                        <form innerContent [formGroup]="formCriacaoEdicao3">
+                           <div class="row">
+                              <div class="col-6">
+                                 <label for="inputCriacaoEdicao3" class="form-label">Nome</label>
+                                 <input type="text" id="inputCriacaoEdicao3" class="form-control" formControlName="inputCriacaoEdicao3" placeholder="João Roberto Freitas">
+                              </div>
+                           </div>
+                        </form>
+                     }
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <pre><code [highlight]="codeSnippets[9]" language="xml"></code></pre>
+               </div>
+
+               <div innerContent3>
+                  <pre><code [highlight]="codeSnippets[10]" language="typescript"></code></pre>
+               </div>
+            </lib-container>
+         </div>
+      </div>
+      <!-- #endregion EVENTOS -->
+
+      
+
+      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
    </div>
 </div>
 

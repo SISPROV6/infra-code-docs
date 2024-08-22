@@ -1,8 +1,25 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
+import { provideHighlightOptions } from 'ngx-highlightjs';
+
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [
+    provideRouter(routes),
+
+    provideHighlightOptions({
+      coreLibraryLoader: () => import('highlight.js/lib/core'),
+      lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'), // Optional, add line numbers if needed
+      languages: {
+        xml: () => import('highlight.js/lib/languages/xml'),
+        javascript: () => import('highlight.js/lib/languages/javascript'),
+        typescript: () => import('highlight.js/lib/languages/typescript'),
+        css: () => import('highlight.js/lib/languages/css'),
+        scss: () => import('highlight.js/lib/languages/scss'),
+      },
+      themePath: '../assets/styles/ngx-highlight-themes/github-dark.css'  // Optional, useful for dynamic theme changes
+    })
+   ]
 };
