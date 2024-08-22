@@ -4,7 +4,10 @@
         <lib-icon iconName="menu" iconColor="white" />
       </button>
 
-      <span class="text-white"> {{ currentPage ? currentPage : "DEMONSTRAÇÃO DE COMPONENTES" }} </span>
+      <img src="assets/icons/logotipo-sispro.svg" alt="logo-sispro" class="offcanvas-title cursor-pointer" id="offcanvasNavbarLabel"
+         title="logo" height="36px" [routerLink]="['/inicio']" routerLinkActive="router-link-active" />
+
+      <span class="text-white"> {{ currentPage ? currentPage : "PADRÕES E DOCUMENTAÇÕES DE CÓDIGO" }} </span>
    </div>
 </nav>
 

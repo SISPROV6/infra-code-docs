@@ -1,11 +1,11 @@
 {
   "name": "infra-code-docs",
-  "version": "0.1.9",
+  "version": "0.1.92",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-prod": "ng build --configuration production --base-href /SisproErpCloud/InfraCodeDocs/",
+    "build-prod": "ng build --configuration production --output-path=dist/infra-code-docs --base-href /SisproErpCloud/InfraCodeDocs/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint .",
@@ -31,7 +31,8 @@
     "ngx-mask": "^17.1.8",
     "ngx-pagination": "^6.0.3",
     "ngx-select-dropdown": "^3.3.2",
-    "ngx-sp-infra": "^1.8.72-test",
+    "ngx-sp-infra": "^1.8.74-test",
+    "ngx-toastr": "^19.0.0",
     "ngx-ui-switch": "^15.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.3",

@@ -26,12 +26,13 @@ export class ComponentsComponent {
   // #region PUBLIC
   public components: { nome: string, rota: string, descricao: string }[] = [
     { nome: "Header", rota: "header", descricao: "Header componentizado na biblioteca interna" },
+    { nome: "Ícones", rota: "icones", descricao: "Ícones da biblioteca interna" },
+    { nome: "Contâiners e Abas", rota: "container-e-abas", descricao: "Container com abas componentizado na biblioteca interna" },
     { nome: "Cards", rota: "cards", descricao: "Card componentizado na biblioteca interna" },
+    { nome: "Modais", rota: "modals", descricao: "Padrões para exibição de modais nas telas" },
     { nome: "Paginação", rota: "pagination", descricao: "Paginação componentizada na biblioteca interna" },
     { nome: "Ordenação", rota: "ordenation", descricao: "Ordenação componentizada na biblioteca interna" },
-    { nome: "Ícones", rota: "icones", descricao: "Ícones da biblioteca interna" },
     { nome: "Validadores", rota: "validators", descricao: "Rotinas de validação na biblioteca interna" },
-    { nome: "Contâiners e Abas", rota: "container-e-abas", descricao: "Container com abas componentizado na biblioteca interna" },
     { nome: "Tabela", rota: "table", descricao: "Tabela componentizada na biblioteca interna" },
     { nome: "Máscara", rota: "mask", descricao: "Máscaras para inputs/texto puro" },
     { nome: "Input de arquivo", rota: "input-arquivo", descricao: "Input específico para seleção de arquivo(s)" },

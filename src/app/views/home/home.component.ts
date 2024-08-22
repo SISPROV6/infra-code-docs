@@ -28,10 +28,11 @@ export class HomeComponent {
 
   // #region PUBLIC
   public cards: { nome: string, rota: string, descricao: string }[] = [
-    { nome: "Componentes", rota: "componentes", descricao: "descricao" },
-    { nome: "Templates", rota: "templates", descricao: "descricao" },
-    { nome: "Estrutura", rota: "estrutura", descricao: "descricao" },
-    { nome: "Models e Records (classes)", rota: "models", descricao: "descricao" },
+    { nome: "Componentes", rota: "componentes", descricao: "Documentação de componentes reutilizáveis" },
+    { nome: "Estrutura", rota: "estrutura", descricao: "Documentação da estrutura de arquivos, código, regions, etc" },
+    { nome: "Models e Records (classes)", rota: "models", descricao: "Padronização de nomenclaturas, tipos e usos de classes das camadas como 7Db e 3Rn" },
+    { nome: "Templates", rota: "templates", descricao: "Documentação de templates de código/telas prontos" },
+    { nome: "Webservices", rota: "webservices", descricao: "Documentação dos endpoints públicos exportados" },
   ];
   // #endregion PUBLIC
 

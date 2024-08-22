@@ -9,7 +9,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { UtilsService } from '../../../shared/services/utils.service';
 
-import { Highlight } from 'ngx-highlightjs';
+import { CodeSnippetComponent } from '../../../shared/components/code-snippet/code-snippet.component';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +22,7 @@ import { Highlight } from 'ngx-highlightjs';
     ReactiveFormsModule,
 
     TooltipModule,
-    Highlight
+    CodeSnippetComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   // #region ==========> PROPERTIES <==========
 
   // #region PRIVATE
-  // [...]
+  private _isCopied: boolean = false;
   // #endregion PRIVATE
 
   // #region PUBLIC
@@ -41,7 +41,6 @@ export class HeaderComponent implements OnInit {
 
   public showForm: boolean = false;
   public editingMode: boolean = false;
-
 
   public codeSnippets: string[] = [
     "// Em uma estrutura de uma tela de Usuários, por exemplo\n// No arquivo usuarios.module.ts:\n@NgModule( {\n   declarations: [\n      // ...outros componentes\n      PainelUsuariosComponent,\n      FormularioUsuarioComponent\n   ],\n   imports: [\n      // ...outros imports\n      ProjectModule,\n      UsuariosRoutingModule\n   ],\n   exports: [\n         // ...\n   ]\n})\nexport class UsuariosModule { }",
@@ -54,11 +53,15 @@ export class HeaderComponent implements OnInit {
     "<lib-header [breadcrumbList]='[ 'Painel de Pessoas', 'Formulário', 'Novo' ]' pageTitle='Nova configuração' mode='add' [showSpinner]='showSpinner1' (onCreate)='create()' />\n<lib-container containerTitle='Exemplo de container'>\n   <form innerContent [formGroup]='formCriacao2'>\n      <div class='row'>\n         <div class='col-6'>\n            <label for='inputCriacao2' class='form-label'>Nome</label>\n            <input type='text' id='inputCriacao2' class='form-control' formControlName='inputCriacao2' placeholder='João Roberto Freitas'>\n         </div>\n      </div>\n   </form>\n</lib-container>",
     "public showSpinner1: boolean = false;\n\npublic create(): void {\n   this.showSpinner1 = true;\n   \n   this._servico.create().subscribe({\n      next: () => {\n         this.showSpinner1 = false;\n         // ...restante da lógica de sucesso\n      },\n      error: error => {\n         this.showSpinner1 = false;\n         // ...lógica de erro\n      }\n   });\n}",
     "<lib-header *ngIf='showForm' [breadcrumbList]='[ 'Painel de Pessoas', 'Formulário', editingMode ? 'Editar' : 'Novo' ]'\n   [pageTitle]='editingMode ? 'Editar configuração' : 'Nova configuração'' [formGroup]='formCriacaoEdicao3'\n   [mode]='editingMode ? 'edit' : 'add'' [showSpinner]='showSpinner'\n   (onReturn)='showForm = false' (onCreate)='create()' (onUpdate)='update()' />",
-    "public editingMode: boolean = false;\n\nconstructor(\n   private _router: Router,\n   // ...outros injects\n) { }\n\nngOnInit(): void { this.initializeScreen() }\n\nprivate initializeScreen(): void {\n   if (this._router.url.includes('/editar/')) {\n      this.editingMode = true;\n      // ...restante da lógica de inicialização em modo de Edição\n   }\n   else {\n      this.editingMode = true;\n      // ...restante da lógica de inicialização em modo de Criação\n   }\n}",
-    "",
-    "",
-    "",
+    "public editingMode: boolean = false;\n\nconstructor(\n   private _router: Router,\n   // ...outros injects\n) { }\n\nngOnInit(): void { this.initializeScreen() }\n\nprivate initializeScreen(): void {\n   if (this._router.url.includes('/editar/')) {\n      this.editingMode = true;\n      // ...restante da lógica de inicialização em modo de Edição\n   }\n   else {\n      this.editingMode = true;\n      // ...restante da lógica de inicialização em modo de Criação\n   }\n}"
   ];
+
+
+  public get isCopied(): boolean { return this._isCopied; }
+  public set isCopied(value: boolean) {
+    this._isCopied = value;
+    if (value) { setTimeout(() => { this._isCopied = false }, 3000) }
+  }
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========

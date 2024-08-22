@@ -26,9 +26,10 @@ export class MenuConfig {
          const menuItems = [
             { id: 1, label: "Início", descricao: "Tela inicial", icon: "casa", route: "/inicio", isSelected: currentRoute.includes("inicio"), isExpandable: false },
             { id: 2, label: "Componentes", descricao: "Componentes", icon: "janelas", route: "/componentes", isSelected: currentRoute.includes("components"), isExpandable: false },
-            { id: 3, label: "Templates", descricao: "Templates", icon: "tabela-fixa", route: "/templates", isSelected: currentRoute.includes("templates"), isExpandable: false },
-            { id: 4, label: "Estrutura", descricao: "Componentes", icon: "fluxo", route: "/estrutura", isSelected: currentRoute.includes("estrutura"), isExpandable: false },
-            { id: 5, label: "Models e Records (Classes)", descricao: "Models e Records (Classes)", icon: "cubo", route: "/models", isSelected: currentRoute.includes("models"), isExpandable: false },
+            { id: 3, label: "Estrutura", descricao: "Componentes", icon: "fluxo", route: "/estrutura", isSelected: currentRoute.includes("estrutura"), isExpandable: false },
+            { id: 4, label: "Models e Records (Classes)", descricao: "Models e Records (Classes)", icon: "cubo", route: "/models", isSelected: currentRoute.includes("models"), isExpandable: false },
+            { id: 5, label: "Templates", descricao: "Templates", icon: "tabela-fixa", route: "/templates", isSelected: currentRoute.includes("templates"), isExpandable: false },
+            { id: 6, label: "Webservices (APIs)", descricao: "Webservices (APIs)", icon: "cubo", route: "/webservices", isSelected: currentRoute.includes("webservices"), isExpandable: false },
          ];
 
          this.updateRouteSelection(currentRoute, menuItems);

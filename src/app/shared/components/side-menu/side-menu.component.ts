@@ -1,10 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { NavigationEnd, Router, RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { InfraModule } from "ngx-sp-infra";
 import { IMenuItemStructure } from "../../utils/imenu-item-structure.model";
 import { MenuConfig } from "../../utils/menu-config";
-import { filter } from "rxjs";
 
 @Component({
   selector: "side-menu",
@@ -52,7 +51,7 @@ export class SideMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuItems = this.menuConfig.initializeMenu(this._router.url);
-    this._router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => { this.menuConfig!.updateRouteSelection(this._router.url, this.menuItems!) });
+    console.log(this.menuItems);
   }
   // #endregion ==========> INITIALIZATION <==========
 

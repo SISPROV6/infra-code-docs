@@ -1,6 +1,14 @@
 @import "../../styles/global.scss";
 
 
-// .menu-item {
-   
-// }
+.menu-item {
+   transition: all .5s ease;
+}
+.menu-item.selected {
+   background-color: #0a58ca;
+   font-weight: bold;
+}
+.menu-item:hover {
+   background-color: #0a58ca;
+   font-weight: bold;
+}
