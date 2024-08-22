@@ -4,13 +4,14 @@
    <div class="d-flex flex-row flex-wrap gap-3">
       @for (card of cards; track $index) {
          <div class="col">
-            <div class="card">
-               <div class="card-header fw-bold d-flex align-items-center justify-content-between">
+            <div class="card" [class.border-danger]="!card.implementado">
+               <div class="card-header fw-bold d-flex align-items-center justify-content-between" [class.text-danger]="!card.implementado">
                   <span>{{ card.nome }}</span>
-                  <a class="btn btn-sm btn-primary" routerLink="/{{card.rota}}" routerLinkActive="router-link-active" > ACESSAR </a>
+                  <a *ngIf="card.implementado" class="btn btn-sm btn-primary" routerLink="/{{card.rota}}" routerLinkActive="router-link-active" > ACESSAR </a>
+                  <span *ngIf="!card.implementado" class="badge text-bg-danger">Não implementado</span>
                </div>
-               <div class="card-body">
-                 <p class="card-text mb-1" [innerHTML]="card.descricao"></p>
+               <div class="card-body" [class.text-danger]="!card.implementado">
+                  <p class="card-text mb-1" [innerHTML]="card.descricao"></p>
                </div>
              </div>
          </div>
