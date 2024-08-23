@@ -5,12 +5,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-prod": "ng build --configuration production --output-path=dist/infra-code-docs --base-href /SisproErpCloud/InfraCodeDocs/",
+    "build-dev": "ng build --configuration production --output-path=dist/infra-code-docs-dev --base-href /SisproErpCloud/InfraCodeDocs/",
+    "build-prod": "ng build --configuration production --output-path=dist/infra-code-docs-prod --base-href /SisproErpCloud/InfraCodeDocs/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "serve:ssr:infra-code-docs": "node dist/infra-code-docs/server/server.mjs"
+    "lint:fix": "eslint . --fix"
   },
   "private": true,
   "dependencies": {
