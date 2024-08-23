@@ -1,1 +1,70 @@
-<p>tabela works!</p>
+<navbar currentPage="TABELAS DE LISTAGEM" />
+
+<div class="container-fluid d-flex justify-content-center p-3">
+   <div class="w-75 h-100">
+      <div class="content-header mb-5 border-bottom">
+         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> TABELAS DE LISTAGEM </h3>
+         <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de table que deve ser utilizado na V6</p>
+      </div>
+
+      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+      <!-- #region ANTES DE COMEÇAR -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+
+         <ul>
+            <li>Por enquanto as classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D</li>
+         </ul>
+      </div>
+      <!-- #endregion COMO FUNCIONA -->
+
+      <!-- #region INSTALAÇÃO -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">INSTALAÇÃO</h5>
+         <span>Para o uso correto deste componente, certifique-se de:</span>
+
+         <ol>
+            <li>Atualizar o diretório 'INFRABIN' no SVN com um <b>SVN Update</b> <i>(esta etapa não será mais necessária após a migração para o git)</i></li>
+            <li>No seu projeto Angular: executar o comando <code class="fw-bold">{{ "npm install ngx-sp-infra@latest" }}</code></li>
+            <li>Certifique-se de que seu componente está importando o <code class="fw-bold">ProjectModule</code></li>
+            <li>
+               <p class="mb-0">Certifique-se de que seu componente está nas declarations do módulo da sua tela</p>               
+               <code-snippet [code]="codeSnippets[0]" language="typescript" />
+            </li>
+         </ol>
+      </div>
+      <!-- #endregion INSTALAÇÃO -->
+
+      <!-- #region COMO FUNCIONA -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">COMO FUNCIONA?</h5>
+
+         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">usePagination: boolean</code> - Determina se a tabela deve usar paginação. Por padrão, assume o valor <code>true</code>.</li>
+            <li class="my-2"><code class="text-code">recordsList: any[]</code> (obrigatório) - Lista de registros a serem exibidos na tabela.</li>
+            <li class="my-2"><code class="text-code">countOptions: number[]</code> (obrigatório) - Opções de contagem de itens por página disponíveis para o usuário.</li>
+            <li class="my-2"><code class="text-code">paginationPlacement: "start" | "center" | "end" | "between"</code> - Posicionamento dos controles de paginação. Por padrão, assume o valor <code>'end'</code>.</li>
+            <li class="my-2"><code class="text-code">{{"headersList: { name: string, col: number, customClasses?: string }[]"}}</code> (obrigatório) - Lista de cabeçalhos para as colunas da tabela, incluindo o nome, a largura da coluna e classes customizadas.</li>
+            <li class="my-2"><code class="text-code">counter: number</code> - Contador de registros (pode ser usado para futuras implementações de lógica interna).</li>
+            <li class="my-2"><code class="text-code">page: number</code> - Página atual da tabela.</li>
+            <li class="my-2"><code class="text-code">itemsPerPage: number</code> - Número de itens a serem exibidos por página.</li>
+         </ul>
+
+         <span><b>{{"@Output"}}</b> Lista de eventos:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">itemsPerPageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando o número de itens por página é alterado.</li>
+            <li class="my-2"><code class="text-code">pageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando a página é alterada.</li>
+         </ul>
+      </div>
+      <!-- #endregion COMO FUNCIONA -->
+
+      <!-- #region IMPLEMENTAÇÃO BÁSICA -->
+      
+      <!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
+      
+      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+   </div>
+</div>
