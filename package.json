@@ -1,6 +1,6 @@
 {
   "name": "infra-code-docs",
-  "version": "0.1.92",
+  "version": "0.1.94",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

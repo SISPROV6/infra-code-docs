@@ -1,1 +1,70 @@
-<p>icones works!</p>
+<navbar currentPage="ÍCONES" />
+
+<div class="container-fluid d-flex justify-content-center p-3">
+   <div class="w-75 h-100">
+      <div class="content-header mb-5 border-bottom">
+         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> HEADER </h3>
+         <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de header que deve ser utilizado na V6</p>
+      </div>
+
+      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+      <!-- #region ANTES DE COMEÇAR -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+
+         <ul>
+            <li>O seletor deste componente agora é <code class="text-code">{{ "\<lib-header>" }}</code> ele é uma versão melhorada do antigo componente <code class="text-code">{{ "\<app-simple-header>" }}</code></li>
+            <li>O antigo componente app-simple-header está no diretório project localmente dentro dos projetos</li>
+         </ul>
+      </div>
+      <!-- #endregion COMO FUNCIONA -->
+
+      <!-- #region INSTALAÇÃO -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">INSTALAÇÃO</h5>
+         <span>Para o uso correto deste componente, certifique-se de:</span>
+
+         <ol>
+            <li>Atualizar o diretório 'INFRABIN' no SVN com um <b>SVN Update</b> <i>(esta etapa não será mais necessária após a migração para o git)</i></li>
+            <li>No seu projeto Angular: executar o comando <code class="fw-bold">{{ "npm install ngx-sp-infra@latest" }}</code></li>
+            <li>Certifique-se de que seu componente está importando o <code class="fw-bold">ProjectModule</code></li>
+            <li>
+               <p class="mb-0">Certifique-se de que seu componente está nas declarations do módulo da sua tela</p>               
+               <code-snippet [code]="codeSnippets[0]" language="typescript" />
+            </li>
+         </ol>
+      </div>
+      <!-- #endregion INSTALAÇÃO -->
+
+      <!-- #region COMO FUNCIONA -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">COMO FUNCIONA?</h5>
+
+         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">breadcrumbList: string[]</code> (obrigatório) - Lista de strings a serem informadas para preencher o breadcrumb corretamente</li>
+            <li class="my-2"><code class="text-code">pageTitle: string</code> - Título principal da página</li>
+            <li class="my-2"><code class="text-code">mode: "add" | "edit" | "list"</code> - Modo em que o Header será inicializado. Impacta em algumas situações como por exemplo a exibição dos botões padrão e o título. Por padrão, assume o valor "list"</li>
+            <li class="my-2"><code class="text-code">showSpinner: boolean</code> - Booleano para informar em caso de exibir o spinner no botão de Salvar</li>
+            <li class="my-2"><code class="text-code">hideButtons: string[]</code> (opcional) - Deve ser informada caso você deseje que um dos botões seja escondido</li>
+            <li class="my-2"><code class="text-code">formGroup: FormGroup</code> (opcional) - FormGroup deve ser informado caso deseje que o header tenha alguma interação com o formulário da tela <i>(ex.: botão de Salvar desabilitado em caso de form inválido)</i></li>
+         </ul>
+
+         <span><b>{{"@Output"}}</b> Lista de eventos:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">{{ "onReturn: EventEmitter\<void>" }}</code> - Emissor de evento ao clicar no <b>"Cancelar"</b></li>
+            <li class="my-2"><code class="text-code">{{ "onCreate: EventEmitter\<void>" }}</code> - Emissor de evento ao clicar no <b>"Salvar"</b> em modo de criação</li>
+            <li class="my-2"><code class="text-code">{{ "onUpdate: EventEmitter\<void>" }}</code> - Emissor de evento ao clicar no <b>"Salvar"</b> em modo de edição</li>
+         </ul>
+      </div>
+      <!-- #endregion COMO FUNCIONA -->
+
+      <!-- #region IMPLEMENTAÇÃO BÁSICA -->
+      
+      <!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
+      
+      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+   </div>
+</div>
