@@ -6,11 +6,13 @@ import { provideHighlightOptions } from 'ngx-highlightjs';
 import { provideToastr } from 'ngx-toastr';
 
 import { routes } from './app.routes';
+import { provideNgxMask } from 'ngx-mask';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimations(),  // required animations providers
+    provideNgxMask(),
     provideToastr({
       positionClass: "toast-bottom-right",
       maxOpened: 3,

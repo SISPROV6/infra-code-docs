@@ -15,10 +15,22 @@
          <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
 
          <ul>
-            <li>Por enquanto as classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D</li>
+            <li>Por enquanto as classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
+            <li>Este componente abrange apenas a estrutura externa dos registros e tem como objetivo primário a padronização da estrutura de tabelas. O conteúdo interno é responsabilidade do componente pai.</li>
+            <li>É importante seguir um padrão de estrutura interna dos registros, porém saiba que <b>não</b> é obrigatório utlizar o <b>{{ "@for () {}" }}</b>. A lógica que utilizamos atualmente com o <b>*ngFor</b> resolve perfeitamente</li>
          </ul>
       </div>
-      <!-- #endregion COMO FUNCIONA -->
+      <!-- #endregion ANTES DE COMECAR -->
+
+      <!-- #region DICAS -->
+      <div class="alert alert-primary mb-5" role="alert">
+         <p class="fw-bold">DICAS</p>
+         <ul>
+            <li>O loop deve sempre iterar sobre o elemento <b>{{"\<tr>"}}</b>.</li>
+            <li>Sempre ter um elemento para casos de lista vazia e a exibição do loading enquanto a propriedade de lista não tiver valor real (geralmente significa que ainda não obteve retorno do webservice) pois é muito importante no feedback para o usuário.</li>
+         </ul>
+      </div>
+      <!-- #endregion DICAS -->
 
       <!-- #region INSTALAÇÃO -->
       <div class="content mb-5">
@@ -43,26 +55,175 @@
 
          <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
          <ul>
-            <li class="my-2"><code class="text-code">usePagination: boolean</code> - Determina se a tabela deve usar paginação. Por padrão, assume o valor <code>true</code>.</li>
             <li class="my-2"><code class="text-code">recordsList: any[]</code> (obrigatório) - Lista de registros a serem exibidos na tabela.</li>
             <li class="my-2"><code class="text-code">countOptions: number[]</code> (obrigatório) - Opções de contagem de itens por página disponíveis para o usuário.</li>
-            <li class="my-2"><code class="text-code">paginationPlacement: "start" | "center" | "end" | "between"</code> - Posicionamento dos controles de paginação. Por padrão, assume o valor <code>'end'</code>.</li>
             <li class="my-2"><code class="text-code">{{"headersList: { name: string, col: number, customClasses?: string }[]"}}</code> (obrigatório) - Lista de cabeçalhos para as colunas da tabela, incluindo o nome, a largura da coluna e classes customizadas.</li>
-            <li class="my-2"><code class="text-code">counter: number</code> - Contador de registros (pode ser usado para futuras implementações de lógica interna).</li>
-            <li class="my-2"><code class="text-code">page: number</code> - Página atual da tabela.</li>
-            <li class="my-2"><code class="text-code">itemsPerPage: number</code> - Número de itens a serem exibidos por página.</li>
+            <li class="my-2"><code class="text-code">usePagination: boolean</code> - Determina se a tabela deve usar paginação. Por padrão, assume o valor <code>true</code>.</li>
+            <li class="my-2"><code class="text-code">paginationPlacement: "start" | "center" | "end" | "between"</code> - Posicionamento dos controles de paginação. Por padrão, assume o valor <code>'end'</code>.</li>
          </ul>
 
          <span><b>{{"@Output"}}</b> Lista de eventos:</span>
          <ul>
-            <li class="my-2"><code class="text-code">itemsPerPageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando o número de itens por página é alterado.</li>
-            <li class="my-2"><code class="text-code">pageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando a página é alterada.</li>
+            <li class="my-2"><code class="text-code">itemsPerPageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando o número de itens por página é alterado. <b>O ideal é que seja utilizado sempre que for utilizar paginação</b>.</li>
+            <li class="my-2"><code class="text-code">pageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando a página é alterada. <b>O ideal é que seja utilizado sempre que for utilizar paginação</b>.</li>
          </ul>
       </div>
       <!-- #endregion COMO FUNCIONA -->
 
       <!-- #region IMPLEMENTAÇÃO BÁSICA -->
-      
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">IMPLEMENTAÇÃO BÁSICA</h5>
+
+         <div class="code-example">
+            <span>Table simples (por padrão ela assume o <code>usePagination = true</code>):</span>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+                  <lib-container pageTitle="Exemplo">
+                     <lib-table innerContent [list]="recordsList" [counts]="[ 5, 10, 20 ]"
+                        [headers]="[
+                           { name: 'Nome', col: 2 },
+                           { name: 'Descrição', col: 3 },
+                           { name: 'Valor', col: 1, customClasses: 'text-end' },
+                           { name: 'Datas', col: 4 },
+                           { name: 'Ações', col: 2, customClasses: 'text-end' }
+                        ]"
+                        (itemsPerPageChange)="itemsPerPage = $event"
+                        (pageChange)="page = $event">
+
+                        @for (item of recordsList! | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; track item) {
+                           <tr innerRows class="align-middle">
+                              <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                              <td>{{ item.descricao }}</td>
+                              <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                              <td>
+                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                              </td>
+                              <td>
+                                 <div class="d-flex flex-row align-items-center justify-content-end">
+                                    <app-svg-storage svgName="editar" svgColor="blue" tooltip="Visualizar/Editar" />
+                                    <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                                 </div>
+                              </td>
+                           </tr>
+                        }
+                        @empty {
+                           <tr innerRows> <td colspan="12" class="align-middle"><span class="fw-light fst-italic text-center"> Consulta não retornou registros... </span></td> </tr>
+                        }
+                     </lib-table>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[1]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[2]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
+
+
+         <div class="code-example">
+            <span>Tabela com paginação na esquerda:</span>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+                  <lib-container>
+                     <lib-table innerContent [list]="recordsList"
+                        [counts]="[ 5, 10, 20 ]" placement="start"
+                        [headers]="[
+                           { name: 'Nome', col: 2 },
+                           { name: 'Descrição', col: 3 },
+                           { name: 'Valor', col: 1, customClasses: 'text-end' },
+                           { name: 'Datas', col: 4 },
+                           { name: 'Ações', col: 2, customClasses: 'text-end' }
+                        ]"
+                        (itemsPerPageChange)="itemsPerPage = $event"
+                        (pageChange)="page = $event">
+
+                        @for (item of recordsList! | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; track item) {
+                           <tr innerRows class="align-middle">
+                              <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                              <td>{{ item.descricao }}</td>
+                              <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                              <td>
+                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                              </td>
+                              <td>
+                                 <div class="d-flex flex-row align-items-center justify-content-end">
+                                    <app-svg-storage svgName="editar" svgColor="blue" tooltip="Visualizar/Editar" />
+                                    <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                                 </div>
+                              </td>
+                           </tr>
+                        }
+                        @empty {
+                           <tr innerRows> <td colspan="12" class="align-middle"><span class="fw-light fst-italic text-center"> Consulta não retornou registros... </span></td> </tr>
+                        }
+                     </lib-table>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[3]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[4]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
+
+
+         <div class="code-example">
+            <span>Table sem paginação:</span>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+                  <lib-container>
+                     <lib-table innerContent [list]="recordsList" [usePagination]="false"
+                        [headers]="[
+                           { name: 'Nome', col: 2 },
+                           { name: 'Descrição', col: 3 },
+                           { name: 'Valor', col: 1, customClasses: 'text-end' },
+                           { name: 'Datas', col: 4 },
+                           { name: 'Ações', col: 2, customClasses: 'text-end' }
+                        ]">
+
+                        @for (item of recordsList; track item) {
+                           <tr innerRows class="align-middle">
+                              <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                              <td>{{ item.descricao }}</td>
+                              <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                              <td>
+                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                              </td>
+                              <td>
+                                 <div class="d-flex flex-row align-items-center justify-content-end">
+                                    <app-svg-storage svgName="editar" svgColor="blue" tooltip="Visualizar/Editar" />
+                                    <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                                 </div>
+                              </td>
+                           </tr>
+                        }
+                        @empty {
+                           <tr innerRows> <td colspan="12" class="align-middle"><span class="fw-light fst-italic text-center"> Consulta não retornou registros... </span></td> </tr>
+                        }
+                     </lib-table>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[5]" language="xml" />
+               </div>
+            </lib-container>
+         </div>
+      </div>
       <!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
       
       <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
