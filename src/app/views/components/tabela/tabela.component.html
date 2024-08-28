@@ -59,6 +59,7 @@
             <li class="my-2"><code class="text-code">countOptions: number[]</code> (obrigatório) - Opções de contagem de itens por página disponíveis para o usuário.</li>
             <li class="my-2"><code class="text-code">{{"headersList: { name: string, col: number, customClasses?: string }[]"}}</code> (obrigatório) - Lista de cabeçalhos para as colunas da tabela, incluindo o nome, a largura da coluna e classes customizadas.</li>
             <li class="my-2"><code class="text-code">usePagination: boolean</code> - Determina se a tabela deve usar paginação. Por padrão, assume o valor <code>true</code>.</li>
+            <li class="my-2"><code class="text-code">emptyMessage?: string</code> - Mensagem customizada para lista vazia.</li>
             <li class="my-2"><code class="text-code">paginationPlacement: "start" | "center" | "end" | "between"</code> - Posicionamento dos controles de paginação. Por padrão, assume o valor <code>'end'</code>.</li>
          </ul>
 
@@ -86,7 +87,7 @@
                            { name: 'Descrição', col: 3 },
                            { name: 'Valor', col: 1, customClasses: 'text-end' },
                            { name: 'Datas', col: 4 },
-                           { name: 'Ações', col: 2, customClasses: 'text-end' }
+                           { name: '', col: 2, customClasses: 'text-end' }
                         ]"
                         (itemsPerPageChange)="itemsPerPage = $event"
                         (pageChange)="page = $event">

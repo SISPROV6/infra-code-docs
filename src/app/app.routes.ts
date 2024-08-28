@@ -39,7 +39,7 @@ export const routes: Routes = [
   { path: 'componentes/table', component: TabelaComponent, title: "Tabelas | Componentes" },
   { path: 'componentes/mask', component: MaskComponent, title: "Máscaras | Componentes" },
   { path: 'componentes/input-arquivo', component: InputArquivoComponent, title: "Input de arquivos | Componentes" },
-  { path: 'componentes/combobox', component: ComboboxComponent, title: "Combobox | Componentes" },
+  { path: 'componentes/select-e-combobox', component: ComboboxComponent, title: "Selects e Combobox | Componentes" },
 
   { path: 'templates', component: TemplatesComponent, title: "Templates" },
   { path: 'estrutura', component: StructureComponent, title: "Estrutura" },

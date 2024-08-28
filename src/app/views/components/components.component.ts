@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import { VersionTagsComponent } from '../../shared/components/version-tags/version-tags.component';
 
 @Component({
   selector: 'app-components',
@@ -10,7 +11,8 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
   imports: [
     NavbarComponent,
     CommonModule,
-    RouterModule
+    RouterModule,
+    VersionTagsComponent
   ],
   templateUrl: './components.component.html',
   styleUrl: './components.component.scss'
@@ -27,6 +29,7 @@ export class ComponentsComponent {
   public components: { nome: string, rota: string, descricao: string, implementacao: 0 | 1 | 2 }[] = [
     { nome: "Header", rota: "header", descricao: "Header componentizado na biblioteca interna", implementacao: 2 },
     { nome: "Tabela", rota: "table", descricao: "Tabela componentizada na biblioteca interna", implementacao: 2 },
+    { nome: "Selects e Combobox", rota: "select-e-combobox", descricao: "Combobox componentizado na biblioteca interna", implementacao: 1 },
     { nome: "Ícones", rota: "icones", descricao: "Ícones da biblioteca interna", implementacao: 1 },
     { nome: "Contâiners e Abas", rota: "container-e-abas", descricao: "Container com abas componentizado na biblioteca interna", implementacao: 0 },
     { nome: "Cards", rota: "cards", descricao: "Card componentizado na biblioteca interna", implementacao: 0 },
@@ -36,7 +39,6 @@ export class ComponentsComponent {
     { nome: "Validadores", rota: "validators", descricao: "Rotinas de validação na biblioteca interna", implementacao: 0 },
     { nome: "Máscara", rota: "mask", descricao: "Máscaras para inputs/texto puro", implementacao: 0 },
     { nome: "Input de arquivo", rota: "input-arquivo", descricao: "Input específico para seleção de arquivo(s)", implementacao: 0 },
-    { nome: "Selects e Combobox", rota: "select-e-combobox", descricao: "Combobox componentizado na biblioteca interna", implementacao: 0 },
   ];
   // #endregion PUBLIC
 

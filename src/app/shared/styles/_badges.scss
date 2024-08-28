@@ -1,0 +1,26 @@
+@import "./global.scss";
+
+.badge.text-bg-primary {
+   color: #084298 !important;
+   background-color: #d1dfe7 !important;
+}
+.badge.text-bg-secondary {
+   color: #41464b !important;
+   background-color: #e2e3e5 !important;
+}
+.badge.text-bg-success {
+   color: #0f5132 !important;
+   background-color: #d1e7dd !important;
+}
+.badge.text-bg-warning {
+   color: #664d03 !important;
+   background-color: #fff3cd !important;
+}
+.badge.text-bg-danger {
+   color: #842029 !important;
+   background-color: #f8d7da !important;
+}
+.badge.text-bg-info {
+   color: #842029 !important;
+   background-color: #d1e7e5 !important;
+}

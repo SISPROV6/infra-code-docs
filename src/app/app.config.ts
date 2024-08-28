@@ -7,10 +7,12 @@ import { provideToastr } from 'ngx-toastr';
 
 import { routes } from './app.routes';
 import { provideNgxMask } from 'ngx-mask';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    provideHttpClient(),
     provideAnimations(),  // required animations providers
     provideNgxMask(),
     provideToastr({

@@ -51,7 +51,6 @@ export class SideMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuItems = this.menuConfig.initializeMenu(this._router.url);
-    console.log(this.menuItems);
   }
   // #endregion ==========> INITIALIZATION <==========
 
