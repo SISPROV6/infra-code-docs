@@ -96,6 +96,36 @@
                </div>
             </lib-container>
          </div>
+
+         <div class="code-example">
+            <span>Select simples com valores dinâmicos:</span>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Contratos', 'Formulário', 'Novo' ]" pageTitle='Novo contrato' />
+                  <lib-container pageTitle="Exemplo">
+                     <form innerContent [formGroup]="formSelect2">
+                        <div class="row">
+                           <div class="col-6">
+                              <label libRequired for="situacaoContrato1" class="form-label">Situação</label>
+                              <select id="situacaoContrato1" class="form-select" formControlName="SITUACAOCONTRATOID">
+                                 <option [value]="null" disabled selected> Selecione uma situação </option>
+                                 <option *ngFor="let situacao of situacoesList" [value]="situacao.ID"> {{ situacao.LABEL }} </option>
+                              </select>
+                           </div>
+                        </div>
+                     </form>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[3]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[4]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
       </div>
       <!-- #endregion SELECT -->
 
@@ -120,11 +150,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[1]" language="xml" />
+                  <code-snippet [code]="codeSnippets[5]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[2]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[6]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -149,11 +179,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[3]" language="xml" />
+                  <code-snippet [code]="codeSnippets[7]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[4]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[8]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -178,11 +208,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[5]" language="xml" />
+                  <code-snippet [code]="codeSnippets[9]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[6]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[10]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -236,11 +266,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[5]" language="xml" />
+                  <code-snippet [code]="codeSnippets[11]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[6]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[12]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -273,11 +303,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[7]" language="xml" />
+                  <code-snippet [code]="codeSnippets[13]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[8]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[14]" language="typescript" />
                </div>
             </lib-container>
          </div>

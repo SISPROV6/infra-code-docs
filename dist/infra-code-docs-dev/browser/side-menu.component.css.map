@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/styles/global.scss", "src/app/shared/components/side-menu/side-menu.component.scss"],
+  "sourcesContent": [".bg-dark-blue { background-color: #213b70 !important; }\r\n\r\n.cursor-pointer { cursor: pointer !important; }\r\n\r\ncode.text-code {\r\n   background-color: #213b7026 !important;\r\n   padding: 4px !important;\r\n   border-radius: 4px !important;\r\n}\r\n\r\n.code-example { margin-bottom: 16px !important; }\r\n\r\npre {\r\n   margin-bottom: 0 !important;\r\n   border-radius: 4px !important;\r\n}\r\n\r\ntextarea.no-resize { resize: none !important; }\r\n", "@import \"../../styles/global.scss\";\r\n\r\n\r\n.menu-item {\r\n   transition: all .5s ease;\r\n}\r\n.menu-item.selected {\r\n   background-color: #0a58ca;\r\n   font-weight: bold;\r\n}\r\n.menu-item:hover {\r\n   background-color: #0a58ca;\r\n   font-weight: bold;\r\n}\r\n"],
+  "mappings": ";AAAA,CAAA;AAAgB,oBAAA;;AAEhB,CAAA;AAAkB,UAAA;;AAElB,IAAA,CAAA;AACG,oBAAA,KAAA,EAAA,EAAA,EAAA,EAAA,GAAA,EAAA;AACA,WAAA;AACA,iBAAA;;AAGH,CAAA;AAAgB,iBAAA;;AAEhB;AACG,iBAAA;AACA,iBAAA;;AAGH,QAAA,CAAA;AAAqB,UAAA;;ACdrB,CAAA;AACG,cAAA,IAAA,KAAA;;AAEH,CAHA,SAGA,CAAA;AACG,oBAAA;AACA,eAAA;;AAEH,CAPA,SAOA;AACG,oBAAA;AACA,eAAA;;",
+  "names": []
+}

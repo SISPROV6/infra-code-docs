@@ -1,16 +1,17 @@
 {
   "name": "infra-code-docs",
-  "version": "0.4.1",
+  "version": "2.2.9",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:dev": "npm version patch --no-git-tag-version && ng build --configuration production --output-path=dist/infra-code-docs-dev --base-href /SisproErpCloud/InfraCodeDocs/",
-    "build:prod": "npm version minor --no-git-tag-version && ng build --configuration production --output-path=dist/infra-code-docs-prod --base-href /SisproErpCloud/InfraCodeDocs/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "build:patch": "npm version patch --no-git-tag-version && node src/app/shared/scripts/build.js",
+    "build:minor": "npm version minor --no-git-tag-version && node src/app/shared/scripts/build.js",
+    "build:major": "npm version major --no-git-tag-version && node src/app/shared/scripts/build.js"
   },
   "private": true,
   "dependencies": {

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/styles/global.scss", "src/app/shared/components/code-snippet/code-snippet.component.scss"],
+  "sourcesContent": [".bg-dark-blue { background-color: #213b70 !important; }\r\n\r\n.cursor-pointer { cursor: pointer !important; }\r\n\r\ncode.text-code {\r\n   background-color: #213b7026 !important;\r\n   padding: 4px !important;\r\n   border-radius: 4px !important;\r\n}\r\n\r\n.code-example { margin-bottom: 16px !important; }\r\n\r\npre {\r\n   margin-bottom: 0 !important;\r\n   border-radius: 4px !important;\r\n}\r\n\r\ntextarea.no-resize { resize: none !important; }\r\n", "@import \"../../../shared/styles/global.scss\";\r\n\r\npre { background-color: #0d1117 !important; }\r\n"],
+  "mappings": ";AAAA,CAAA;AAAgB,oBAAA;;AAEhB,CAAA;AAAkB,UAAA;;AAElB,IAAA,CAAA;AACG,oBAAA,KAAA,EAAA,EAAA,EAAA,EAAA,GAAA,EAAA;AACA,WAAA;AACA,iBAAA;;AAGH,CAAA;AAAgB,iBAAA;;AAEhB;AACG,iBAAA;AACA,iBAAA;;AAGH,QAAA,CAAA;AAAqB,UAAA;;ACfrB;AAAM,oBAAA;;",
+  "names": []
+}

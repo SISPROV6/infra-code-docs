@@ -29,6 +29,18 @@ export class ComboboxDemonstracaoService {
   // #region ==========> SERVICE METHODS <==========
 
   // #region PREPARATION
+  public getSituacoesCombobox(): Observable<RetRecordsCombobox> {
+    const retorno: RetRecordsCombobox = {
+      Error: false,
+      ErrorMessage: '',
+      Records: this.initializeSituacoes()
+    };
+
+    // * Operador 'of()' cria um Observable do tipo entre parênteses,
+    // * nesta situação está sendo usada para simular uma chamada http
+    return of(retorno);
+  }
+
   public getPessoasCombobox(): Observable<RetRecordsCombobox> {
     const retorno: RetRecordsCombobox = {
       Error: false,
@@ -72,6 +84,17 @@ export class ComboboxDemonstracaoService {
 
 
   // #region ==========> UTILS <==========
+  private initializeSituacoes(): RecordCombobox[] {
+    return [
+      { ID: 'ELABORACAO', LABEL: 'Elaboração' },
+      { ID: 'WORKFLOW', LABEL: 'Workflow' },
+      { ID: 'ASSINATURA', LABEL: 'Assinatura' },
+      { ID: 'ENCERRADO', LABEL: 'Encerrado' },
+      { ID: 'CANCELADO', LABEL: 'Cancelado' },
+      { ID: 'VENCIDO', LABEL: 'Vencido' }
+    ];
+  }
+
   private initializePessoas(): RecordCombobox[] {
     return [
       { ID: 'ccf27a4a-eaf1-48d2-ba89-840e7d953e91', LABEL: 'Rodrigo Souza', AdditionalStringProperty1: '678.109.234-55' },
