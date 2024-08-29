@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { InfraModule } from 'ngx-sp-infra';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { IconModel, IconsList, InfraModule, ModalUtilsService } from 'ngx-sp-infra';
 
 import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { CodeSnippetComponent } from '../../../shared/components/code-snippet/code-snippet.component';
 import { UtilsService } from '../../../shared/services/utils.service';
+import { IconFilterPipe } from '../../../shared/pipes/icon-filter.pipe';
 
 @Component({
   selector: 'app-icones',
@@ -16,8 +17,10 @@ import { UtilsService } from '../../../shared/services/utils.service';
   imports: [
     NavbarComponent,
     CodeSnippetComponent,
+    IconFilterPipe,
 
     CommonModule,
+    FormsModule,
     InfraModule,
     ReactiveFormsModule,
     RouterModule,
@@ -26,7 +29,7 @@ import { UtilsService } from '../../../shared/services/utils.service';
   templateUrl: './icones.component.html',
   styleUrl: './icones.component.scss'
 })
-export class IconesComponent {
+export class IconesComponent implements OnInit, AfterContentInit {
 
   // #region ==========> PROPERTIES <==========
 
@@ -35,6 +38,12 @@ export class IconesComponent {
   // #endregion PRIVATE
 
   // #region PUBLIC
+  public categoriaSelected: string | null = null;
+  public pesquisa: string = "";
+
+  public iconsList: IconModel[] = IconsList.list;
+  public categoriasList: string[] = [];
+
   public codeSnippets: string[] = [
     "// Em uma estrutura de uma tela de Usuários, por exemplo\n// No arquivo usuarios.module.ts:\n@NgModule( {\n   declarations: [\n      // ...outros componentes\n      PainelUsuariosComponent,\n      FormularioUsuarioComponent\n   ],\n   imports: [\n      // ...outros imports\n      ProjectModule,\n      UsuariosRoutingModule\n   ],\n   exports: [\n         // ...\n   ]\n})\nexport class UsuariosModule { }",
     "",
@@ -59,20 +68,24 @@ export class IconesComponent {
   // [...]
   // #endregion FORM FIELDS
 
-  // #region FORM BUILDER
-  // [...]
-  // #endregion FORM BUILDER
-
   // #endregion ==========> FORM BUILDER <==========
 
 
   // #region ==========> INITIALIZATION <==========
   constructor(
-    private _router: Router,
+    public modalUtils: ModalUtilsService,
     public utilsService: UtilsService
   ) { }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void { }
+
+  ngAfterContentInit(): void {
+    this.categoriasList = this.iconsList.length > 0
+    ? [
+        ...new Set(this.iconsList.map(icon => icon.categoria ))
+      ].sort()
+    : [];
+  }
   // #endregion ==========> INITIALIZATION <==========
 
 

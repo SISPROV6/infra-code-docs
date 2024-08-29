@@ -1,9 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import { VersionTagsComponent } from '../../shared/components/version-tags/version-tags.component';
 
 @Component({
   selector: 'app-models',
   standalone: true,
-  imports: [],
+  imports: [
+    NavbarComponent,
+    CommonModule,
+    RouterModule,
+    VersionTagsComponent
+  ],
   templateUrl: './models.component.html',
   styleUrl: './models.component.scss'
 })

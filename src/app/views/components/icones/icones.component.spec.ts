@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { IconesComponent } from './icones.component';
-import { Router, RouterModule } from '@angular/router';
-import { HomeComponent } from '../../home/home.component';
 import { routes } from '../../../app.routes';
+
+import { IconesComponent } from './icones.component';
+import { HomeComponent } from '../../home/home.component';
 
 describe('IconesComponent', () => {
   let component: IconesComponent;

@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
+import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { VersionTagsComponent } from '../../shared/components/version-tags/version-tags.component';
 
 @Component({
   selector: 'app-structure',
   standalone: true,
-  imports: [],
+  imports: [
+    NavbarComponent,
+    CommonModule,
+    RouterModule,
+    VersionTagsComponent
+  ],
   templateUrl: './structure.component.html',
   styleUrl: './structure.component.scss'
 })

@@ -1,0 +1,6 @@
+@import "../../shared/styles/global.scss";
+
+.card { transition: all .5s ease; }
+.card.border-danger:hover { background-color: #ca0a0a20; }
+.card.border-success:hover { background-color: #0aca1020; }
+.card.border-primary:hover { background-color: #0a57ca20; }

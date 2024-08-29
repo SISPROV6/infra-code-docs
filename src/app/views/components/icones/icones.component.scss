@@ -1,0 +1,13 @@
+@import "../../../shared/styles/global.scss";
+
+
+.icon-card {
+   // width: 100px !important;
+   height: 100px !important;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   cursor: pointer;
+}
