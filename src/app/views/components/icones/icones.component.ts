@@ -1,3 +1,4 @@
+import { VersionTagsComponent } from './../../../shared/components/version-tags/version-tags.component';
 import { CommonModule } from '@angular/common';
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +11,9 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
 import { CodeSnippetComponent } from '../../../shared/components/code-snippet/code-snippet.component';
 import { UtilsService } from '../../../shared/services/utils.service';
 import { IconFilterPipe } from '../../../shared/pipes/icon-filter.pipe';
+import { IconeModalComponent } from './icone-modal/icone-modal.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { InstallationInstructionsComponent } from "../../../shared/components/installation-instructions/installation-instructions.component";
 
 @Component({
   selector: 'app-icones',
@@ -18,14 +22,16 @@ import { IconFilterPipe } from '../../../shared/pipes/icon-filter.pipe';
     NavbarComponent,
     CodeSnippetComponent,
     IconFilterPipe,
-
+    VersionTagsComponent,
+    IconeModalComponent,
     CommonModule,
     FormsModule,
     InfraModule,
     ReactiveFormsModule,
     RouterModule,
     TooltipModule,
-  ],
+    InstallationInstructionsComponent
+],
   templateUrl: './icones.component.html',
   styleUrl: './icones.component.scss'
 })
@@ -45,17 +51,17 @@ export class IconesComponent implements OnInit, AfterContentInit {
   public categoriasList: string[] = [];
 
   public codeSnippets: string[] = [
-    "// Em uma estrutura de uma tela de Usuários, por exemplo\n// No arquivo usuarios.module.ts:\n@NgModule( {\n   declarations: [\n      // ...outros componentes\n      PainelUsuariosComponent,\n      FormularioUsuarioComponent\n   ],\n   imports: [\n      // ...outros imports\n      ProjectModule,\n      UsuariosRoutingModule\n   ],\n   exports: [\n         // ...\n   ]\n})\nexport class UsuariosModule { }",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
+    ``,
   ];
   // #endregion PUBLIC
 
@@ -73,6 +79,9 @@ export class IconesComponent implements OnInit, AfterContentInit {
 
   // #region ==========> INITIALIZATION <==========
   constructor(
+    private _bsModalref: BsModalRef,
+    private _bsModalService: BsModalService,
+
     public modalUtils: ModalUtilsService,
     public utilsService: UtilsService
   ) { }
@@ -81,9 +90,7 @@ export class IconesComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit(): void {
     this.categoriasList = this.iconsList.length > 0
-    ? [
-        ...new Set(this.iconsList.map(icon => icon.categoria ))
-      ].sort()
+    ? [ ...new Set(this.iconsList.map(icon => icon.categoria )) ].sort()
     : [];
   }
   // #endregion ==========> INITIALIZATION <==========
@@ -111,7 +118,12 @@ export class IconesComponent implements OnInit, AfterContentInit {
 
 
   // #region ==========> UTILS <==========
-  // [...]
+  public openModal(name: string): void {
+    this._bsModalref = this._bsModalService.show(IconeModalComponent, {
+      initialState: { iconName: name },
+      class: 'modal-dialog-centered modal-xl'
+    });
+  }
   // #endregion ==========> UTILS <==========
 
 }

@@ -33,7 +33,7 @@
     "ngx-pagination": "^6.0.3",
     "ngx-select-dropdown": "^3.3.2",
     "ngx-sp-infra": "file:../NgxSpInfra/dist/ngx-sp-infra",
-    "ngx-toastr": "^19.0.0",
+    "ngx-toastr": "^18.0.0",
     "ngx-ui-switch": "^15.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.3",

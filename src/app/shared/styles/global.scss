@@ -8,7 +8,7 @@ code.text-code {
    border-radius: 4px !important;
 }
 
-.code-example { margin-bottom: 16px !important; }
+.code-example { margin-bottom: 48px !important; }
 
 pre {
    margin-bottom: 0 !important;
@@ -17,6 +17,10 @@ pre {
 
 textarea.no-resize { resize: none !important; }
 
+
+// #region text-color
+.text-dark-secondary { color: #6C757D !important; }
+// #endregion text-color
 
 // #region text-color:hover
 .text-primary-hover:hover {

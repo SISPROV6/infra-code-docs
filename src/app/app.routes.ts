@@ -44,6 +44,8 @@ export const routes: Routes = [
   { path: 'templates', component: TemplatesComponent, title: "Templates" },
   { path: 'estrutura', component: StructureComponent, title: "Estrutura" },
   { path: 'models', component: ModelsComponent, title: "Models e Records" },
+  { path: 'database', component: ModelsComponent, title: "Bases de Dados" },
+  { path: 'v41', component: ModelsComponent, title: "V41" },
   { path: 'webservices', component: WebservicesComponent, title: "Webservices (APIs)" },
 
   { path: '**', component: NotFoundComponent, title: "Página não encontrada" },

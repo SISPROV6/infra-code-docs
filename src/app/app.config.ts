@@ -13,8 +13,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    provideAnimations(),  // required animations providers
     provideNgxMask(),
+    provideAnimations(),  // required animations providers
     provideToastr({
       positionClass: "toast-bottom-right",
       maxOpened: 3,
