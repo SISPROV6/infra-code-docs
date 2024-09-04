@@ -35,7 +35,6 @@
             <li class="my-2"><code class="text-code">control: "FormControl&lt;any&gt; | AbstractControl&lt;any&gt;</code> (obrigatório) - Control para seleção dos valores, atualizará automaticamente o control do componente pai também.</li>
             <li class="my-2"><code class="text-code">list: RecordCombobox[]</code> (obrigatório) - Lista de registros que serão exibidos no combo, enquanto eles estiverem carregando será exibido um spinner.</li>
             <li class="my-2"><code class="text-code">labelText?: string</code> - Texto do rótulo que será exibido acima do combo. Caso não informado nada será exibido.</li>
-            <li class="my-2"><code class="text-code">controlName?: string</code> - Define um nome para o controle, utilizado internamente em alguns recursos. Recomendade para evitar alguns bugs de detecção.</li>
             <li class="my-2"><code class="text-code">libRequired?: boolean</code> - Define se o campo é obrigatório, vai exibir o '*' vermelho ao lado do label (se ele estiver presente). Por padrão, assume o valor <code>false</code>.</li>
             <li class="my-2"><code class="text-code">disabled?: boolean</code> - Define se o campo está desabilitado. Deve ser usado para validações de habilitação dinâmica do campo. Por padrão, assume o valor <code>false</code>.</li>
             <li class="my-2"><code class="text-code">mainPlaceholder?: string</code> - Placeholder do campo principal do combo. Por padrão, assume o valor <code>"Selecione uma opção..."</code>.</li>
@@ -56,8 +55,6 @@
          <p class="fw-bold">AVISOS</p>
          <ul>
             <li>Propriedade libRequired será depreciada em breve pois não será mais necessária, pode-se usar o <code class="text-code fw-bold">[Validator.required]</code> diretamente.</li>
-            <li>Este componente utiliza uma técnica específica de detecção de mudanças através do método <b>ngDoCheck</b>, necessária para assegurar a integração adequada com o método <code class="text-code fw-bold">FormUtils.validateFields()</code>. No entanto, em telas de alta complexidade ou com uma grande quantidade de elementos, essa detecção pode ocasionar uma leve degradação de performance em situações específicas.</li>
-            <li>Recomendamos que a propriedade <code class="text-code fw-bold">controlName?: string</code> seja sempre preenchida. Isso ajudará a evitar possíveis problemas na detecção de mudanças tanto do componente quanto do FormControl, além de garantir uma integração consistente com o método de detecção mencionado anteriormente.</li>
          </ul>
       </div>
       <!-- #endregion AVISOS -->
@@ -244,7 +241,7 @@
                      <form innerContent [formGroup]="formCombobox1">
                         <div class="row">
                            <div class="col-6">
-                              <lib-combobox labelText="Pessoa" [list]="pessoasList" controlName="CRPPESSOAID" [control]="formCombobox1.controls['CRPPESSOAID']" />
+                              <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="formCombobox1.controls['CRPPESSOAID']" />
                            </div>
                         </div>
                      </form>
@@ -296,7 +293,6 @@
                            <div class="col-6">
                               <lib-combobox labelText="Pessoa"
                                  [list]="pessoasList"
-                                 controlName="CRPPESSOAID"
                                  [control]="formCombobox2.controls['CRPPESSOAID']" />
                            </div>
                         </div>
@@ -325,7 +321,6 @@
                            <div class="col-6">
                               <lib-combobox labelText="Pessoa"
                                  [list]="pessoasList"
-                                 controlName="CRPPESSOAID"
                                  [control]="formCombobox3.controls['CRPPESSOAID']" />
                            </div>
                         </div>
@@ -360,14 +355,12 @@
                            <div class="col-6">
                               <lib-combobox labelText="Parte (onChange)"
                                  [list]="pessoasList"
-                                 controlName="PESSOAPARTEID"
                                  [control]="formCombobox4.controls['PESSOAPARTEID']"
                                  (onChange)="toastr.success($event ? $event.toString() : 'null', 'Novo valor selecionado (onChange):')" />
                            </div>
                            <div class="col-6">
                               <lib-combobox labelText="Contraparte (valueChanges)"
                                  [list]="pessoasList"
-                                 controlName="PESSOACONTRAPARTEID"
                                  [control]="formCombobox4.controls['PESSOACONTRAPARTEID']" />
                            </div>
                         </div>
@@ -402,7 +395,6 @@
                            <div class="col-6">
                               <lib-combobox labelText="Parte ([disabled])"
                                  [list]="pessoasList"
-                                 controlName="PESSOAPARTEID"
                                  [control]="formCombobox5.controls['PESSOAPARTEID']"
                                  [disabled]="disabledInputs.get('formCombobox5')"
                                  />
@@ -410,7 +402,6 @@
                            <div class="col-6">
                               <lib-combobox labelText="Contraparte (formControl.disable())"
                                  [list]="pessoasList"
-                                 controlName="PESSOACONTRAPARTEID"
                                  [control]="formCombobox5.controls['PESSOACONTRAPARTEID']" />
                            </div>
                         </div>
@@ -474,7 +465,6 @@
                                  [searchPlaceholder]="searchPlaceholder6"
                                  [theme]="colorTheme6"
                                  [list]="pessoasList"
-                                 controlName="CRPPESSOAID"
                                  [control]="formCombobox6.controls['CRPPESSOAID']" />
                            </div>
                         </div>
@@ -501,7 +491,7 @@
                      <form innerContent>
                         <div class="row mb-3">
                            <div class="col-6 offset-3">
-                              <lib-combobox labelText="Pessoa" [list]="pessoasList" controlName="CRPPESSOAID" [control]="formCombobox7.controls['CRPPESSOAID']" >
+                              <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="formCombobox7.controls['CRPPESSOAID']" >
                                  <button btnLeft class="btn btn-sm btn-primary" tooltip="Abrir modal com listagem completa" (click)="modalUtils.openInitialStateModal(exampleModalRef)"> <lib-icon iconName="usuario-quadro" /> </button>
                                  <button btnRight class="btn btn-sm btn-outline-primary" tooltip="Limpar valor selecionado" (click)="formCombobox7.controls['CRPPESSOAID'].setValue(null)"> <lib-icon iconName="lixeira" /> </button>
                               </lib-combobox>
@@ -560,7 +550,6 @@
                               <div class="col-4">
                                  <lib-combobox labelText="Pessoa"
                                     [list]="pessoasList"
-                                    controlName="CRPPESSOAID"
                                     [control]="formCombobox9.controls['CRPPESSOAID']" />
                               </div>
                               <div class="col">
@@ -606,14 +595,12 @@
                               <div class="col-6">
                                  <lib-combobox labelText="Empresa"
                                     [list]="empresasList"
-                                    controlName="CRPEMPRESAID"
                                     [control]="formCombobox10.controls['CRPEMPRESAID']" />
                               </div>
 
                               <div class="col-6">
                                  <lib-combobox labelText="Estabelecimento"
                                     [list]="estabelecimentosList"
-                                    controlName="CRPESTABELECIMENTOID"
                                     [control]="formCombobox10.controls['CRPESTABELECIMENTOID']" />
                               </div>
                            </div>
