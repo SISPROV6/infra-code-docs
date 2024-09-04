@@ -117,11 +117,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[1]" language="xml" />
+                  <code-snippet [code]="codeSnippets[0]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[2]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[1]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -152,11 +152,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[3]" language="xml" />
+                  <code-snippet [code]="codeSnippets[2]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[4]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[3]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -193,11 +193,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[3]" language="xml" />
+                  <code-snippet [code]="codeSnippets[4]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[4]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[5]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -236,7 +236,7 @@
          <!-- #endregion AVISOS -->
 
          <div class="code-example">
-            <p>Combobox simples:</p>
+            <p>Combobox simples dentro de um FormGroup:</p>
             <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
                <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
                   <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
@@ -252,11 +252,35 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[5]" language="xml" />
+                  <code-snippet [code]="codeSnippets[6]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[6]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[7]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <p>Combobox simples fora de um FormGroup:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+                  <lib-container pageTitle="Exemplo">
+                     <div innerContent class="row">
+                        <div class="col-6">
+                           <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="pessoaControl2" />
+                        </div>
+                     </div>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[8]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[9]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -281,11 +305,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[7]" language="xml" />
+                  <code-snippet [code]="codeSnippets[10]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[8]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[11]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -310,11 +334,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[9]" language="xml" />
+                  <code-snippet [code]="codeSnippets[12]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[10]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[13]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -352,11 +376,147 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[9]" language="xml" />
+                  <code-snippet [code]="codeSnippets[14]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[10]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[15]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <p>Desabilitar o campo:</p>
+            <div class="secondary-description text-dark-secondary mb-3">
+               <span>Para desabilitar o combobox há duas formas:</span>
+               <li>[disabled]: Propriedade {{ "@Input" }} que habilitará ou desabilitará o campo.</li>
+               <li>formControl.disable(): É possível utilizar o próprio método de disable() do próprio formGroup que já está sendo utilizado no TS, como se fosse um outro campo qualquer.</li>
+            </div>
+            
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+                  <lib-container pageTitle="Exemplo">
+                     <form innerContent [formGroup]="formCombobox5">
+                        <div class="row mb-3">
+                           <div class="col-6">
+                              <lib-combobox labelText="Parte ([disabled])"
+                                 [list]="pessoasList"
+                                 controlName="PESSOAPARTEID"
+                                 [control]="formCombobox5.controls['PESSOAPARTEID']"
+                                 [disabled]="disabledInputs.get('formCombobox5')"
+                                 />
+                           </div>
+                           <div class="col-6">
+                              <lib-combobox labelText="Contraparte (formControl.disable())"
+                                 [list]="pessoasList"
+                                 controlName="PESSOACONTRAPARTEID"
+                                 [control]="formCombobox5.controls['PESSOACONTRAPARTEID']" />
+                           </div>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-6 offset-3 d-flex justify-content-evenly">
+                              <button class="btn btn-outline-primary" (click)="disableForm5()">disable()</button>
+                              <button class="btn btn-outline-primary" (click)="enableForm5()">enable()</button>
+                           </div>
+                        </div>
+                     </form>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[16]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[17]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <p>Propriedades simples:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+                  <lib-container pageTitle="Exemplo">
+                     <form innerContent>
+                        <div class="row mb-3 pb-4 border-bottom">
+                           <div class="col-3">
+                              <label for="labelText6" class="form-label">Label</label>
+                              <input type="text" id="labelText6" class="form-control" [(ngModel)]="labelText6" [ngModelOptions]="{standalone: true}" >
+                           </div>
+                           <div class="col-3">
+                              <label for="mainPlaceholder6" class="form-label">MainInputPlaceholder</label>
+                              <input type="text" id="mainPlaceholder6" class="form-control" [(ngModel)]="mainPlaceholder6" [ngModelOptions]="{standalone: true}" >
+                           </div>
+                           <div class="col-3">
+                              <label for="searchPlaceholder6" class="form-label">SearchInputPlaceholder</label>
+                              <input type="text" id="searchPlaceholder6" class="form-control" [(ngModel)]="searchPlaceholder6" [ngModelOptions]="{standalone: true}" >
+                           </div>
+                           <div class="col-3">
+                              <label for="colorTheme6" class="form-label">ColorTheme</label>
+                              <select id="colorTheme6" class="form-select" [(ngModel)]="colorTheme6" [ngModelOptions]="{standalone: true}" >
+                                 <option value="primary">Primary (azul)</option>
+                                 <option value="secondary">Secondary (cinza)</option>
+                                 <option value="success">Success (verde)</option>
+                                 <option value="danger">Danger (vermelho)</option>
+                                 <option value="warning">Warning (amarelo)</option>
+                              </select>
+                           </div>
+                        </div>
+
+                        <div class="row mb-3">
+                           <div class="col-6 offset-3">
+                              <lib-combobox [labelText]="labelText6"
+                                 [mainPlaceholder]="mainPlaceholder6"
+                                 [searchPlaceholder]="searchPlaceholder6"
+                                 [theme]="colorTheme6"
+                                 [list]="pessoasList"
+                                 controlName="CRPPESSOAID"
+                                 [control]="formCombobox6.controls['CRPPESSOAID']" />
+                           </div>
+                        </div>
+                     </form>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[18]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[19]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <p>Botões laterais customizados:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+                  <lib-container pageTitle="Exemplo">
+                     <form innerContent>
+                        <div class="row mb-3">
+                           <div class="col-6 offset-3">
+                              <lib-combobox labelText="Pessoa" [list]="pessoasList" controlName="CRPPESSOAID" [control]="formCombobox7.controls['CRPPESSOAID']" >
+                                 <button btnLeft class="btn btn-sm btn-primary" tooltip="Abrir modal com listagem completa" (click)="modalUtils.openInitialStateModal(exampleModalRef)"> <lib-icon iconName="usuario-quadro" /> </button>
+                                 <button btnRight class="btn btn-sm btn-outline-primary" tooltip="Limpar valor selecionado" (click)="formCombobox7.controls['CRPPESSOAID'].setValue(null)"> <lib-icon iconName="lixeira" /> </button>
+                              </lib-combobox>
+                           </div>
+                        </div>
+                     </form>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[20]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[21]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -395,7 +555,7 @@
                            <label class="btn btn-sm btn-outline-primary" for="limparRadio">LIMPAR</label>
                         </div>
    
-                        <form [formGroup]="formCombobox10">
+                        <form [formGroup]="formCombobox9">
                            <div class="row align-items-end">
                               <div class="col-4">
                                  <lib-combobox labelText="Pessoa"
@@ -425,11 +585,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[11]" language="xml" />
+                  <code-snippet [code]="codeSnippets[22]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[12]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[23]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -463,11 +623,11 @@
                </div>
 
                <div innerContent2>
-                  <code-snippet [code]="codeSnippets[13]" language="xml" />
+                  <code-snippet [code]="codeSnippets[24]" language="xml" />
                </div>
 
                <div innerContent3>
-                  <code-snippet [code]="codeSnippets[14]" language="typescript" />
+                  <code-snippet [code]="codeSnippets[25]" language="typescript" />
                </div>
             </lib-container>
          </div>
@@ -477,3 +637,8 @@
       <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
    </div>
 </div>
+
+
+<!-- #region TEMPLATE -->
+<ng-template #exampleModalRef> <example-modal /> </ng-template>
+<!-- #endregion TEMPLATE -->
