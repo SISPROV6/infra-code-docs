@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { IconModel, IconsList, InfraModule, ModalUtilsService } from 'ngx-sp-infra';
+import { IconModel, InfraModule } from 'ngx-sp-infra';
 
 import { CodeSnippetComponent } from '../../../../shared/components/code-snippet/code-snippet.component';
 import { VersionTagsComponent } from '../../../../shared/components/version-tags/version-tags.component';
@@ -35,10 +35,12 @@ export class IconeModalComponent implements OnInit, AfterContentInit, OnDestroy 
   // #endregion PRIVATE
 
   // #region PUBLIC
-  public iconName?: string;
+  public iconData!: IconModel;
 
-  public iconSize?: 'default' | 'medium-small' | 'small' | number = 'default';
-  public iconcolor?: 'white' | 'blue' | 'gray' | 'light-gray' | 'green' | 'light-blue' | 'yellow' | 'red' | 'currentColor' | string = 'blue';
+  public customIconSize?: 'default' | 'medium-small' | 'small' | number;
+  public customIconColor?: 'white' | 'blue' | 'gray' | 'light-gray' | 'green' | 'light-blue' | 'yellow' | 'red' | 'currentColor' | string;
+
+  public iconCode: string = `<lib-icon iconName="nome" />`;
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
@@ -62,35 +64,45 @@ export class IconeModalComponent implements OnInit, AfterContentInit, OnDestroy 
 
   ngOnInit(): void { }
 
-  ngAfterContentInit(): void { }
+  ngAfterContentInit(): void {
+    const iconSizeFormatted = this.customIconSize 
+      ? this.customIconSize == "default" || this.customIconSize == "medium-small" || this.customIconSize == "small"
+        ? `iconSize="${this.customIconSize}"`
+        : `[iconSize]="${this.customIconSize}"`
+      : "";
+
+    const iconThemeFormatted = this.customIconColor 
+      ? `iconColor="${this.customIconColor}"`
+      : "";
+
+    this.iconCode = `<lib-icon iconName="${this.iconData.nome}" ${iconSizeFormatted} ${iconThemeFormatted} />`;
+  }
 
   ngOnDestroy(): void { }
   // #endregion ==========> INITIALIZATION <==========
 
 
-  // #region ==========> SERVICE METHODS <==========
-
-  // #region PREPARATION
-  // [...]
-  // #endregion PREPARATION
-
-  // #region GET
-  // [...]
-  // #endregion GET
-
-  // #region POST
-  // [...]
-  // #endregion POST
-
-  // #region DELETE
-  // [...]
-  // #endregion DELETE
-
-  // #endregion ==========> SERVICE METHODS <==========
-
-
   // #region ==========> UTILS <==========
-  // [...]
+  public updateIconAppearance(): void {
+    switch (this.customIconSize) {
+      case 18: this.customIconSize = "small"; break;
+      case 20: this.customIconSize = "medium-small"; break;
+      case 24: this.customIconSize = "default"; break;
+      default: this.customIconSize = this.customIconSize; break;
+    }
+
+    const iconSizeFormatted = this.customIconSize 
+      ? this.customIconSize == "default" || this.customIconSize == "medium-small" || this.customIconSize == "small"
+        ? `iconSize="${this.customIconSize}"`
+        : `[iconSize]="${this.customIconSize}"`
+      : "";
+
+    const iconThemeFormatted = this.customIconColor 
+      ? `iconColor="${this.customIconColor}"`
+      : "";
+
+    this.iconCode = `<lib-icon iconName="${this.iconData.nome}" ${iconSizeFormatted} ${iconThemeFormatted} />`;
+  }
   // #endregion ==========> UTILS <==========
 
 }

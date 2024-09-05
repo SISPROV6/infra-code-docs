@@ -1,12 +1,78 @@
 <div class="modal-content">
    <div class="modal-header">
-      <h5 class="modal-title">Ícone: {{ iconName }}</h5>
+      <div class="w-100">
+         <h3 class="modal-title mb-1"><b>Ícone:</b> {{ iconData.nome }}</h3>
+         <p class="mb-0"><b>Categoria:</b> {{ iconData.categoria }} </p>
+         <p *ngIf="iconData.tags" class="mb-0"><b>Tags:</b> {{ iconData.tags.join(', ') }} </p>
+      </div>
    </div>
 
-   <div class="modal-body p-3">
-      <div class="col-6 border rounded" style="height: 300px;"></div>
-      <div class="col-6 border rounded" style="height: 300px;"></div>
-      
-      <!-- <p>Modal body text goes here.</p> -->
+   <div class="modal-body">
+      <div class="row">
+         <div class="col-6" style="min-height: 300px;">
+            <div class="col p-5 mb-3 border rounded text-center bg-secondary"> <lib-icon [iconName]="iconData.nome" [iconSize]="customIconSize ?? 80" [iconColor]="customIconColor ?? 'currentColor'" /> </div>
+            <div class="col">
+               <div class="d-flex flex-column">
+                  <h3>Exemplos</h3>
+
+                  <div class="border rounded p-3 d-flex flex-column">
+                     <span class="mb-3"> <h3><lib-icon [iconName]="iconData.nome" /> Título 3</h3> </span>
+                     <span class="mb-3"> <h5><lib-icon [iconName]="iconData.nome" /> Título 5</h5> </span>
+                     <span class="mb-3"> Texto normal <lib-icon [iconName]="iconData.nome" /> </span>
+                     <span class="mb-3"> <a>Link <lib-icon [iconName]="iconData.nome" /></a> </span>
+                     <span class="mb-3">
+                        <button class="btn btn-primary"><lib-icon [iconName]="iconData.nome" /> Botão</button>
+                        <button class="btn btn-success mx-2"><lib-icon [iconName]="iconData.nome" /> Botão</button>
+                        <button class="btn btn-outline-danger"><lib-icon [iconName]="iconData.nome" /> Botão</button>
+                     </span>
+                     <span class="mb-3">
+                        <button class="btn btn-primary"><lib-icon [iconName]="iconData.nome" /></button>
+                        <button class="btn btn-success mx-2"><lib-icon [iconName]="iconData.nome" /></button>
+                        <button class="btn btn-outline-danger"><lib-icon [iconName]="iconData.nome" /></button>
+                     </span>
+                     <span>
+                        <div class="input-group">
+                           <span class="input-group-text"><lib-icon [iconName]="iconData.nome" iconColor="" /></span>
+                           <input type="text" class="form-control" placeholder="Exemplo em input-group">
+                         </div>
+                     </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-6" style="min-height: 300px;">
+            <div class="d-flex flex-column">
+               <div class="copy-html mb-3">
+                  <span>Copie o trecho abaixo para utilizar este ícone no seu HTML</span>
+                  <code-snippet [code]="iconCode" language="xml" />
+               </div>
+
+               <div class="row">
+                  <div class="col">
+                     <label for="customSize" class="form-label">Tamanho</label>
+                     <input type="range" class="form-range" min="12" max="80" step="2" id="customSize"
+                        [(ngModel)]="customIconSize" (ngModelChange)="updateIconAppearance()">
+                  </div>
+
+                  <div class="col">
+                     <label for="customColor" class="form-label">Cor</label>
+                     <select class="form-select" id="customColor" [(ngModel)]="customIconColor" (ngModelChange)="updateIconAppearance()">
+                        <option [value]="undefined" selected disabled>Escolha uma cor</option>
+                        <option value="white">white (#FFFFFF)</option>
+                        <option value="blue">blue (#3767b2)</option>
+                        <option value="gray">gray (#6C757D)</option>
+                        <option value="light-gray">light-gray (#CED4DA)</option>
+                        <option value="green">green (#0F5132)</option>
+                        <option value="light-blue">light-blue (#3767B2)</option>
+                        <option value="yellow">yellow (#FFC107)</option>
+                        <option value="red">red (#B23737)</option>
+                        <option value="currentColor">currentColor (cor da fonte)</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 </div>

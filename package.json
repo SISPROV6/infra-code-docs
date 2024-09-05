@@ -1,6 +1,6 @@
 {
   "name": "infra-code-docs",
-  "version": "2.3.4",
+  "version": "2.5.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,7 +32,7 @@
     "ngx-mask": "^17.1.8",
     "ngx-pagination": "^6.0.3",
     "ngx-select-dropdown": "^3.3.2",
-    "ngx-sp-infra": "^1.9.57",
+    "ngx-sp-infra": "^1.10.0",
     "ngx-toastr": "^18.0.0",
     "ngx-ui-switch": "^15.0.0",
     "rxjs": "~7.8.0",

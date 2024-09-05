@@ -30,7 +30,7 @@
             @for (icone of iconsList | iconFilter:pesquisa:categoriaSelected; track $index) {
                <div class="col-1">
                   <div class="text-center text-primary-hover">
-                     <div class="icon-card border rounded border-secondary" (click)="openModal(icone.nome)"> <lib-icon [iconName]="icone.nome" /> </div>
+                     <div class="icon-card border rounded border-secondary" (click)="openModal(icone)"> <lib-icon [iconName]="icone.nome" /> </div>
                      <span>{{ icone.nome }}</span>
                   </div>
                </div>

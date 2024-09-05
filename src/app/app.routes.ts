@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { OrderingComponent } from 'ngx-sp-infra';
-
 import { HomeComponent } from './views/home/home.component';
 import { ComponentsComponent } from './views/components/components.component';
 import { HeaderComponent } from './views/components/header/header.component';
@@ -20,6 +18,8 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ComboboxComponent } from './views/components/combobox/combobox.component';
 import { WebservicesComponent } from './views/webservices/webservices.component';
 import { ModalsComponent } from './views/components/modals/modals.component';
+import { SpinnerComponent } from './views/components/spinner/spinner.component';
+import { OrderingComponent } from './views/components/ordering/ordering.component';
 
 
 export const routes: Routes = [
@@ -34,6 +34,7 @@ export const routes: Routes = [
   { path: 'componentes/pagination', component: PaginationComponent, title: "Paginação | Componentes" },
   { path: 'componentes/ordering', component: OrderingComponent, title: "Ordenação | Componentes" },
   { path: 'componentes/icones', component: IconesComponent, title: "Ícones | Componentes" },
+  { path: 'componentes/spinner', component: SpinnerComponent, title: "Spinner | Componentes" },
   { path: 'componentes/validators', component: ValidatorsComponent, title: "Validators | Componentes" },
   { path: 'componentes/container-e-abas', component: ContainersComponent, title: "Containers e Abas | Componentes" },
   { path: 'componentes/table', component: TabelaComponent, title: "Tabelas | Componentes" },

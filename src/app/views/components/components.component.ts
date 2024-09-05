@@ -31,6 +31,7 @@ export class ComponentsComponent {
     { nome: "Tabela", rota: "table", descricao: "Tabela componentizada na biblioteca interna", implementacao: 2 },
     { nome: "Selects e Combobox", rota: "select-e-combobox", descricao: "Combobox componentizado na biblioteca interna", implementacao: 2 },
     { nome: "Ícones", rota: "icones", descricao: "Ícones da biblioteca interna", implementacao: 1 },
+    { nome: "Spinner", rota: "spinner", descricao: "Elemento visual de spinner de carregamento", implementacao: 1 },
     { nome: "Contâiners e Abas", rota: "container-e-abas", descricao: "Container com abas componentizado na biblioteca interna", implementacao: 0 },
     { nome: "Cards", rota: "cards", descricao: "Card componentizado na biblioteca interna", implementacao: 0 },
     { nome: "Modais", rota: "modals", descricao: "Padrões para exibição de modais nas telas", implementacao: 0 },

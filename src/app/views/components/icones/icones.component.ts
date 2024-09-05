@@ -19,18 +19,19 @@ import { InstallationInstructionsComponent } from "../../../shared/components/in
   selector: 'app-icones',
   standalone: true,
   imports: [
-    NavbarComponent,
     CodeSnippetComponent,
     IconFilterPipe,
-    VersionTagsComponent,
     IconeModalComponent,
+    InstallationInstructionsComponent,
+    NavbarComponent,
+    VersionTagsComponent,
+
     CommonModule,
     FormsModule,
     InfraModule,
     ReactiveFormsModule,
     RouterModule,
     TooltipModule,
-    InstallationInstructionsComponent
 ],
   templateUrl: './icones.component.html',
   styleUrl: './icones.component.scss'
@@ -118,9 +119,9 @@ export class IconesComponent implements OnInit, AfterContentInit {
 
 
   // #region ==========> UTILS <==========
-  public openModal(name: string): void {
+  public openModal(icon: IconModel): void {
     this._bsModalref = this._bsModalService.show(IconeModalComponent, {
-      initialState: { iconName: name },
+      initialState: { iconData: icon },
       class: 'modal-dialog-centered modal-xl'
     });
   }
