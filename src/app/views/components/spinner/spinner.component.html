@@ -1,1 +1,218 @@
-<p>spinner works!</p>
+<navbar currentPage="SPINNERS E CARREGAMENTO" />
+
+<div class="container-fluid d-flex justify-content-center p-3">
+   <div class="w-75 h-100">
+      <div class="content-header mb-5 border-bottom">
+         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> SPINNERS E CARREGAMENTO </h3>
+         <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente de spinner de carregamento que deve ser utilizado na V6</p>
+      </div>
+
+      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+      <!-- #region ANTES DE COMEÇAR -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+
+         <ul>
+            <li>As classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
+            <li>O objetivo deste componente é atualizar o spinner de carregamento para um visual mais atual e condizente com o restante do Design System, ele também visa substituir o antigo <code>&lt;app-loading&gt;</code>.</li>
+         </ul>
+      </div>
+      <!-- #endregion ANTES DE COMECAR -->
+
+      <!-- #region INSTALAÇÃO -->
+      <instal-instructions />
+      <!-- #endregion INSTALAÇÃO -->
+
+      <!-- #region COMO FUNCIONA -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">COMO FUNCIONA?</h5>
+
+         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">spinnerType: "border" | "grow"</code> (opcional) - Tipo do spinner.</li>
+            <li class="my-2"><code class="text-code">spinnerTheme: "primary" | "secondary" | "success" | "danger" | "warning"</code> (opcional) - Tema de cor do spinner.</li>
+            <li class="my-2"><code class="text-code">spinnerSize: "default" | "small" | string</code> (opcional) - Tamanho do spinner (Padrão ou pequeno).</li>
+            <li class="my-2"><code class="text-code">helperText: string</code> (opcional) - Texto de ajuda, será exibido no hover em cima do spinner.</li>
+         </ul>
+      </div>
+      <!-- #endregion COMO FUNCIONA -->
+
+      <!-- #region IMPLEMENTAÇÃO BÁSICA -->
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">IMPLEMENTAÇÃO BÁSICA</h5>
+
+         <div class="code-example">
+            <p>Spinner simples:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 rounded bg-secondary" innerContent1>
+                  <lib-container pageTitle="Exemplo">
+                     <div innerContent>
+                        <lib-spinner />
+                     </div>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[0]" language="xml" />
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <p>Cores:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 rounded bg-secondary" innerContent1>
+                  <lib-container pageTitle="Exemplo">
+                     <div innerContent>
+                        <lib-spinner class="mx-1" />
+                        <lib-spinner class="mx-1" theme="primary" />
+                        <lib-spinner class="mx-1" theme="secondary" />
+                        <lib-spinner class="mx-1" theme="success" />
+                        <lib-spinner class="mx-1" theme="danger" />
+                        <lib-spinner class="mx-1" theme="warning" />
+                     </div>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[1]" language="xml" />
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <p>Grow-spinner simples:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 rounded bg-secondary" innerContent1>
+                  <lib-container pageTitle="Exemplo">
+                     <div innerContent>
+                        <lib-spinner type="grow" />
+                     </div>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[2]" language="xml" />
+               </div>
+            </lib-container>
+         </div>
+
+         <div class="code-example">
+            <p>Cores:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 rounded bg-secondary" innerContent1>
+                  <lib-container pageTitle="Exemplo">
+                     <div innerContent>
+                        <lib-spinner class="mx-1" type="grow" />
+                        <lib-spinner class="mx-1" type="grow" theme="primary" />
+                        <lib-spinner class="mx-1" type="grow" theme="secondary" />
+                        <lib-spinner class="mx-1" type="grow" theme="success" />
+                        <lib-spinner class="mx-1" type="grow" theme="danger" />
+                        <lib-spinner class="mx-1" type="grow" theme="warning" />
+                     </div>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[3]" language="xml" />
+               </div>
+            </lib-container>
+         </div>
+      </div>
+
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">BOTÕES EM LOADING</h5>
+
+         <!-- #region RECOMENDAÇÃO -->
+         <div class="alert alert-warning mb-3" role="alert">
+            <p class="fw-bold alert-heading">RECOMENDAÇÃO</p>
+            <div class="alert-body">
+               <p>Para uma melhor organização e escalabilidade, recomenda-se utilizar uma única propriedade do tipo <code class="text-code">Map&lt;string, boolean&gt;</code> para armazenar os estados de carregamento dos elementos no componente.</p>
+   
+               <p class="fw-bold">Benefícios:</p>
+               <ul>
+                  <li><b>Facilidade de Manutenção:</b> Ao centralizar os estados em um único Map, fica mais fácil gerenciar o status de vários botões ou componentes sem precisar criar uma propriedade booleana separada para cada um.</li>
+                  <li><b>Escalabilidade:</b> A abordagem com <code class="text-code">Map&lt;string, boolean&gt;</code> permite adicionar novos elementos de forma dinâmica, simplesmente atribuindo uma nova chave, sem modificar a estrutura do componente.</li>
+                  <li><b>Código Limpo:</b> Reduz a quantidade de propriedades booleanas no componente, evitando a repetição e tornando o código mais legível.</li>
+               </ul>
+
+               <p>Exemplo:</p>
+               <code-snippet [code]="codeSnippets[4]" language="typescript" />
+            </div>
+         </div>
+         <!-- #endregion RECOMENDAÇÃO -->
+
+         <div class="code-example">
+            <div class="description">
+               <p>Para exibir um botão em estado de carregamento durante um determinado processo foi desenolvido uma diretiva que irá realizar esta substituição com base em um valor booleano (true ou false).</p>
+               <p>A diretiva <b>LoadingBtnDirective</b> (ou simplesmente <code class="text-code">libLoading</code>) é utilizada para gerenciar o estado de carregamento de botões no Angular. Quando ativada, ela substitui o conteúdo do botão por um spinner e o desabilita, indicando ao usuário que uma operação está em progresso. A diretiva é altamente configurável, permitindo ajustar o texto de carregamento e o tipo de spinner.</p>
+               
+               <p class="fw-bold">Funcionamento:</p>
+               <ul>
+                  <li>Estado de Carregamento: A diretiva escuta a propriedade libLoading, que controla quando o botão deve entrar no estado de carregamento (ativando o spinner e desabilitando o botão). Quando libLoading está true, o botão entra no estado de carregamento, e quando está false, ele volta ao seu estado original.</li>
+                  <li>Substituição de Conteúdo: Ao ativar o estado de carregamento, a diretiva substitui o conteúdo original do botão por um spinner (do tipo definido em loadingType) e um texto de carregamento, como "Salvando...".</li>
+               </ul>
+
+               <p class="fw-bold">Personalização:</p>
+               <ul>
+                  <li>O texto exibido durante o carregamento pode ser configurado através da propriedade loadingText.</li>
+                  <li>O tipo de spinner pode ser configurado como "border" (padrão) ou "grow" através da propriedade loadingType.</li>
+               </ul>
+
+               <p><b>Restaurar Estado Original:</b> Quando o carregamento é concluído (libLoading passa para false), a diretiva restaura o conteúdo original do botão, removendo o spinner e reabilitando o botão.</p>
+            </div>
+
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+               <div class="p-3 rounded bg-secondary" innerContent1>
+                  <lib-container pageTitle="Exemplo">
+                     <div innerContent>
+                        <div class="row">
+                           <div class="col">
+                              <button [libLoading]="getLoading('btnSaving1')" loadingText="Salvando..." class="btn btn-primary"
+                                 (click)="setLoadingTemporary('btnSaving1')" tooltip="Clique para exibir o loading">
+                                 <lib-icon iconName="disquete" />
+                                 Salvar
+                              </button>
+                           </div>
+
+                           <div class="col">
+                              <div class="input-group">
+                                 <button [libLoading]="getLoading('btnLoading1')" loadingType="grow" class="btn btn-outline-primary"
+                                    (click)="setLoadingTemporary('btnLoading1')" tooltip="Clique para exibir o loading">
+                                    <lib-icon iconName="lupa" />
+                                 </button>
+                                 <input type="text" class="form-control" placeholder="Usuário" aria-label="Usuario">
+                               </div>
+                           </div>
+
+                           <div class="col">
+                              <div class="input-group">
+                                 <input type="text" class="form-control" placeholder="Buscar CEP..." aria-label="CEP">
+                                 <button [libLoading]="getLoading('btnLoadingCEP1')" class="btn btn-outline-primary"
+                                    (click)="setLoadingTemporary('btnLoadingCEP1')" tooltip="Clique para exibir o loading">
+                                    <lib-icon iconName="lupa" />
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[5]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[6]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
+      </div>
+      <!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
+
+      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+   </div>
+</div>

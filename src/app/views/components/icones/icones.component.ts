@@ -50,20 +50,6 @@ export class IconesComponent implements OnInit, AfterContentInit {
 
   public iconsList: IconModel[] = IconsList.list;
   public categoriasList: string[] = [];
-
-  public codeSnippets: string[] = [
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-    ``,
-  ];
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========

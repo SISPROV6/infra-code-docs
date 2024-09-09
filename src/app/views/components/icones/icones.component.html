@@ -14,6 +14,34 @@
       <instal-instructions />
       <!-- #endregion INSTALAÇÃO -->
 
+      <!-- #region COMO FUNCIONA -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">COMO FUNCIONA?</h5>
+
+         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">iconName: string</code> (obrigatório) - Nome do ícone que será renderizado (consulta a lista abaixo ou o Figma para os nomes).</li>
+            <li class="my-2"><code class="text-code">iconColor: 'white' | 'blue' | 'gray' | 'light-gray' | 'green' | 'light-blue' | 'yellow' | 'red' | 'currentColor' | string</code> - Cor do ícone. Utilizará um dos temas informados, aceita também a cor em hexadecimal, se nenhuma for informada por padrão utilizará a "currentColor".</li>
+            <li class="my-2"><code class="text-code">iconSize: 'default' | 'medium-small' | 'small' | number</code> - Tamanho do ícone que será renderizado. Se não informado assumirá o valor "default".</li>
+
+            <li class="my-2"><code class="text-code">iconFill: string</code> - Cor do preenchimento do ícone (fill).</li>
+            <li class="my-2"><code class="text-code">iconStrokeWidth: string</code> - Largura da linha (stroke) do ícone.</li>
+         </ul>
+      </div>
+      <!-- #endregion COMO FUNCIONA -->
+
+      <!-- #region DICAS -->
+      <div class="alert alert-warning mb-5" role="alert">
+         <p class="fw-bold">AVISOS</p>
+         <ul>
+            <li>Em breve os ícones antigos ou desnecessários que não estejam no painel do Figma serão depreciados e removidos da biblioteca, o quanto antes deve ser buscado pelo projeto qualquer icone antigo.</li>
+            <li>As propriedades <code class="text-code">iconFill</code> e <code class="text-code">iconStrokeWidth</code> serão depreciadas em breve. Verifique a necessidade de utilização destas propriedades e converse com o P&D/ND para decisão do que deve ser feito.</li>
+         </ul>
+
+         <span>A remoção destes elementos citados acima ocorrerá no dia 11/09. Sem possibilidade de adiamento!</span>
+      </div>
+      <!-- #endregion DICAS -->
+
       <!-- #region LISTA DE ÍCONES -->
       <div class="content mb-5">
          <h5 class="fw-bold mb-3">LISTA DE ÍCONES</h5>
