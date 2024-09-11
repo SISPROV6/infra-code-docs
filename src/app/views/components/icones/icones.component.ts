@@ -48,7 +48,7 @@ export class IconesComponent implements OnInit, AfterContentInit {
   public categoriaSelected: string | null = null;
   public pesquisa: string = "";
 
-  public iconsList: IconModel[] = IconsList.list;
+  public iconsList: IconModel[] = [];
   public categoriasList: string[] = [];
   // #endregion PUBLIC
 
@@ -73,7 +73,9 @@ export class IconesComponent implements OnInit, AfterContentInit {
     public utilsService: UtilsService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.iconsList = new IconsList(24).list;
+  }
 
   ngAfterContentInit(): void {
     this.categoriasList = this.iconsList.length > 0

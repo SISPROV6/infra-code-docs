@@ -3,15 +3,18 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { VersionTagsComponent } from '../../shared/components/version-tags/version-tags.component';
+import { InfraModule } from 'ngx-sp-infra';
 
 @Component({
   selector: 'app-templates',
   standalone: true,
   imports: [
     NavbarComponent,
+    VersionTagsComponent,
+
     CommonModule,
+    InfraModule,
     RouterModule,
-    VersionTagsComponent
   ],
   templateUrl: './templates.component.html',
   styleUrl: './templates.component.scss'

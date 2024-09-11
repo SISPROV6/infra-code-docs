@@ -4,7 +4,7 @@
 
    <ol>
       <li>Atualizar o diretório 'INFRABIN' no SVN com um <b>SVN Update</b> <i>(esta etapa não será mais necessária após a migração para o git)</i></li>
-      <li>No seu projeto Angular: executar o comando <code class="fw-bold">{{ "npm install ngx-sp-infra@latest" }}</code></li>
+      <li>No seu projeto Angular: executar o comando <code class="fw-bold">{{ "npm install ngx-sp-infra@latest --force" }}</code> (o --force é necessário até que os pacotes dos projetos estejam totalmente atualizados e compatíveis)</li>
       <li>Certifique-se de que seu componente está importando o <code class="fw-bold">ProjectModule</code></li>
       <li>
          <p class="mb-0">Certifique-se de que seu componente está nas declarations do módulo da sua tela</p>               
