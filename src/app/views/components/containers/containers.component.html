@@ -1,1 +1,61 @@
-<p>containers works!</p>
+<navbar currentPage="CONTÂINERS E ABAS" />
+
+<div class="container-fluid d-flex justify-content-center p-3">
+   <div class="w-75 h-100">
+      <div class="content-header mb-5 border-bottom">
+         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> CONTÂINERS E ABAS </h3>
+         <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de container que deve ser utilizado na V6</p>
+      </div>
+
+      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+      <!-- #region ANTES DE COMEÇAR -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+
+         <ul>
+            <li>As classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
+         </ul>
+      </div>
+      <!-- #endregion ANTES DE COMECAR -->
+
+      <!-- #region INSTALAÇÃO -->
+      <instal-instructions />
+      <!-- #endregion INSTALAÇÃO -->
+
+      <!-- #region COMO FUNCIONA -->
+      <div class="content mb-5">
+         <h5 class="fw-bold">COMO FUNCIONA?</h5>
+
+         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+         <ul>
+            <li class="my-2"><code class="text-code">spinnerType: "border" | "grow"</code> (opcional) - Tipo do spinner.</li>
+         </ul>
+      </div>
+      <!-- #endregion COMO FUNCIONA -->
+
+      <!-- #region IMPLEMENTAÇÃO BÁSICA -->
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">IMPLEMENTAÇÃO BÁSICA</h5>
+
+         <div class="code-example">
+            <p>Contâiner simples:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 rounded bg-secondary" innerContent1>
+                  A
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[0]" language="xml" />
+               </div>
+            </lib-container>
+         </div>
+      </div>
+
+      
+      <!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
+
+      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+   </div>
+</div>
