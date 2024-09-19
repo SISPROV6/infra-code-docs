@@ -29,17 +29,17 @@ describe('TabelaComponent', () => {
     fixture.detectChanges();
   });
 
-  it("deve renderizar o componente apenas na rota '/componentes/icones'", async () => {
-    await router.navigate(['componentes/icones']);
+  it("deve renderizar o componente apenas na rota '/componentes/table'", async () => {
+    await router.navigate(['componentes/table']);
     fixture.detectChanges();
-    expect(location.path()).toBe('/componentes/icones');
+    expect(location.path()).toBe('/componentes/table');
     expect(component).toBeTruthy();
   });
 
   it('não deve renderizar o componente em outras rotas', async () => {
     await router.navigate(['inicio']);
     fixture.detectChanges();
-    expect(location.path()).not.toBe('/componentes/icones');
+    expect(location.path()).not.toBe('/componentes/table');
     expect(component).toBeTruthy();   // ou verifique se o elemento do componente está presente
   });
 });
