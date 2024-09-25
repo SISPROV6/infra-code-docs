@@ -288,7 +288,7 @@ export class TabelaDemonstracaoService {
         valorTotal: 0,
         categoria: "Qualidade",
         isAtivo: true,
-      }
+      },
     ];
   }
   // #endregion ==========> UTILS <==========
