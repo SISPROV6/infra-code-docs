@@ -32,13 +32,13 @@ export class ComponentsComponent {
     { nome: "Selects e Combobox", rota: "select-e-combobox", descricao: "Combobox componentizado na biblioteca interna", implementacao: 2 },
     { nome: "Ícones", rota: "icones", descricao: "Ícones da biblioteca interna", implementacao: 2 },
     { nome: "Spinner", rota: "spinner", descricao: "Elemento visual de spinner de carregamento", implementacao: 2 },
-    { nome: "Contâiners e Abas", rota: "container-e-abas", descricao: "Container com abas componentizado na biblioteca interna", implementacao: 1 },
+    { nome: "Contâiners e Abas", rota: "container-e-abas", descricao: "Container com abas componentizado na biblioteca interna", implementacao: 2 },
     //{ nome: "Paginação", rota: "pagination", descricao: "Paginação componentizada na biblioteca interna", implementacao: 2 },
-    { nome: "Modais", rota: "modals", descricao: "Padrões para exibição de modais nas telas", implementacao: 0 },
-    { nome: "Cards", rota: "cards", descricao: "Card componentizado na biblioteca interna", implementacao: 0 },
-    { nome: "Ordenação", rota: "ordenation", descricao: "Ordenação componentizada na biblioteca interna", implementacao: 0 },
+    { nome: "Modais", rota: "modais", descricao: "Padrões para exibição de modais nas telas", implementacao: 1 },
+    { nome: "Cards", rota: "cards", descricao: "Card componentizado na biblioteca interna", implementacao: 1 },
+    { nome: "Máscara", rota: "mascaras", descricao: "Máscaras para inputs/texto puro", implementacao: 1 },
+    //{ nome: "Ordenação", rota: "ordenation", descricao: "Ordenação componentizada na biblioteca interna", implementacao: 0 },
     { nome: "Validadores", rota: "validators", descricao: "Rotinas de validação na biblioteca interna", implementacao: 0 },
-    { nome: "Máscara", rota: "mask", descricao: "Máscaras para inputs/texto puro", implementacao: 0 },
     { nome: "Input de arquivo", rota: "input-arquivo", descricao: "Input específico para seleção de arquivo(s)", implementacao: 0 },
   ];
   // #endregion PUBLIC

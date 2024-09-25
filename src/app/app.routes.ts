@@ -38,7 +38,7 @@ export const routes: Routes = [
   { path: 'componentes/validators', component: ValidatorsComponent, title: "Validators | Componentes" },
   { path: 'componentes/container-e-abas', component: ContainersComponent, title: "Containers e Abas | Componentes" },
   { path: 'componentes/table', component: TabelaComponent, title: "Tabelas | Componentes" },
-  { path: 'componentes/mask', component: MaskComponent, title: "Máscaras | Componentes" },
+  { path: 'componentes/mascaras', component: MaskComponent, title: "Máscaras | Componentes" },
   { path: 'componentes/input-arquivo', component: InputArquivoComponent, title: "Input de arquivos | Componentes" },
   { path: 'componentes/select-e-combobox', component: ComboboxComponent, title: "Selects e Combobox | Componentes" },
 

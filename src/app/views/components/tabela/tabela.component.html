@@ -247,7 +247,7 @@
                            { name: 'Descrição', col: 3 },
                            { name: 'Valor', col: 1, customClasses: 'text-end' },
                            { name: 'Datas', col: 4 },
-                           { name: 'Ações', col: 2, customClasses: 'text-end' }
+                           { name: '', col: 2, customClasses: 'text-end' }
                         ]"
                         (itemsPerPageChange)="itemsPerPage5 = $event"
                         (pageChange)="page5 = $event">
@@ -296,7 +296,7 @@
                            { name: 'Descrição', col: 3 },
                            { name: 'Valor', col: 1, customClasses: 'text-end' },
                            { name: 'Datas', col: 4 },
-                           { name: 'Ações', col: 2, customClasses: 'text-end' }
+                           { name: '', col: 2, customClasses: 'text-end' }
                         ]">
 
                         @for (item of recordsList4; track item) {
@@ -341,7 +341,7 @@
                            { name: 'Descrição', col: 3 },
                            { name: 'Valor', col: 1, customClasses: 'text-end' },
                            { name: 'Datas', col: 4 },
-                           { name: 'Ações', col: 2, customClasses: 'text-end' }
+                           { name: '', col: 2, customClasses: 'text-end' }
                         ]">
 
                         @for (item of recordsList5; track item) {
@@ -367,6 +367,62 @@
 
                <div innerContent2>
                   <code-snippet [code]="codeSnippets[9]" language="xml" />
+               </div>
+            </lib-container>
+         </div>
+      </div>
+
+
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">ORDENAÇÃO</h5>
+
+         <div class="code-example">
+            <div class="description mb-5">
+               <p>Para a utilização de ordenação por coluna nas tabelas, usamos uma propriedade opcional que será responsável por tal ação. A propriedade se encontra na lista de headers e recebe o nome da coluna que é usada dentro do objeto.</p>
+               <p>Vamos supor que o nome da coluna na tabela do banco de dados se chama <b>"TxDescricao"</b> e o nome amigável para o usuário que informamos no elemento &lt;table&gt; é <b>"Descrição"</b>, informamos o valor <b>"TxDescricao"</b> para a propriedade de ordenação (orderColumn).</p>
+
+               <p>Exemplo:</p>
+               <code-snippet [code]="codeSnippets[10]" language="xml" />
+            </div>
+
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+                  <lib-container pageTitle="Exemplo">
+
+                     <lib-table innerContent1 [list]="recordsList1" [counts]="[ 5, 10, 15 ]"
+                        [usePagination]="false" [showCounter]="false"
+                        [headers]="[
+                           { name: 'Nome', col: 2, orderColumn: 'nome' },     
+                           { name: 'Descrição', col: 3, orderColumn: 'descricao' },
+                           { name: 'Valor', col: 1, customClasses: 'text-end' },
+                           { name: 'Datas', col: 4 },
+                           { name: '', col: 2, customClasses: 'text-end' }
+                        ]" >
+
+                        @for (item of recordsList1! | paginate: { itemsPerPage: itemsPerPage1, currentPage: page1 }; track item) {
+                           <tr innerRows class="align-middle">
+                              <td class="text-primary fw-bold">
+                                 <a tooltip="Visualizar/Editar"> {{ item.nome }} </a>
+                              </td>
+                              <td>{{ item.descricao }}</td>
+                              <td class="text-end"> {{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }} </td>
+                              <td>
+                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                              </td>
+                              <td class="text-end">
+                                 <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
+                              </td>
+                           </tr>
+                        }
+                     </lib-table>
+
+                  </lib-container>
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[11]" language="xml" />
                </div>
             </lib-container>
          </div>

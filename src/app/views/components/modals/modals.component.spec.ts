@@ -1,23 +1,45 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 
+import { routes } from '../../../app.routes';
+
+import { HomeComponent } from '../../home/home.component';
 import { ModalsComponent } from './modals.component';
 
 describe('ModalsComponent', () => {
   let component: ModalsComponent;
   let fixture: ComponentFixture<ModalsComponent>;
+  let router: Router;
+  let location: Location;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalsComponent]
-    })
-    .compileComponents();
-    
+      imports: [
+        RouterModule.forRoot(routes),
+        ModalsComponent,
+        HomeComponent
+      ],
+    }).compileComponents();
+
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
     fixture = TestBed.createComponent(ModalsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("deve renderizar o componente apenas na rota '/componentes/modais'", async () => {
+    await router.navigate(['componentes/modais']);
+    fixture.detectChanges();
+    expect(location.path()).toBe('/componentes/modais');
     expect(component).toBeTruthy();
+  });
+
+  it('não deve renderizar o componente em outras rotas', async () => {
+    await router.navigate(['inicio']);
+    fixture.detectChanges();
+    expect(location.path()).not.toBe('/componentes/modais');
+    expect(component).toBeTruthy();   // ou verifique se o elemento do componente está presente
   });
 });
