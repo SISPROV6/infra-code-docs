@@ -14,6 +14,7 @@ import { Component } from '@angular/core';
         Este modal serve para informar algo para o usuário!
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary">Não estou ciente!</button>
         <button type="button" class="btn btn-primary">Estou ciente!</button>
       </div>
     </div>

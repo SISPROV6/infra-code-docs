@@ -200,7 +200,7 @@
                         ]"
                         (itemsPerPageChange)="itemsPerPage4 = $event"
                         (pageChange)="page4 = $event"
-                        emptyListMessage="Nenhum registro encontrado com a pesquisa atual...">
+                        emptyListMessage="Nenhum registro encontrado com a pesquisa atual..." >
 
                         @for (item of recordsList2! | paginate: { itemsPerPage: itemsPerPage4, currentPage: page4 }; track item) {
                            <tr innerRows class="align-middle">

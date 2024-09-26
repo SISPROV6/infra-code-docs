@@ -194,6 +194,64 @@
       </div>
       <!-- #endregion MODAL DINÂMICO COM INPUT -->
 
+
+      <!-- #region MODAL DINÂMICO COM INITIALSTATE -->
+      <div class="content mb-5">
+         <h5 class="fw-bold mb-3">MODAL DINÂMICO COM INITIALSTATE</h5>
+
+         <div class="code-example">
+
+            <div class="description mb-5">
+               <p>
+                  Quando o objetivo é exibir um modal com algumas informações mais específicas e dinâmicas podemos utilizar os 'initialState's, com o seguinte exemplo:
+               </p>
+               <ol>
+                  <li>Injetar o serviço de modais no seu componente com o trecho abaixo:</li>
+                  <code-snippet [code]="codeSnippets[11]" language="typescript" />
+
+                  <li class="mt-3">Confirmar quais propriedades do modal nós queremos preencher externamente:</li>
+                  <code-snippet [code]="codeSnippets[12]" language="typescript" />
+
+                  <li class="mt-3">Configuramos os parâmetros do initialState dentro ou fora da chamada do método de abertura do modal e o renderizamos:</li>
+                  <code-snippet [code]="codeSnippets[13]" language="typescript" />
+               </ol>
+            </div>
+
+            <p>Código completo das intruções acima:</p>
+            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML componente pai', 'TS componente pai', 'HTML componente modal', 'TS componente modal' ]">
+               <div class="p-3 rounded bg-secondary" innerContent1>
+
+                  <div class="d-flex flex-row align-items-center justify-content-evenly">
+                     <button class="btn btn-outline-primary" (click)="initializeConfig()">
+                        <lib-icon iconName="mais" /> Criar nova configuração
+                     </button>
+                     <button class="btn btn-outline-success" (click)="getConfig()">
+                        <lib-icon iconName="olho" /> Visualizar configuração cadastrada
+                     </button>
+                  </div>
+
+               </div>
+
+               <div innerContent2>
+                  <code-snippet [code]="codeSnippets[14]" language="xml" />
+               </div>
+
+               <div innerContent3>
+                  <code-snippet [code]="codeSnippets[15]" language="typescript" />
+               </div>
+
+               <div innerContent4>
+                  <code-snippet [code]="codeSnippets[16]" language="xml" />
+               </div>
+
+               <div innerContent5>
+                  <code-snippet [code]="codeSnippets[17]" language="typescript" />
+               </div>
+            </lib-container>
+         </div>
+      </div>
+      <!-- #endregion MODAL DINÂMICO COM INITIALSTATE -->
+
       <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
    </div>
 </div>

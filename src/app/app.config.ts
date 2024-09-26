@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -8,9 +8,12 @@ import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 import { provideNgxMask } from 'ngx-mask';
 import { provideHttpClient } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BrowserModule } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    importProvidersFrom(BrowserModule, ModalModule.forRoot()),
     provideRouter(routes),
     provideHttpClient(),
     provideNgxMask(),
