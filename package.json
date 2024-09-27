@@ -1,6 +1,10 @@
 {
   "name": "infra-code-docs",
+<<<<<<< Updated upstream
   "version": "2.10.2",
+=======
+  "version": "3.0.1",
+>>>>>>> Stashed changes
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,7 +36,11 @@
     "ngx-mask": "^17.1.8",
     "ngx-pagination": "^6.0.3",
     "ngx-select-dropdown": "^3.3.2",
+<<<<<<< Updated upstream
     "ngx-sp-infra": "^2.1.0",
+=======
+    "ngx-sp-infra": "^2.1.2",
+>>>>>>> Stashed changes
     "ngx-toastr": "^18.0.0",
     "ngx-ui-switch": "^15.0.0",
     "rxjs": "~7.8.0",
