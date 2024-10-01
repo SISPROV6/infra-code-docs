@@ -25,7 +25,7 @@ export class MenuConfig {
       if (this._isMenuStatic) {
          const menuItems = [
             { id: 1, label: "Início", descricao: "Tela inicial", icon: "casa", route: "/inicio", isSelected: currentRoute.includes("inicio"), isExpandable: false },
-            { id: 2, label: "Componentes (Angular)", descricao: "Componentes (Angular)", icon: "janelas", route: "/componentes", isSelected: currentRoute.includes("components"), isExpandable: false },
+            { id: 2, label: "Elementos visuais (Angular)", descricao: "Elementos visuais (Angular)", icon: "janelas", route: "/componentes", isSelected: currentRoute.includes("components"), isExpandable: false },
             { id: 3, label: "Banco de Dados", descricao: "Banco de Dados", icon: "moedas", route: "/database", isSelected: currentRoute.includes("database"), isExpandable: false },
             { id: 4, label: "Estrutura", descricao: "Componentes", icon: "fluxo", route: "/estrutura", isSelected: currentRoute.includes("estrutura"), isExpandable: false },
             { id: 5, label: "Models e Records (Classes)", descricao: "Models e Records (Classes)", icon: "cubo", route: "/models", isSelected: currentRoute.includes("models"), isExpandable: false },
