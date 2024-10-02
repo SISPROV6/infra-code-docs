@@ -55,7 +55,7 @@
       <div class="alert alert-warning mb-5" role="alert">
          <p class="fw-bold">AVISOS</p>
          <ul>
-            <li>Propriedade libRequired será depreciada em breve pois não será mais necessária, pode-se usar o <code class="text-code fw-bold">[Validator.required]</code> diretamente.</li>
+            <li>Propriedade libRequired será mantida com o principal objetivo de ser usada em situações em que a obrigatoriedade do campo é dinâmica. Ela terá prioridade sobre o <code class="text-code fw-bold">[Validators.required]</code>.</li>
          </ul>
       </div>
       <!-- #endregion AVISOS -->
@@ -228,7 +228,7 @@
          </div>
           
          <!-- #region AVISOS -->
-         <div class="alert alert-warning" role="alert">
+         <div class="alert alert-indigo" role="alert">
             <span>Uma prática recomendada pelo ND é a seguinte: Comboboxes com mais de 100 registros devem ter a opção de abrir um modal com a lista "completa" (incluindo filtros mais robustos)</span>
          </div>
          <!-- #endregion AVISOS -->
@@ -435,19 +435,19 @@
                   <lib-container pageTitle="Exemplo">
                      <form innerContent1>
                         <div class="row mb-3 pb-4 border-bottom">
-                           <div class="col-3">
+                           <div class="col">
                               <label for="labelText6" class="form-label">Label</label>
                               <input type="text" id="labelText6" class="form-control" [(ngModel)]="labelText6" [ngModelOptions]="{standalone: true}" >
                            </div>
-                           <div class="col-3">
+                           <div class="col">
                               <label for="mainPlaceholder6" class="form-label">MainInputPlaceholder</label>
                               <input type="text" id="mainPlaceholder6" class="form-control" [(ngModel)]="mainPlaceholder6" [ngModelOptions]="{standalone: true}" >
                            </div>
-                           <div class="col-3">
+                           <div class="col">
                               <label for="searchPlaceholder6" class="form-label">SearchInputPlaceholder</label>
                               <input type="text" id="searchPlaceholder6" class="form-control" [(ngModel)]="searchPlaceholder6" [ngModelOptions]="{standalone: true}" >
                            </div>
-                           <div class="col-3">
+                           <div class="col">
                               <label for="colorTheme6" class="form-label">ColorTheme</label>
                               <select id="colorTheme6" class="form-select" [(ngModel)]="colorTheme6" [ngModelOptions]="{standalone: true}" >
                                  <option value="primary">Primary (azul)</option>
@@ -456,6 +456,16 @@
                                  <option value="danger">Danger (vermelho)</option>
                                  <option value="warning">Warning (amarelo)</option>
                               </select>
+                           </div>
+                           <div class="col">
+                              <label for="isRequired6" class="form-label">
+                                 <lib-icon iconName="info" iconSize="medium-small" iconColor="blue" tooltip="Em situações como esta que a obrigatoriedade do campo é condicional e dinâmica, a propriedade [libRequired] tem prioridade sobre o Validators.required do FormControl" />
+                                 Obrigatório?
+                              </label>
+                              <div class="form-check form-switch">
+                                 <input class="form-check-input" type="checkbox" role="switch" id="isRequired6"
+                                    [checked]="isRequired6" [(ngModel)]="isRequired6" [ngModelOptions]="{standalone: true}">
+                              </div>
                            </div>
                         </div>
 
@@ -466,6 +476,7 @@
                                  [searchPlaceholder]="searchPlaceholder6"
                                  [theme]="colorTheme6"
                                  [list]="pessoasList"
+                                 [libRequired]="isRequired6"
                                  [control]="formCombobox6.controls['CRPPESSOAID']" />
                            </div>
                         </div>
