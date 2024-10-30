@@ -33,6 +33,7 @@ export const appConfig: ApplicationConfig = {
         typescript: () => import('highlight.js/lib/languages/typescript'),
         css: () => import('highlight.js/lib/languages/css'),
         scss: () => import('highlight.js/lib/languages/scss'),
+        coffeescript: () => import('highlight.js/lib/languages/coffeescript'),
       },
       themePath: './assets/styles/ngx-highlight-themes/github-dark.css'  // Optional, useful for dynamic theme changes
     })

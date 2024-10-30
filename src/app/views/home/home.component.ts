@@ -3,9 +3,12 @@ import { RouterModule } from '@angular/router';
 
 import { InfraModule } from "ngx-sp-infra";
 
+import packageJson from "../../../../package.json";
+
 import { SideMenuComponent } from '../../shared/components/side-menu/side-menu.component';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { CodeSnippetComponent } from '../../shared/components/code-snippet/code-snippet.component';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +17,8 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     InfraModule,
     RouterModule,
+
+    CodeSnippetComponent,
 
     SideMenuComponent,
     NavbarComponent
@@ -30,7 +35,8 @@ export class HomeComponent {
   // #endregion PRIVATE
 
   // #region PUBLIC
-  // [...]
+  public installCode: string = `npm install ngx-sp-infra@latest`;
+  public currentVersion = packageJson.version;
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========

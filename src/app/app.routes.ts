@@ -28,7 +28,7 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   // Adicione mais rotas abaixo desta linha
 
-  { path: 'inicio', component: HomeComponent, title: "Início" },
+  { path: 'inicio', component: HomeComponent, title: "Infra Code Docs" },
   
   { path: 'icones', component: IconesComponent, title: "Ícones | Elementos visuais" },
   

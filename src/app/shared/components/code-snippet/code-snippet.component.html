@@ -1,5 +1,0 @@
-<pre class="rounded p-3"><div class="me-3 text-end"><lib-icon *ngIf="!isCopied; else copied" class="position-absolute" [copy-clipboard]="codeSnippet" iconColor="white" iconName="copiar" tooltip="Copiar" (click)="isCopied = true" /></div><code class="p-0" [highlight]="codeSnippet" [language]="codeLanguage"></code></pre>
-<ng-template #copied><lib-icon [copy-clipboard]="codeSnippet" class="position-absolute" iconColor="green" iconName="check" tooltip="Copiado!" /></ng-template>
-
-<!-- <pre class="rounded p-3 pb-0"><div class="me-3 text-end"><lib-icon *ngIf="!isCopied; else copied" class="position-absolute" [copy-clipboard]="codeSnippet" iconColor="white" iconName="copiar" tooltip="Copiar" (click)="isCopied = true" /></div><code class="p-0" [highlight]="codeSnippet" [language]="codeLanguage"></code> </pre>
-<ng-template #copied><lib-icon [copy-clipboard]="codeSnippet" class="position-absolute" iconColor="green" iconName="check" tooltip="Copiado!" /></ng-template> -->

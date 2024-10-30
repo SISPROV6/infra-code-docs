@@ -1,6 +1,6 @@
 [
    {
-      "name": "Iniciando...",
+      "name": "Primeiros passos",
       "icon": "<i class='bi bi-book-half'></i>",
       "descricao": "Documentação que explica sobre como inicializar com alguns dos padrões e instalações necessárias para o framework",
       "route": "",
@@ -24,7 +24,7 @@
    },
 
    {
-      "name": "Elementos visuais",
+      "name": "Componentes",
       "icon": "<i class='bi bi-ui-checks-grid'></i>",
       "descricao": "",
       "route": "componentes",
