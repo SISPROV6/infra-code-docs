@@ -12,7 +12,6 @@ import { UtilsService } from '../../../shared/services/utils.service';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import { InstallationInstructionsComponent } from "../../../shared/components/installation-instructions/installation-instructions.component";
 
 @Component({
   selector: 'app-mask',
@@ -27,8 +26,7 @@ import { InstallationInstructionsComponent } from "../../../shared/components/in
     TooltipModule,
     NgxPaginationModule,
     NgxMaskDirective,
-    NgxMaskPipe,
-    InstallationInstructionsComponent
+    NgxMaskPipe
   ],
   templateUrl: './mask.component.html',
   styleUrl: './mask.component.scss'

@@ -1,641 +1,633 @@
-<navbar currentPage="SELECT E COMBOBOX" />
-
-<div class="container-fluid d-flex justify-content-center p-3">
-   <div class="w-75 h-100">
-      <div class="content-header mb-5 border-bottom">
-         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> SELECT E COMBOBOX </h3>
-         <p class="fs-5">Documentação de uso, exemplos e explicações sobre os componentes de select simples e com pesquisa (combobox) que devem ser utilizados na V6</p>
-      </div>
-
-      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
-
-      <!-- #region ANTES DE COMEÇAR -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
-         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
-
-         <ul>
-            <li>Por enquanto as classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
-            <li>Na versão mais recente da biblioteca foram feitas algumas alterações e melhorias neste componente, uma delas foi a mudança do seletor de <code class="text-code">lib-search-combobox</code> para <code class="text-code">lib-combobox</code>.</li>
-            <li>O componente anterior <code class="text-code">lib-search-combobox</code> ainda existirá até que todos os comboboxes forem atualizados corretamente.</li>
-         </ul>
-      </div>
-      <!-- #endregion ANTES DE COMECAR -->
-
-      <!-- #region INSTALAÇÃO -->
-      <instal-instructions />
-      <!-- #endregion INSTALAÇÃO -->
-
-      <!-- #region COMO FUNCIONA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">COMO FUNCIONA?</h5>
-
-         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">control: "FormControl&lt;any&gt; | AbstractControl&lt;any&gt;</code> (obrigatório) - Control para seleção dos valores, atualizará automaticamente o control do componente pai também.</li>
-            <li class="my-2"><code class="text-code">list: RecordCombobox[]</code> (obrigatório) - Lista de registros que serão exibidos no combo, enquanto eles estiverem carregando será exibido um spinner.</li>
-            <li class="my-2"><code class="text-code">labelText?: string</code> - Texto do rótulo que será exibido acima do combo. Caso não informado nada será exibido.</li>
-            <li class="my-2"><code class="text-code">libRequired?: boolean</code> - Define se o campo é obrigatório, vai exibir o '*' vermelho ao lado do label (se ele estiver presente). Por padrão, assume o valor <code>false</code>.</li>
-            <li class="my-2"><code class="text-code">disabled?: boolean</code> - Define se o campo está desabilitado. Deve ser usado para validações de habilitação dinâmica do campo. Por padrão, assume o valor <code>false</code>.</li>
-            <li class="my-2"><code class="text-code">mainPlaceholder?: string</code> - Placeholder do campo principal do combo. Por padrão, assume o valor <code>"Selecione uma opção..."</code>.</li>
-            <li class="my-2"><code class="text-code">searchPlaceholder?: string</code> - Placeholder do campo de pesquisa dentro do combo. Por padrão, assume o valor <code>"Pesquisa..."</code>.</li>
-            <li class="my-2"><code class="text-code">theme?: string</code> - Define o tema de cor do componente, como "primary", "success", ou "danger". Por padrão, assume o valor <code>"primary"</code>.</li>
-            <li class="my-2"><code class="text-code">returnRecord?: boolean</code> - Define se o tipo de retorno ao selecionar uma opção será o Record inteiro ou apenas o ID.</li>
-         </ul>
-
-         <span><b>{{"@Output"}}</b> Lista de eventos:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">onReloadList: EventEmitter&lt;string&gt;</code> - Evento emitido ao recarregar a lista de registros</li>
-            <li class="my-2"><code class="text-code">onChange: EventEmitter&lt;string | number | null&gt;</code> - Evento emitido ao selecionar um registro da lista do combobox</li>
-         </ul>
-      </div>
-      <!-- #endregion COMO FUNCIONA -->
-
-      <!-- #region AVISOS -->
-      <div class="alert alert-warning mb-5" role="alert">
-         <p class="fw-bold">AVISOS</p>
-         <ul>
-            <li>Propriedade libRequired será mantida com o principal objetivo de ser usada em situações em que a obrigatoriedade do campo é dinâmica. Ela terá prioridade sobre o <code class="text-code fw-bold">[Validators.required]</code>.</li>
-         </ul>
-      </div>
-      <!-- #endregion AVISOS -->
-
-      <!-- #region SELECT -->
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">SELECT</h5>
-
-         <div class="description">
-            <p> O <code>&lt;select&gt;</code> é um elemento HTML padrão que permite ao usuário escolher uma opção de uma lista predefinida de itens. Ele é simples de usar e oferece funcionalidades básicas como: </p>
-            <ul>
-               <li>Seleção única (ou múltipla, com o uso do atributo <code>multiple</code>).</li>
-               <li>Desempenho consistente em todos os navegadores.</li>
-               <li>Integração nativa com formulários e facilidade de submissão.</li>
-            </ul>   
-            
-            <p class="fw-bold">Vantagens:</p>
-            <ul>
-               <li><b>Compatibilidade:</b> Altamente compatível com todos os navegadores e sistemas operacionais.</li>
-               <li><b>Simplicidade:</b> Fácil de implementar e usar, sem necessidade de scripts adicionais.</li>
-               <li><b>Acessibilidade:</b> Suporte nativo para teclado e leitores de tela, tornando-o acessível por padrão.</li>
-            </ul>
-            
-            <p class="fw-bold">Limitações:</p>
-            <ul>
-               <li><b>Personalização limitada:</b> A aparência e comportamento do <code>&lt;select&gt;</code> são difíceis de personalizar além das opções básicas de estilo (e.g., cores e fontes).</li>
-               <li><b>Funcionalidade básica:</b> Não oferece recursos avançados como pesquisa dentro das opções, ou autocompletar.</li>
-            </ul>
-
-            <p><b>Indicação de Uso:</b> Ideal para cenários simples onde a lista de opções é limitada a até 20 registros.</p>
-         </div>
-
-         <div class="code-example">
-            <p>SELECT simples com valores fixos no HTML:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1 [formGroup]="formSelect1">
-                        <div class="row">
-                           <div class="col-6">
-                              <label for="tipoPessoa1" class="form-label">Tipo de pessoa</label>
-                              <select id="tipoPessoa1" class="form-select" formControlName="TIPOPESSOAID">
-                                 <option [value]="null" disabled selected>Selecione um tipo de pessoa</option>
-                                 <option value="FIS">Física</option>
-                                 <option value="JUR">Jurídica</option>
-                              </select>
-                           </div>
-
-                           <div class="col-6">
-                              <p class="fw-bold">Opção selecionada:</p>
-                              <span>{{ formSelect1.controls["TIPOPESSOAID"].value ?? "null" }}</span>
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[0]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[1]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>SELECT simples com valores dinâmicos:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Contratos', 'Formulário', 'Novo' ]" pageTitle='Novo contrato' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1 [formGroup]="formSelect2">
-                        <div class="row">
-                           <div class="col-6">
-                              <label libRequired for="situacaoContrato1" class="form-label">Situação</label>
-                              <select id="situacaoContrato1" class="form-select" formControlName="SITUACAOCONTRATOID">
-                                 <option [value]="null" disabled selected> Selecione uma situação </option>
-                                 <option *ngFor="let situacao of situacoesList" [value]="situacao.ID"> {{ situacao.LABEL }} </option>
-                              </select>
-                           </div>
-
-                           <div class="col-6">
-                              <p class="fw-bold">Opção selecionada:</p>
-                              <span>{{ formSelect2.controls["SITUACAOCONTRATOID"].value ?? "null" }}</span>
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[2]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[3]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>SELECT de múltipla seleção (com valores dinâmicos, para valores fixos segue o mesmo exemplo acima):</p>
-            <div class="secondary-description text-dark-secondary mb-3">
-               <span>Para utilizar a múltipla seleção é necessário o seguinte</span>
-               <li>No Windows: Segure a tecla CTRL e selecione as opções desejadas</li>
-               <li>No Mac: Segure a tecla Command e selecione as opções desejadas</li>
-            </div>
-
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Contratos', 'Formulário', 'Novo' ]" pageTitle='Novo contrato' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1 [formGroup]="formSelect3">
-                        <div class="row">
-                           <div class="col-6">
-                              <label libRequired for="situacaoContrato1" class="form-label">Situação</label>
-                              <select id="situacaoContrato1" class="form-select" formControlName="SITUACAOCONTRATOID" multiple>
-                                 <option [value]="null" disabled selected> Selecione uma situação </option>
-                                 <option *ngFor="let situacao of situacoesList" [value]="situacao.ID"> {{ situacao.LABEL }} </option>
-                              </select>
-                           </div>
-
-                           <div class="col-6">
-                              <p class="fw-bold">Opção selecionada:</p>
-                              <span>{{ formSelect3.controls["SITUACAOCONTRATOID"].value ?? "null" }}</span>
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[4]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[5]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-      </div>
-      <!-- #endregion SELECT -->
-
-      <!-- #region COMBOBOX COM PESQUISA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">COMBOBOX COM PESQUISA</h5>
-
-         <div class="description">
-            <p>O componente <code>&lt;lib-combobox&gt;</code> é uma solução reutilizável que, assim como o elemento nativo <code>&lt;select&gt;</code>, permite a seleção de opções por parte do usuário. No entanto, ele se diferencia ao oferecer uma funcionalidade adicional de filtragem simples.</p>
-            <ul>
-               <li>Atualmente, suporta apenas a seleção única (suporte para seleção múltipla será adicionado em futuras versões).</li>
-               <li>Desenvolvido para manejar eficientemente listas com um maior número de itens.</li>
-               <li>Oferece integração nativa com formulários, facilitando a submissão dos dados.</li>
-            </ul>
-
-            <p class="fw-bold">Vantagens:</p>
-            <ul>
-               <li><b>Pesquisa:</b> Inclui um campo de entrada que permite ao usuário filtrar as opções disponíveis de maneira ágil e intuitiva.</li>
-            </ul>
-
-            <p class="fw-bold">Limitações:</p>
-            <ul>
-               <li><b>Desempenho:</b> Por se tratar de um componente customizado e mais robusto, possui uma carga de renderização maior em comparação com o elemento <code>&lt;select&gt;</code>, devido às lógicas internas envolvidas.</li>
-            </ul>
-
-            <p><b>Indicação de Uso:</b> Este componente é particularmente indicado para cenários com listas mais extensas, geralmente com mais de 20~25 opções disponíveis.</p>
-         </div>
-          
-         <!-- #region AVISOS -->
-         <div class="alert alert-indigo" role="alert">
-            <span>Uma prática recomendada pelo ND é a seguinte: Comboboxes com mais de 100 registros devem ter a opção de abrir um modal com a lista "completa" (incluindo filtros mais robustos)</span>
-         </div>
-         <!-- #endregion AVISOS -->
-
-         <div class="code-example">
-            <p>Combobox simples dentro de um FormGroup:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1 [formGroup]="formCombobox1">
-                        <div class="row">
-                           <div class="col-6">
-                              <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="formCombobox1.controls['CRPPESSOAID']" />
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[6]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[7]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Combobox simples fora de um FormGroup:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <div innerContent1 class="row">
-                        <div class="col-6">
-                           <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="pessoaControl2" />
-                        </div>
-                     </div>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[8]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[9]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Combobox obrigatório:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1 [formGroup]="formCombobox2">
-                        <div class="row">
-                           <div class="col-6">
-                              <lib-combobox labelText="Pessoa"
-                                 [list]="pessoasList"
-                                 [control]="formCombobox2.controls['CRPPESSOAID']" />
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[10]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[11]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Inicialização de valor selecionado:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1 [formGroup]="formCombobox3">
-                        <div class="row">
-                           <div class="col-6">
-                              <lib-combobox labelText="Pessoa"
-                                 [list]="pessoasList"
-                                 [control]="formCombobox3.controls['CRPPESSOAID']" />
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[12]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[13]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Captar alteração de valores:</p>
-            <div class="secondary-description text-dark-secondary mb-3">
-               <span>Para captar a alteração de valores do combobox há duas formas:</span>
-               <li>(onChange): Evento emitido quando o usuário clica em uma das opções (ou limpa a selecionada) da lista</li>
-               <li>valueChange: É possível utilizar o valueChanges referenciando o próprio formGroup que já está utilizando no TS, como se fosse um outro campo qualquer</li>
-            </div>
-            
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1 [formGroup]="formCombobox4">
-                        <div class="row">
-                           <div class="col-6">
-                              <lib-combobox labelText="Parte (onChange)"
-                                 [list]="pessoasList"
-                                 [control]="formCombobox4.controls['PESSOAPARTEID']"
-                                 (onChange)="toastr.success($event ? $event.toString() : 'null', 'Novo valor selecionado (onChange):')" />
-                           </div>
-                           <div class="col-6">
-                              <lib-combobox labelText="Contraparte (valueChanges)"
-                                 [list]="pessoasList"
-                                 [control]="formCombobox4.controls['PESSOACONTRAPARTEID']" />
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[14]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[15]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Desabilitar o campo:</p>
-            <div class="secondary-description text-dark-secondary mb-3">
-               <span>Para desabilitar o combobox há duas formas:</span>
-               <li>[disabled]: Propriedade {{ "@Input" }} que habilitará ou desabilitará o campo.</li>
-               <li>formControl.disable(): É possível utilizar o próprio método de disable() do próprio formGroup que já está sendo utilizado no TS, como se fosse um outro campo qualquer.</li>
-            </div>
-            
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1 [formGroup]="formCombobox5">
-                        <div class="row mb-3">
-                           <div class="col-6">
-                              <lib-combobox labelText="Parte ([disabled])"
-                                 [list]="pessoasList"
-                                 [control]="formCombobox5.controls['PESSOAPARTEID']"
-                                 [disabled]="disabledInputs.get('formCombobox5')"
-                                 />
-                           </div>
-                           <div class="col-6">
-                              <lib-combobox labelText="Contraparte (formControl.disable())"
-                                 [list]="pessoasList"
-                                 [control]="formCombobox5.controls['PESSOACONTRAPARTEID']" />
-                           </div>
-                        </div>
-
-                        <div class="row">
-                           <div class="col-6 offset-3 d-flex justify-content-evenly">
-                              <button class="btn btn-outline-primary" (click)="disableForm5()">disable()</button>
-                              <button class="btn btn-outline-primary" (click)="enableForm5()">enable()</button>
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[16]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[17]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Propriedades simples:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1>
-                        <div class="row mb-3 pb-4 border-bottom">
-                           <div class="col">
-                              <label for="labelText6" class="form-label">Label</label>
-                              <input type="text" id="labelText6" class="form-control" [(ngModel)]="labelText6" [ngModelOptions]="{standalone: true}" >
-                           </div>
-                           <div class="col">
-                              <label for="mainPlaceholder6" class="form-label">MainInputPlaceholder</label>
-                              <input type="text" id="mainPlaceholder6" class="form-control" [(ngModel)]="mainPlaceholder6" [ngModelOptions]="{standalone: true}" >
-                           </div>
-                           <div class="col">
-                              <label for="searchPlaceholder6" class="form-label">SearchInputPlaceholder</label>
-                              <input type="text" id="searchPlaceholder6" class="form-control" [(ngModel)]="searchPlaceholder6" [ngModelOptions]="{standalone: true}" >
-                           </div>
-                           <div class="col">
-                              <label for="colorTheme6" class="form-label">ColorTheme</label>
-                              <select id="colorTheme6" class="form-select" [(ngModel)]="colorTheme6" [ngModelOptions]="{standalone: true}" >
-                                 <option value="primary">Primary (azul)</option>
-                                 <option value="secondary">Secondary (cinza)</option>
-                                 <option value="success">Success (verde)</option>
-                                 <option value="danger">Danger (vermelho)</option>
-                                 <option value="warning">Warning (amarelo)</option>
-                              </select>
-                           </div>
-                           <div class="col">
-                              <label for="isRequired6" class="form-label">
-                                 <lib-icon iconName="info" iconSize="medium-small" iconColor="blue" tooltip="Em situações como esta que a obrigatoriedade do campo é condicional e dinâmica, a propriedade [libRequired] tem prioridade sobre o Validators.required do FormControl" />
-                                 Obrigatório?
-                              </label>
-                              <div class="form-check form-switch">
-                                 <input class="form-check-input" type="checkbox" role="switch" id="isRequired6"
-                                    [checked]="isRequired6" [(ngModel)]="isRequired6" [ngModelOptions]="{standalone: true}">
-                              </div>
-                           </div>
-                        </div>
-
-                        <div class="row mb-3">
-                           <div class="col-6 offset-3">
-                              <lib-combobox [labelText]="labelText6"
-                                 [mainPlaceholder]="mainPlaceholder6"
-                                 [searchPlaceholder]="searchPlaceholder6"
-                                 [theme]="colorTheme6"
-                                 [list]="pessoasList"
-                                 [libRequired]="isRequired6"
-                                 [control]="formCombobox6.controls['CRPPESSOAID']" />
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[18]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[19]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Botões laterais customizados:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <form innerContent1>
-                        <div class="row mb-3">
-                           <div class="col-6 offset-3">
-                              <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="formCombobox7.controls['CRPPESSOAID']" >
-                                 <button btnLeft class="btn btn-sm btn-primary" tooltip="Abrir modal com listagem completa" (click)="modalUtils.openInitialStateModal(exampleModalRef)"> <lib-icon iconName="usuario-quadro" /> </button>
-                                 <button btnRight class="btn btn-sm btn-outline-primary" tooltip="Limpar valor selecionado" (click)="formCombobox7.controls['CRPPESSOAID'].setValue(null)"> <lib-icon iconName="lixeira" /> </button>
-                              </lib-combobox>
-                           </div>
-                        </div>
-                     </form>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[20]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[21]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Definição de valor de um combo externamente:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
-                  <lib-container pageTitle="Exemplo">
-                     <div innerContent1>
-                        <p class="mb-0">Definir valor do combo para:</p>
-                        <div class="btn-group mb-3" role="group" aria-label="Grupo de botões para definição de valor do combobox abaixo">
-                           <input type="radio" name="nomePessoa" class="btn-check" id="mariaOliveira" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('77bcd182-785e-41bd-a127-b572cd12b3b9')">
-                           <label class="btn btn-sm btn-outline-primary" for="mariaOliveira">Maria Oliveira</label>
-
-                           <input type="radio" name="nomePessoa" class="btn-check" id="eduardoFernandes" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('5f1fb37f-f543-4996-ae38-6332157000a8')">
-                           <label class="btn btn-sm btn-outline-primary" for="eduardoFernandes">Eduardo Fernandes</label>
-
-                           <input type="radio" name="nomePessoa" class="btn-check" id="julianaLima" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('8f89e631-4195-47f9-9026-c9dfb0922f5f')">
-                           <label class="btn btn-sm btn-outline-primary" for="julianaLima">Juliana Lima</label>
-                           
-                           <input type="radio" name="nomePessoa" class="btn-check" id="beatrizFaria" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('6f03c252-a520-4bad-a090-6bac61eb4bc8')">
-                           <label class="btn btn-sm btn-outline-primary" for="beatrizFaria">Beatriz Faria</label>
-
-                           <input type="radio" name="nomePessoa" class="btn-check" id="patriciaMendes" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('41434a7d-2172-44ba-b25d-3e626f6beb35')">
-                           <label class="btn btn-sm btn-outline-primary" for="patriciaMendes">Patrícia Mendes</label>
-
-                           <input type="radio" name="nomePessoa" class="btn-check" id="joaoSilva" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('30be2135-dbfd-4b16-8920-56075d802ed5')">
-                           <label class="btn btn-sm btn-outline-primary" for="joaoSilva">João Silva</label>
-
-                           <input type="radio" name="nomePessoa" class="btn-check" id="erickCarvalho" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('d4135a37-4f6f-4724-afe7-01482680bf5b')">
-                           <label class="btn btn-sm btn-outline-primary" for="erickCarvalho">Erick Carvalho</label>
-
-                           <input type="radio" name="nomePessoa" class="btn-check" id="limparRadio" (change)="formCombobox9.controls['CRPPESSOAID'].setValue(null)">
-                           <label class="btn btn-sm btn-outline-primary" for="limparRadio">LIMPAR</label>
-                        </div>
-   
-                        <form [formGroup]="formCombobox9">
-                           <div class="row align-items-end">
-                              <div class="col-4">
-                                 <lib-combobox labelText="Pessoa"
-                                    [list]="pessoasList"
-                                    [control]="formCombobox9.controls['CRPPESSOAID']" />
-                              </div>
-                              <div class="col">
-                                 <button class="btn btn-outline-primary" (click)="formCombobox9.controls['CRPPESSOAID'].disable()"> disable() </button>
-                              </div>
-                              <div class="col">
-                                 <button class="btn btn-outline-primary" (click)="formCombobox9.controls['CRPPESSOAID'].enable()"> enable() </button>
-                              </div>
-                              <div class="col">
-                                 <button class="btn btn-outline-primary" (click)="formCombobox9.controls['CRPPESSOAID'].markAsDirty()"> markAsDirty() </button>
-                              </div>
-                              <div class="col">
-                                 <button class="btn btn-outline-primary" (click)="formCombobox9.controls['CRPPESSOAID'].markAsTouched()"> markAsTouched() </button>
-                              </div>
-                              <div class="col me-0">
-                                 <button class="btn btn-outline-primary" (click)="validate()"> validate() </button>
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[22]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[23]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Combobox dependente de outro valor:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Estabelecimentos e Empresas', 'Formulário', 'Vincular empresa' ]" pageTitle='Vincular empresa' />
-                  <lib-container pageTitle="Exemplo">
-                     <div innerContent1>
-                        <form [formGroup]="formCombobox10">
-                           <div class="row">
-                              <div class="col-6">
-                                 <lib-combobox labelText="Empresa"
-                                    [list]="empresasList"
-                                    [control]="formCombobox10.controls['CRPEMPRESAID']" />
-                              </div>
-
-                              <div class="col-6">
-                                 <lib-combobox labelText="Estabelecimento"
-                                    [list]="estabelecimentosList"
-                                    [control]="formCombobox10.controls['CRPESTABELECIMENTOID']" />
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[24]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[25]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-      </div>
-      <!-- #endregion COMBOBOX COM PESQUISA -->
+<div class="content-header mb-5 border-bottom">
+   <h3 class="fw-bold"> SELECT E COMBOBOX </h3>
+   <p class="fs-5">Documentação de uso, exemplos e explicações sobre os componentes de select simples e com pesquisa (combobox) que devem ser utilizados na V6</p>
+</div>
+
+<!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+<!-- #region ANTES DE COMEÇAR -->
+<div class="content mb-5">
+   <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+   <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+
+   <ul>
+      <li>Por enquanto as classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
+      <li>Na versão mais recente da biblioteca foram feitas algumas alterações e melhorias neste componente, uma delas foi a mudança do seletor de <code class="text-code">lib-search-combobox</code> para <code class="text-code">lib-combobox</code>.</li>
+      <li>O componente anterior <code class="text-code">lib-search-combobox</code> ainda existirá até que todos os comboboxes forem atualizados corretamente.</li>
+   </ul>
+</div>
+<!-- #endregion ANTES DE COMECAR -->
+
+
+
+<!-- #region COMO FUNCIONA -->
+<div class="content mb-5">
+   <h5 class="fw-bold">COMO FUNCIONA?</h5>
+
+   <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">control: "FormControl&lt;any&gt; | AbstractControl&lt;any&gt;</code> (obrigatório) - Control para seleção dos valores, atualizará automaticamente o control do componente pai também.</li>
+      <li class="my-2"><code class="text-code">list: RecordCombobox[]</code> (obrigatório) - Lista de registros que serão exibidos no combo, enquanto eles estiverem carregando será exibido um spinner.</li>
+      <li class="my-2"><code class="text-code">labelText?: string</code> - Texto do rótulo que será exibido acima do combo. Caso não informado nada será exibido.</li>
+      <li class="my-2"><code class="text-code">libRequired?: boolean</code> - Define se o campo é obrigatório, vai exibir o '*' vermelho ao lado do label (se ele estiver presente). Por padrão, assume o valor <code>false</code>.</li>
+      <li class="my-2"><code class="text-code">disabled?: boolean</code> - Define se o campo está desabilitado. Deve ser usado para validações de habilitação dinâmica do campo. Por padrão, assume o valor <code>false</code>.</li>
+      <li class="my-2"><code class="text-code">mainPlaceholder?: string</code> - Placeholder do campo principal do combo. Por padrão, assume o valor <code>"Selecione uma opção..."</code>.</li>
+      <li class="my-2"><code class="text-code">searchPlaceholder?: string</code> - Placeholder do campo de pesquisa dentro do combo. Por padrão, assume o valor <code>"Pesquisa..."</code>.</li>
+      <li class="my-2"><code class="text-code">theme?: string</code> - Define o tema de cor do componente, como "primary", "success", ou "danger". Por padrão, assume o valor <code>"primary"</code>.</li>
+      <li class="my-2"><code class="text-code">returnRecord?: boolean</code> - Define se o tipo de retorno ao selecionar uma opção será o Record inteiro ou apenas o ID.</li>
+   </ul>
+
+   <span><b>{{"@Output"}}</b> Lista de eventos:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">onReloadList: EventEmitter&lt;string&gt;</code> - Evento emitido ao recarregar a lista de registros</li>
+      <li class="my-2"><code class="text-code">onChange: EventEmitter&lt;string | number | null&gt;</code> - Evento emitido ao selecionar um registro da lista do combobox</li>
+   </ul>
+</div>
+<!-- #endregion COMO FUNCIONA -->
+
+<!-- #region AVISOS -->
+<div class="alert alert-warning mb-5" role="alert">
+   <p class="fw-bold">AVISOS</p>
+   <ul>
+      <li>Propriedade libRequired será mantida com o principal objetivo de ser usada em situações em que a obrigatoriedade do campo é dinâmica. Ela terá prioridade sobre o <code class="text-code fw-bold">[Validators.required]</code>.</li>
+   </ul>
+</div>
+<!-- #endregion AVISOS -->
+
+<!-- #region SELECT -->
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">SELECT</h5>
+
+   <div class="description">
+      <p> O <code>&lt;select&gt;</code> é um elemento HTML padrão que permite ao usuário escolher uma opção de uma lista predefinida de itens. Ele é simples de usar e oferece funcionalidades básicas como: </p>
+      <ul>
+         <li>Seleção única (ou múltipla, com o uso do atributo <code>multiple</code>).</li>
+         <li>Desempenho consistente em todos os navegadores.</li>
+         <li>Integração nativa com formulários e facilidade de submissão.</li>
+      </ul>   
       
-      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+      <p class="fw-bold">Vantagens:</p>
+      <ul>
+         <li><b>Compatibilidade:</b> Altamente compatível com todos os navegadores e sistemas operacionais.</li>
+         <li><b>Simplicidade:</b> Fácil de implementar e usar, sem necessidade de scripts adicionais.</li>
+         <li><b>Acessibilidade:</b> Suporte nativo para teclado e leitores de tela, tornando-o acessível por padrão.</li>
+      </ul>
+      
+      <p class="fw-bold">Limitações:</p>
+      <ul>
+         <li><b>Personalização limitada:</b> A aparência e comportamento do <code>&lt;select&gt;</code> são difíceis de personalizar além das opções básicas de estilo (e.g., cores e fontes).</li>
+         <li><b>Funcionalidade básica:</b> Não oferece recursos avançados como pesquisa dentro das opções, ou autocompletar.</li>
+      </ul>
+
+      <p><b>Indicação de Uso:</b> Ideal para cenários simples onde a lista de opções é limitada a até 20 registros.</p>
+   </div>
+
+   <div class="code-example">
+      <p>SELECT simples com valores fixos no HTML:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1 [formGroup]="formSelect1">
+                  <div class="row">
+                     <div class="col-6">
+                        <label for="tipoPessoa1" class="form-label">Tipo de pessoa</label>
+                        <select id="tipoPessoa1" class="form-select" formControlName="TIPOPESSOAID">
+                           <option [value]="null" disabled selected>Selecione um tipo de pessoa</option>
+                           <option value="FIS">Física</option>
+                           <option value="JUR">Jurídica</option>
+                        </select>
+                     </div>
+
+                     <div class="col-6">
+                        <p class="fw-bold">Opção selecionada:</p>
+                        <span>{{ formSelect1.controls["TIPOPESSOAID"].value ?? "null" }}</span>
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[0]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[1]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>SELECT simples com valores dinâmicos:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Contratos', 'Formulário', 'Novo' ]" pageTitle='Novo contrato' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1 [formGroup]="formSelect2">
+                  <div class="row">
+                     <div class="col-6">
+                        <label libRequired for="situacaoContrato1" class="form-label">Situação</label>
+                        <select id="situacaoContrato1" class="form-select" formControlName="SITUACAOCONTRATOID">
+                           <option [value]="null" disabled selected> Selecione uma situação </option>
+                           <option *ngFor="let situacao of situacoesList" [value]="situacao.ID"> {{ situacao.LABEL }} </option>
+                        </select>
+                     </div>
+
+                     <div class="col-6">
+                        <p class="fw-bold">Opção selecionada:</p>
+                        <span>{{ formSelect2.controls["SITUACAOCONTRATOID"].value ?? "null" }}</span>
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[2]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[3]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>SELECT de múltipla seleção (com valores dinâmicos, para valores fixos segue o mesmo exemplo acima):</p>
+      <div class="secondary-description text-dark-secondary mb-3">
+         <span>Para utilizar a múltipla seleção é necessário o seguinte</span>
+         <li>No Windows: Segure a tecla CTRL e selecione as opções desejadas</li>
+         <li>No Mac: Segure a tecla Command e selecione as opções desejadas</li>
+      </div>
+
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Contratos', 'Formulário', 'Novo' ]" pageTitle='Novo contrato' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1 [formGroup]="formSelect3">
+                  <div class="row">
+                     <div class="col-6">
+                        <label libRequired for="situacaoContrato1" class="form-label">Situação</label>
+                        <select id="situacaoContrato1" class="form-select" formControlName="SITUACAOCONTRATOID" multiple>
+                           <option [value]="null" disabled selected> Selecione uma situação </option>
+                           <option *ngFor="let situacao of situacoesList" [value]="situacao.ID"> {{ situacao.LABEL }} </option>
+                        </select>
+                     </div>
+
+                     <div class="col-6">
+                        <p class="fw-bold">Opção selecionada:</p>
+                        <span>{{ formSelect3.controls["SITUACAOCONTRATOID"].value ?? "null" }}</span>
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[4]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[5]" language="typescript" />
+         </div>
+      </lib-container>
    </div>
 </div>
+<!-- #endregion SELECT -->
+
+<!-- #region COMBOBOX COM PESQUISA -->
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">COMBOBOX COM PESQUISA</h5>
+
+   <div class="description">
+      <p>O componente <code>&lt;lib-combobox&gt;</code> é uma solução reutilizável que, assim como o elemento nativo <code>&lt;select&gt;</code>, permite a seleção de opções por parte do usuário. No entanto, ele se diferencia ao oferecer uma funcionalidade adicional de filtragem simples.</p>
+      <ul>
+         <li>Atualmente, suporta apenas a seleção única (suporte para seleção múltipla será adicionado em futuras versões).</li>
+         <li>Desenvolvido para manejar eficientemente listas com um maior número de itens.</li>
+         <li>Oferece integração nativa com formulários, facilitando a submissão dos dados.</li>
+      </ul>
+
+      <p class="fw-bold">Vantagens:</p>
+      <ul>
+         <li><b>Pesquisa:</b> Inclui um campo de entrada que permite ao usuário filtrar as opções disponíveis de maneira ágil e intuitiva.</li>
+      </ul>
+
+      <p class="fw-bold">Limitações:</p>
+      <ul>
+         <li><b>Desempenho:</b> Por se tratar de um componente customizado e mais robusto, possui uma carga de renderização maior em comparação com o elemento <code>&lt;select&gt;</code>, devido às lógicas internas envolvidas.</li>
+      </ul>
+
+      <p><b>Indicação de Uso:</b> Este componente é particularmente indicado para cenários com listas mais extensas, geralmente com mais de 20~25 opções disponíveis.</p>
+   </div>
+    
+   <!-- #region AVISOS -->
+   <div class="alert alert-indigo" role="alert">
+      <span>Uma prática recomendada pelo ND é a seguinte: Comboboxes com mais de 100 registros devem ter a opção de abrir um modal com a lista "completa" (incluindo filtros mais robustos)</span>
+   </div>
+   <!-- #endregion AVISOS -->
+
+   <div class="code-example">
+      <p>Combobox simples dentro de um FormGroup:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1 [formGroup]="formCombobox1">
+                  <div class="row">
+                     <div class="col-6">
+                        <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="formCombobox1.controls['CRPPESSOAID']" />
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[6]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[7]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Combobox simples fora de um FormGroup:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <div innerContent1 class="row">
+                  <div class="col-6">
+                     <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="pessoaControl2" />
+                  </div>
+               </div>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[8]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[9]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Combobox obrigatório:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1 [formGroup]="formCombobox2">
+                  <div class="row">
+                     <div class="col-6">
+                        <lib-combobox labelText="Pessoa"
+                           [list]="pessoasList"
+                           [control]="formCombobox2.controls['CRPPESSOAID']" />
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[10]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[11]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Inicialização de valor selecionado:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1 [formGroup]="formCombobox3">
+                  <div class="row">
+                     <div class="col-6">
+                        <lib-combobox labelText="Pessoa"
+                           [list]="pessoasList"
+                           [control]="formCombobox3.controls['CRPPESSOAID']" />
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[12]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[13]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Captar alteração de valores:</p>
+      <div class="secondary-description text-dark-secondary mb-3">
+         <span>Para captar a alteração de valores do combobox há duas formas:</span>
+         <li>(onChange): Evento emitido quando o usuário clica em uma das opções (ou limpa a selecionada) da lista</li>
+         <li>valueChange: É possível utilizar o valueChanges referenciando o próprio formGroup que já está utilizando no TS, como se fosse um outro campo qualquer</li>
+      </div>
+      
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1 [formGroup]="formCombobox4">
+                  <div class="row">
+                     <div class="col-6">
+                        <lib-combobox labelText="Parte (onChange)"
+                           [list]="pessoasList"
+                           [control]="formCombobox4.controls['PESSOAPARTEID']"
+                           (onChange)="toastr.success($event ? $event.toString() : 'null', 'Novo valor selecionado (onChange):')" />
+                     </div>
+                     <div class="col-6">
+                        <lib-combobox labelText="Contraparte (valueChanges)"
+                           [list]="pessoasList"
+                           [control]="formCombobox4.controls['PESSOACONTRAPARTEID']" />
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[14]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[15]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Desabilitar o campo:</p>
+      <div class="secondary-description text-dark-secondary mb-3">
+         <span>Para desabilitar o combobox há duas formas:</span>
+         <li>[disabled]: Propriedade {{ "@Input" }} que habilitará ou desabilitará o campo.</li>
+         <li>formControl.disable(): É possível utilizar o próprio método de disable() do próprio formGroup que já está sendo utilizado no TS, como se fosse um outro campo qualquer.</li>
+      </div>
+      
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1 [formGroup]="formCombobox5">
+                  <div class="row mb-3">
+                     <div class="col-6">
+                        <lib-combobox labelText="Parte ([disabled])"
+                           [list]="pessoasList"
+                           [control]="formCombobox5.controls['PESSOAPARTEID']"
+                           [disabled]="disabledInputs.get('formCombobox5')"
+                           />
+                     </div>
+                     <div class="col-6">
+                        <lib-combobox labelText="Contraparte (formControl.disable())"
+                           [list]="pessoasList"
+                           [control]="formCombobox5.controls['PESSOACONTRAPARTEID']" />
+                     </div>
+                  </div>
+
+                  <div class="row">
+                     <div class="col-6 offset-3 d-flex justify-content-evenly">
+                        <button class="btn btn-outline-primary" (click)="disableForm5()">disable()</button>
+                        <button class="btn btn-outline-primary" (click)="enableForm5()">enable()</button>
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[16]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[17]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Propriedades simples:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1>
+                  <div class="row mb-3 pb-4 border-bottom">
+                     <div class="col">
+                        <label for="labelText6" class="form-label">Label</label>
+                        <input type="text" id="labelText6" class="form-control" [(ngModel)]="labelText6" [ngModelOptions]="{standalone: true}" >
+                     </div>
+                     <div class="col">
+                        <label for="mainPlaceholder6" class="form-label">MainInputPlaceholder</label>
+                        <input type="text" id="mainPlaceholder6" class="form-control" [(ngModel)]="mainPlaceholder6" [ngModelOptions]="{standalone: true}" >
+                     </div>
+                     <div class="col">
+                        <label for="searchPlaceholder6" class="form-label">SearchInputPlaceholder</label>
+                        <input type="text" id="searchPlaceholder6" class="form-control" [(ngModel)]="searchPlaceholder6" [ngModelOptions]="{standalone: true}" >
+                     </div>
+                     <div class="col">
+                        <label for="colorTheme6" class="form-label">ColorTheme</label>
+                        <select id="colorTheme6" class="form-select" [(ngModel)]="colorTheme6" [ngModelOptions]="{standalone: true}" >
+                           <option value="primary">Primary (azul)</option>
+                           <option value="secondary">Secondary (cinza)</option>
+                           <option value="success">Success (verde)</option>
+                           <option value="danger">Danger (vermelho)</option>
+                           <option value="warning">Warning (amarelo)</option>
+                        </select>
+                     </div>
+                     <div class="col">
+                        <label for="isRequired6" class="form-label">
+                           <lib-icon iconName="info" iconSize="medium-small" iconColor="blue" tooltip="Em situações como esta que a obrigatoriedade do campo é condicional e dinâmica, a propriedade [libRequired] tem prioridade sobre o Validators.required do FormControl" />
+                           Obrigatório?
+                        </label>
+                        <div class="form-check form-switch">
+                           <input class="form-check-input" type="checkbox" role="switch" id="isRequired6"
+                              [checked]="isRequired6" [(ngModel)]="isRequired6" [ngModelOptions]="{standalone: true}">
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="row mb-3">
+                     <div class="col-6 offset-3">
+                        <lib-combobox [labelText]="labelText6"
+                           [mainPlaceholder]="mainPlaceholder6"
+                           [searchPlaceholder]="searchPlaceholder6"
+                           [theme]="colorTheme6"
+                           [list]="pessoasList"
+                           [libRequired]="isRequired6"
+                           [control]="formCombobox6.controls['CRPPESSOAID']" />
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[18]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[19]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Botões laterais customizados:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div innerContent1 class="p-3 pt-0 rounded bg-secondary">
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <form innerContent1>
+                  <div class="row mb-3">
+                     <div class="col-6 offset-3">
+                        <lib-combobox labelText="Pessoa" [list]="pessoasList" [control]="formCombobox7.controls['CRPPESSOAID']" >
+                           <button btnLeft class="btn btn-sm btn-primary" tooltip="Abrir modal com listagem completa" (click)="modalUtils.openInitialStateModal(exampleModalRef)"> <lib-icon iconName="usuario-quadro" /> </button>
+                           <button btnRight class="btn btn-sm btn-outline-primary" tooltip="Limpar valor selecionado" (click)="formCombobox7.controls['CRPPESSOAID'].setValue(null)"> <lib-icon iconName="lixeira" /> </button>
+                        </lib-combobox>
+                     </div>
+                  </div>
+               </form>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[20]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[21]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Definição de valor de um combo externamente:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Usuários do sistema', 'Formulário', 'Vincular a pessoa' ]" pageTitle='Vincular usuário a pessoa' />
+            <lib-container pageTitle="Exemplo">
+               <div innerContent1>
+                  <p class="mb-0">Definir valor do combo para:</p>
+                  <div class="btn-group mb-3" role="group" aria-label="Grupo de botões para definição de valor do combobox abaixo">
+                     <input type="radio" name="nomePessoa" class="btn-check" id="mariaOliveira" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('77bcd182-785e-41bd-a127-b572cd12b3b9')">
+                     <label class="btn btn-sm btn-outline-primary" for="mariaOliveira">Maria Oliveira</label>
+
+                     <input type="radio" name="nomePessoa" class="btn-check" id="eduardoFernandes" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('5f1fb37f-f543-4996-ae38-6332157000a8')">
+                     <label class="btn btn-sm btn-outline-primary" for="eduardoFernandes">Eduardo Fernandes</label>
+
+                     <input type="radio" name="nomePessoa" class="btn-check" id="julianaLima" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('8f89e631-4195-47f9-9026-c9dfb0922f5f')">
+                     <label class="btn btn-sm btn-outline-primary" for="julianaLima">Juliana Lima</label>
+                     
+                     <input type="radio" name="nomePessoa" class="btn-check" id="beatrizFaria" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('6f03c252-a520-4bad-a090-6bac61eb4bc8')">
+                     <label class="btn btn-sm btn-outline-primary" for="beatrizFaria">Beatriz Faria</label>
+
+                     <input type="radio" name="nomePessoa" class="btn-check" id="patriciaMendes" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('41434a7d-2172-44ba-b25d-3e626f6beb35')">
+                     <label class="btn btn-sm btn-outline-primary" for="patriciaMendes">Patrícia Mendes</label>
+
+                     <input type="radio" name="nomePessoa" class="btn-check" id="joaoSilva" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('30be2135-dbfd-4b16-8920-56075d802ed5')">
+                     <label class="btn btn-sm btn-outline-primary" for="joaoSilva">João Silva</label>
+
+                     <input type="radio" name="nomePessoa" class="btn-check" id="erickCarvalho" (change)="formCombobox9.controls['CRPPESSOAID'].setValue('d4135a37-4f6f-4724-afe7-01482680bf5b')">
+                     <label class="btn btn-sm btn-outline-primary" for="erickCarvalho">Erick Carvalho</label>
+
+                     <input type="radio" name="nomePessoa" class="btn-check" id="limparRadio" (change)="formCombobox9.controls['CRPPESSOAID'].setValue(null)">
+                     <label class="btn btn-sm btn-outline-primary" for="limparRadio">LIMPAR</label>
+                  </div>
+
+                  <form [formGroup]="formCombobox9">
+                     <div class="row align-items-end">
+                        <div class="col-4">
+                           <lib-combobox labelText="Pessoa"
+                              [list]="pessoasList"
+                              [control]="formCombobox9.controls['CRPPESSOAID']" />
+                        </div>
+                        <div class="col">
+                           <button class="btn btn-outline-primary" (click)="formCombobox9.controls['CRPPESSOAID'].disable()"> disable() </button>
+                        </div>
+                        <div class="col">
+                           <button class="btn btn-outline-primary" (click)="formCombobox9.controls['CRPPESSOAID'].enable()"> enable() </button>
+                        </div>
+                        <div class="col">
+                           <button class="btn btn-outline-primary" (click)="formCombobox9.controls['CRPPESSOAID'].markAsDirty()"> markAsDirty() </button>
+                        </div>
+                        <div class="col">
+                           <button class="btn btn-outline-primary" (click)="formCombobox9.controls['CRPPESSOAID'].markAsTouched()"> markAsTouched() </button>
+                        </div>
+                        <div class="col me-0">
+                           <button class="btn btn-outline-primary" (click)="validate()"> validate() </button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[22]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[23]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Combobox dependente de outro valor:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Estabelecimentos e Empresas', 'Formulário', 'Vincular empresa' ]" pageTitle='Vincular empresa' />
+            <lib-container pageTitle="Exemplo">
+               <div innerContent1>
+                  <form [formGroup]="formCombobox10">
+                     <div class="row">
+                        <div class="col-6">
+                           <lib-combobox labelText="Empresa"
+                              [list]="empresasList"
+                              [control]="formCombobox10.controls['CRPEMPRESAID']" />
+                        </div>
+
+                        <div class="col-6">
+                           <lib-combobox labelText="Estabelecimento"
+                              [list]="estabelecimentosList"
+                              [control]="formCombobox10.controls['CRPESTABELECIMENTOID']" />
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[24]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[25]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+</div>
+<!-- #endregion COMBOBOX COM PESQUISA -->
+
+<!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
 
 
 <!-- #region TEMPLATE -->

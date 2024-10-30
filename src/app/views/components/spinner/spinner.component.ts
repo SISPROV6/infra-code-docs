@@ -8,7 +8,6 @@ import { InfraModule } from 'ngx-sp-infra';
 import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { CodeSnippetComponent } from '../../../shared/components/code-snippet/code-snippet.component';
 import { VersionTagsComponent } from '../../../shared/components/version-tags/version-tags.component';
-import { InstallationInstructionsComponent } from '../../../shared/components/installation-instructions/installation-instructions.component';
 import { UtilsService } from '../../../shared/services/utils.service';
 
 @Component({
@@ -16,7 +15,6 @@ import { UtilsService } from '../../../shared/services/utils.service';
   standalone: true,
   imports: [
     CodeSnippetComponent,
-    InstallationInstructionsComponent,
     NavbarComponent,
     VersionTagsComponent,
     

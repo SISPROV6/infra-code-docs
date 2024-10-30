@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { InfraModule } from 'ngx-sp-infra';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { InstallationInstructionsComponent } from '../../../shared/components/installation-instructions/installation-instructions.component';
 import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { CodeSnippetComponent } from '../../../shared/components/code-snippet/code-snippet.component';
 import { UtilsService } from '../../../shared/services/utils.service';
@@ -22,7 +21,6 @@ import { UtilsService } from '../../../shared/services/utils.service';
     ReactiveFormsModule,
     RouterModule,
     TooltipModule,
-    InstallationInstructionsComponent
   ],
   templateUrl: './containers.component.html',
   styleUrl: './containers.component.scss'

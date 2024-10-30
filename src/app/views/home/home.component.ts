@@ -30,13 +30,7 @@ export class HomeComponent {
   // #endregion PRIVATE
 
   // #region PUBLIC
-  public cards: { nome: string, rota: string, descricao: string, implementado: boolean }[] = [
-    { nome: "Componentes", rota: "componentes", descricao: "Documentação de componentes e widgets dos mais variados tipos reutilizáveis usados por todos projetos Angular", implementado: true },
-    { nome: "Estrutura", rota: "estrutura", descricao: "Documentação da estrutura de arquivos, código, regions, etc", implementado: false },
-    { nome: "Models e Records (classes)", rota: "models", descricao: "Padronização de nomenclaturas, tipos e usos de classes das camadas como 7Db e 3Rn", implementado: false },
-    { nome: "Templates", rota: "templates", descricao: "Documentação de templates de código/telas prontos", implementado: false },
-    { nome: "Webservices", rota: "webservices", descricao: "Documentação dos endpoints públicos exportados", implementado: false },
-  ];
+  // [...]
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========

@@ -3,7 +3,10 @@ import { RouterModule } from '@angular/router';
 
 import { InfraModule } from 'ngx-sp-infra';
 
+import packageJson from "../../../../../package.json";
+
 import { SideMenuComponent } from '../side-menu/side-menu.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @Component({
   selector: 'navbar',
@@ -11,6 +14,7 @@ import { SideMenuComponent } from '../side-menu/side-menu.component';
   imports: [
     InfraModule,
     RouterModule,
+    TooltipModule,
     SideMenuComponent
   ],
   templateUrl: './navbar.component.html',
@@ -18,4 +22,7 @@ import { SideMenuComponent } from '../side-menu/side-menu.component';
 })
 export class NavbarComponent {
   @Input() currentPage?: string;
+
+  public version = packageJson.version;
+  public theme: 'dark' | 'light' = 'light';
 }

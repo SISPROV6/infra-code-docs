@@ -13,7 +13,6 @@ import { UtilsService } from '../../../shared/services/utils.service';
 import { RecordsListModel } from './models/lista.model';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxMaskPipe } from 'ngx-mask';
-import { InstallationInstructionsComponent } from "../../../shared/components/installation-instructions/installation-instructions.component";
 import { TabelaDemonstracaoService } from './tabela-demonstracao.service';
 
 @Component({
@@ -29,8 +28,7 @@ import { TabelaDemonstracaoService } from './tabela-demonstracao.service';
     RouterModule,
     TooltipModule,
     NgxPaginationModule,
-    NgxMaskPipe,
-    InstallationInstructionsComponent
+    NgxMaskPipe
 ],
   templateUrl: './tabela.component.html',
   styleUrl: './tabela.component.scss'

@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { CodeSnippetComponent } from '../code-snippet/code-snippet.component';
+import { CodeSnippetComponent } from '../../shared/components/code-snippet/code-snippet.component';
 
 @Component({
-  selector: 'instal-instructions',
+  selector: 'app-installation',
   standalone: true,
   imports: [
     CodeSnippetComponent
   ],
-  templateUrl: './installation-instructions.component.html',
-  styleUrl: './installation-instructions.component.scss'
+  templateUrl: './installation.component.html',
+  styleUrl: './installation.component.scss'
 })
-export class InstallationInstructionsComponent {
-
+export class InstallationComponent {
   // #region ==========> PROPERTIES <==========
 
   // #region PUBLIC

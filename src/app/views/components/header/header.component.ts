@@ -10,7 +10,6 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar.compon
 import { UtilsService } from '../../../shared/services/utils.service';
 
 import { CodeSnippetComponent } from '../../../shared/components/code-snippet/code-snippet.component';
-import { InstallationInstructionsComponent } from "../../../shared/components/installation-instructions/installation-instructions.component";
 
 @Component({
   selector: 'app-header',
@@ -23,7 +22,6 @@ import { InstallationInstructionsComponent } from "../../../shared/components/in
     ReactiveFormsModule,
     TooltipModule,
     CodeSnippetComponent,
-    InstallationInstructionsComponent
 ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

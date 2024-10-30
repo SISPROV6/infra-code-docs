@@ -1,13 +1,40 @@
 <nav class="navbar bg-dark-blue" data-bs-theme="dark">
-   <div class="container-fluid d-flex align-items-center justify-content-between">
-      <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral" aria-label="Abrir menu lateral">
-        <lib-icon iconName="menu-hamburguer" iconColor="white" />
-      </button>
+   <div class="d-flex flex-row align-items-center w-100">
+      <div class="col-4 offset-2 d-flex flex-row align-items-center">
+         <img src="assets/icons/logotipo-sispro.svg" alt="logo-sispro" class="offcanvas-title cursor-pointer me-3" id="offcanvasNavbarLabel"
+            title="logo" height="36px" [routerLink]="['/inicio']" routerLinkActive="router-link-active" />
 
-      <img src="assets/icons/logotipo-sispro.svg" alt="logo-sispro" class="offcanvas-title cursor-pointer" id="offcanvasNavbarLabel"
-         title="logo" height="36px" [routerLink]="['/inicio']" routerLinkActive="router-link-active" />
+         <ul class="navbar-nav d-flex flex-row justify-content-start gap-3">
+            <a class="nav-item text-decoration-none text-light-emphasis" routerLink="introducao" routerLinkActive="active"> Documentação </a>
+            <a class="nav-item text-decoration-none text-light-emphasis" routerLink="icones" routerLinkActive="active"> Ícones </a>
+         </ul>
+      </div>
 
-      <span class="text-white"> {{ currentPage ? currentPage : "PADRÕES E DOCUMENTAÇÕES DE CÓDIGO" }} </span>
+      <div class="col-4">
+         <div class="text-light-emphasis d-flex flex-row justify-content-end">
+            <div class="me-3" tooltip="Versão atual da documentação">Versão atual: {{ version }}</div>
+   
+            <div class="mx-3" tooltip="Tema">
+               @if (theme == 'light') { <i class="bi bi-moon-fill"></i> }
+               @else { <i class="bi bi-brightness-high-fill"></i> }
+            </div>
+   
+            <div class="mx-3" tooltip="Repositório">
+               <a href="https://github.com/SISPROV6/infra-code-docs" target="_blank" class="text-light-emphasis text-decoration-none">
+                  <i class="bi bi-github"></i>
+               </a>
+            </div>
+   
+            <div class="mx-3" tooltip="Indisponível no momento...">
+               <i class="bi bi-search"></i>
+   
+               <!-- <div class="input-group">
+                  <span class="input-group-text" id="pesquisa-nav-icon"><i class="bi bi-search"></i></span>
+                  <input type="text" class="form-control" placeholder="Pesquisa..." aria-label="Pesquisa..." aria-describedby="pesquisa-nav">
+               </div> -->
+            </div>
+         </div>
+      </div>
    </div>
 </nav>
 

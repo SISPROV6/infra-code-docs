@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { InfraModule, ModalUtilsService } from 'ngx-sp-infra';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { InstallationInstructionsComponent } from '../../../shared/components/installation-instructions/installation-instructions.component';
 import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
 import { CodeSnippetComponent } from '../../../shared/components/code-snippet/code-snippet.component';
 import { UtilsService } from '../../../shared/services/utils.service';
@@ -24,7 +23,6 @@ import { GenericFormModalComponent } from "../../../shared/components/generic-mo
     ReactiveFormsModule,
     RouterModule,
     TooltipModule,
-    InstallationInstructionsComponent,
     InfoModalComponent,
     GenericFormModalComponent
 ],

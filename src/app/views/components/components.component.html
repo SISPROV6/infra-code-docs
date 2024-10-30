@@ -1,32 +1,26 @@
-<navbar currentPage="ELEMENTOS VISUAIS" />
-
-<div class="container-fluid d-flex justify-content-center p-3">
-   <div class="w-75 h-100">
-      <div class="content-header mb-5 border-bottom">
-         <h3 class="fw-bold pb-1"> Elementos visuais utilizados nos projetos V6 </h3>
-         <p class="fs-5 mb-0">Documentação de usos, exemplos e explicações sobre os componentes reutilizáveis e trechos de código repetitivos a nível de frontend (Angular) que devem ser utilizados na V6</p>
-         <version-tags />
-      </div>
-
-      <!-- #region CONTEUDO - TODO: Trocarei para JSON quando estiver pronto -->
-      <div class="d-flex flex-row flex-wrap gap-4 justify-content-center">
-         <a *ngFor="let card of components" class="card col-3 text-decoration-none cursor-pointer"
-            [routerLink]="card.rota" routerLinkActive="router-link-active"
-            [ngClass]="{ 'border-danger': card.implementacao == 0, 'border-primary': card.implementacao == 2, 'border-success': card.implementacao == 1 }" >
-            <div class="card-header fw-bold fs-6 d-flex align-items-center justify-content-between"
-               [ngClass]="{ 'text-danger': card.implementacao == 0, 'text-success': card.implementacao == 1, 'text-primary': card.implementacao == 2 }" >
-               
-               <span>{{ card.nome }}</span>
-               @if (card.implementacao == 0) { <span class="badge text-bg-danger">Não implementado</span> }
-               @else if (card.implementacao == 1) { <span class="badge text-bg-success">Em desenvolvimento</span> }
-
-            </div>
-            <div class="card-body"
-               [ngClass]="{ 'text-danger': card.implementacao == 0, 'text-success': card.implementacao == 1, 'text-primary': card.implementacao == 2 }" >
-              <p class="card-text"> {{ card.descricao }} </p>
-            </div>
-          </a>
-      </div>
-      <!-- #endregion CONTEUDO - TODO: Trocarei para JSON quando estiver pronto -->
-   </div>
+<div class="content-header mb-5 border-bottom">
+   <h3 class="fw-bold pb-1"> Elementos visuais utilizados nos projetos V6 </h3>
+   <p class="fs-5 mb-0">Documentação de usos, exemplos e explicações sobre os componentes reutilizáveis e trechos de código repetitivos a nível de frontend (Angular) que devem ser utilizados na V6</p>
+   <version-tags />
 </div>
+
+<!-- #region CONTEUDO - TODO: Trocarei para JSON quando estiver pronto -->
+<div class="d-flex flex-row flex-wrap gap-4 justify-content-center">
+   <a *ngFor="let card of components" class="card col-3 text-decoration-none cursor-pointer"
+      [routerLink]="card.rota" routerLinkActive="router-link-active"
+      [ngClass]="{ 'border-danger': card.implementacao == 0, 'border-primary': card.implementacao == 2, 'border-success': card.implementacao == 1 }" >
+      <div class="card-header fw-bold fs-6 d-flex align-items-center justify-content-between"
+         [ngClass]="{ 'text-danger': card.implementacao == 0, 'text-success': card.implementacao == 1, 'text-primary': card.implementacao == 2 }" >
+         
+         <span>{{ card.nome }}</span>
+         @if (card.implementacao == 0) { <span class="badge text-bg-danger">Não implementado</span> }
+         @else if (card.implementacao == 1) { <span class="badge text-bg-success">Em desenvolvimento</span> }
+
+      </div>
+      <div class="card-body"
+         [ngClass]="{ 'text-danger': card.implementacao == 0, 'text-success': card.implementacao == 1, 'text-primary': card.implementacao == 2 }" >
+        <p class="card-text"> {{ card.descricao }} </p>
+      </div>
+    </a>
+</div>
+<!-- #endregion CONTEUDO - TODO: Trocarei para JSON quando estiver pronto -->

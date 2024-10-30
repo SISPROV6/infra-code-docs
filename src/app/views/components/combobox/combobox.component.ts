@@ -12,10 +12,10 @@ import { UtilsService } from '../../../shared/services/utils.service';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxMaskPipe } from 'ngx-mask';
-import { ComboboxDemonstracaoService } from './combobox-demonstracao.service';
-import { InstallationInstructionsComponent } from "../../../shared/components/installation-instructions/installation-instructions.component";
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+
+import { ComboboxDemonstracaoService } from './combobox-demonstracao.service';
 import { ExampleModalComponent } from '../../../shared/components/example-modal/example-modal.component';
 
 @Component({
@@ -25,7 +25,6 @@ import { ExampleModalComponent } from '../../../shared/components/example-modal/
     ExampleModalComponent,
     NavbarComponent,
     CodeSnippetComponent,
-    InstallationInstructionsComponent,
 
     CommonModule,
     FormsModule,

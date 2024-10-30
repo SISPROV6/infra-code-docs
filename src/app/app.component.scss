@@ -1,0 +1,26 @@
+@use "../../node_modules/ngx-sp-infra/src/assets/styles/_variables.scss" as vars;
+
+
+ul, ol {
+   list-style: none;
+
+
+   > a {
+      font-size: 14px;
+      width: min-content;
+      padding: 4px 8px;
+      border-radius: 8px;
+      color: #010b1b;
+
+      transition: all .2s ease;
+   }
+
+   > a:hover {
+      background-color: #3766b21a;
+   }
+
+   > a.is-selected {
+      font-weight: bolder;
+      background-color: #3766b21a;
+   }
+}

@@ -1,490 +1,482 @@
-<navbar currentPage="MÁSCARAS DE VALOR" />
+<div class="content-header mb-5 border-bottom">
+   <h3 class="fw-bold"> MÁSCARAS DE VALOR </h3>
+   <p class="fs-5">Documentação de uso, exemplos e explicações sobre as boas práticas, dicas e funcionamento das máscaras de valor que devem ser utilizadas na V6</p>
+</div>
 
-<div class="container-fluid d-flex justify-content-center p-3">
-   <div class="w-75 h-100">
-      <div class="content-header mb-5 border-bottom">
-         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> MÁSCARAS DE VALOR </h3>
-         <p class="fs-5">Documentação de uso, exemplos e explicações sobre as boas práticas, dicas e funcionamento das máscaras de valor que devem ser utilizadas na V6</p>
+<!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+<!-- #region ANTES DE COMEÇAR -->
+<div class="content mb-5">
+   <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+   <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+
+   <ul>
+      <li>
+         <p>As informações a seguir são explicações, traduções e exemplos que se originaram na documentação oficial da biblioteca que utilizamos para máscaras, chamada de ngx-mask.
+            Portanto, caso falte alguma informação mais específica nesta documentação interna, sugiro dar uma olhada na <a href="https://github.com/JsDaddy/ngx-mask/blob/develop/USAGE.md" target="_blank" class="fw-bold text-primary">documentação de uso oficial da ngx-mask</a>.</p>
+      </li>
+   </ul>
+</div>
+<!-- #endregion ANTES DE COMECAR -->
+
+
+
+<!-- #region COMO FUNCIONA -->
+<div class="content mb-5">
+   <h5 class="fw-bold">COMO FUNCIONA?</h5>
+   <p>Para utilizar as máscaras deste componente externo, nós precisamos informar alguns parâmetros e atributos para cada caso, portanto é importante entender o que deve ser feito pois os mesmos podem ser misturados com base na necessidade.</p>
+
+   <span>Parâmetros/atributos mais comuns:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">mask</code></li>
+      <li class="my-2"><code class="text-code">specialCharacters: string[]</code></li>
+      <li class="my-2"><code class="text-code">prefix: string</code></li>
+      <li class="my-2"><code class="text-code">suffix: string</code></li>
+      <li class="my-2"><code class="text-code">dropSpecialCharacters: boolean | string[]</code></li>
+      <li class="my-2"><code class="text-code">showMaskTyped: boolean</code></li>
+      <li class="my-2"><code class="text-code">allowNegativeNumbers: boolean</code></li>
+      <li class="my-2"><code class="text-code">clearIfNotMatch: boolean</code></li>
+      <li class="my-2"><code class="text-code">leadZeroDateTime: boolean</code></li>
+   </ul>
+</div>
+<!-- #endregion COMO FUNCIONA -->
+
+<!-- #region RECOMENDAÇÃO -->
+<div class="alert alert-warning mb-5" role="alert">
+   <p class="fw-bold">AVISO</p>         
+   <p>É possível utilizar máscaras tanto em um elemento texto puro, por meio de pipes do Angular OU também em um input, mas é de extrema importância que o input seja do tipo "text", caso contrário a máscara <b>não</b> funcionará.</p>
+</div>
+<!-- #endregion RECOMENDAÇÃO -->
+
+<!-- #region EXEMPLOS E CÓDIGOS -->
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">EXEMPLOS E CÓDIGOS</h5>
+
+   <div class="code-example row">
+      <div class="col">
+         <lib-table [list]="[ '' ]" [usePagination]="false" [showCounter]="false"
+            [headers]="[ { name: 'Máscara', col: 3 }, { name: 'Exemplo', col: 0 } ]">
+            <tr innerRows>
+               <td class="align-middle fw-bold"> 99/99/9999 </td>
+               <td> <input type="text" class="form-control" mask="99/99/9999" placeholder="Digite 01092024"> </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold"> 0*.00 </td>
+               <td> <input type="text" class="form-control" mask="0*.00" placeholder="Digite 2024.12"> </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold"> 000.000.000-99 </td>
+               <td> <input type="text" class="form-control" mask="000.000.000-99" placeholder="Digite 04845798798"> </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold"> AAAA </td>
+               <td> <input type="text" class="form-control" mask="AAAA" placeholder="Digite 0F6g"> </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold"> SSSS </td>
+               <td> <input type="text" class="form-control" mask="SSSS" placeholder="Digite asDF"> </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold"> UUUU </td>
+               <td> <input type="text" class="form-control" mask="UUUU" placeholder="Digite ASDF"> </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold"> LLLL </td>
+               <td> <input type="text" class="form-control" mask="LLLL" placeholder="Digite asdf"> </td>
+            </tr>
+         </lib-table>
       </div>
 
-      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+      <div class="col">
+         <lib-table [list]="[ '' ]" [usePagination]="false" [showCounter]="false"
+            [headers]="[ { name: 'Código', col: 1 }, { name: 'Significado', col: 0 } ]">
+            <tr innerRows>
+               <td class="align-middle fw-bold text-center"> 0 </td>
+               <td> Dígitos numéricos (de 0 até 9 números) </td>
+            </tr>
 
-      <!-- #region ANTES DE COMEÇAR -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
-         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+            <tr innerRows>
+               <td class="align-middle fw-bold text-center"> 9 </td>
+               <td> Dígitos numéricos (de 0 até 9 números), opcionais </td>
+            </tr>
 
-         <ul>
-            <li>
-               <p>As informações a seguir são explicações, traduções e exemplos que se originaram na documentação oficial da biblioteca que utilizamos para máscaras, chamada de ngx-mask.
-                  Portanto, caso falte alguma informação mais específica nesta documentação interna, sugiro dar uma olhada na <a href="https://github.com/JsDaddy/ngx-mask/blob/develop/USAGE.md" target="_blank" class="fw-bold text-primary">documentação de uso oficial da ngx-mask</a>.</p>
-            </li>
-         </ul>
+            <tr innerRows>
+               <td class="align-middle fw-bold text-center"> A </td>
+               <td> Letras (Maiúsculas ou minúsculas) e dígitos numéricos </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold text-center"> S </td>
+               <td> Apenas letras (Maiúsculas ou minúsculas) </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold text-center"> U </td>
+               <td> Apenas letras Maiúsculas </td>
+            </tr>
+
+            <tr innerRows>
+               <td class="align-middle fw-bold text-center"> L </td>
+               <td> Apenas letras minúsculas </td>
+            </tr>
+         </lib-table>
       </div>
-      <!-- #endregion ANTES DE COMECAR -->
-
-      <!-- #region INSTALAÇÃO -->
-      <instal-instructions />
-      <!-- #endregion INSTALAÇÃO -->
-
-      <!-- #region COMO FUNCIONA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">COMO FUNCIONA?</h5>
-         <p>Para utilizar as máscaras deste componente externo, nós precisamos informar alguns parâmetros e atributos para cada caso, portanto é importante entender o que deve ser feito pois os mesmos podem ser misturados com base na necessidade.</p>
-
-         <span>Parâmetros/atributos mais comuns:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">mask</code></li>
-            <li class="my-2"><code class="text-code">specialCharacters: string[]</code></li>
-            <li class="my-2"><code class="text-code">prefix: string</code></li>
-            <li class="my-2"><code class="text-code">suffix: string</code></li>
-            <li class="my-2"><code class="text-code">dropSpecialCharacters: boolean | string[]</code></li>
-            <li class="my-2"><code class="text-code">showMaskTyped: boolean</code></li>
-            <li class="my-2"><code class="text-code">allowNegativeNumbers: boolean</code></li>
-            <li class="my-2"><code class="text-code">clearIfNotMatch: boolean</code></li>
-            <li class="my-2"><code class="text-code">leadZeroDateTime: boolean</code></li>
-         </ul>
-      </div>
-      <!-- #endregion COMO FUNCIONA -->
-
-      <!-- #region RECOMENDAÇÃO -->
-      <div class="alert alert-warning mb-5" role="alert">
-         <p class="fw-bold">AVISO</p>         
-         <p>É possível utilizar máscaras tanto em um elemento texto puro, por meio de pipes do Angular OU também em um input, mas é de extrema importância que o input seja do tipo "text", caso contrário a máscara <b>não</b> funcionará.</p>
-      </div>
-      <!-- #endregion RECOMENDAÇÃO -->
-
-      <!-- #region EXEMPLOS E CÓDIGOS -->
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">EXEMPLOS E CÓDIGOS</h5>
-
-         <div class="code-example row">
-            <div class="col">
-               <lib-table [list]="[ '' ]" [usePagination]="false" [showCounter]="false"
-                  [headers]="[ { name: 'Máscara', col: 3 }, { name: 'Exemplo', col: 0 } ]">
-                  <tr innerRows>
-                     <td class="align-middle fw-bold"> 99/99/9999 </td>
-                     <td> <input type="text" class="form-control" mask="99/99/9999" placeholder="Digite 01092024"> </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold"> 0*.00 </td>
-                     <td> <input type="text" class="form-control" mask="0*.00" placeholder="Digite 2024.12"> </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold"> 000.000.000-99 </td>
-                     <td> <input type="text" class="form-control" mask="000.000.000-99" placeholder="Digite 04845798798"> </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold"> AAAA </td>
-                     <td> <input type="text" class="form-control" mask="AAAA" placeholder="Digite 0F6g"> </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold"> SSSS </td>
-                     <td> <input type="text" class="form-control" mask="SSSS" placeholder="Digite asDF"> </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold"> UUUU </td>
-                     <td> <input type="text" class="form-control" mask="UUUU" placeholder="Digite ASDF"> </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold"> LLLL </td>
-                     <td> <input type="text" class="form-control" mask="LLLL" placeholder="Digite asdf"> </td>
-                  </tr>
-               </lib-table>
-            </div>
-
-            <div class="col">
-               <lib-table [list]="[ '' ]" [usePagination]="false" [showCounter]="false"
-                  [headers]="[ { name: 'Código', col: 1 }, { name: 'Significado', col: 0 } ]">
-                  <tr innerRows>
-                     <td class="align-middle fw-bold text-center"> 0 </td>
-                     <td> Dígitos numéricos (de 0 até 9 números) </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold text-center"> 9 </td>
-                     <td> Dígitos numéricos (de 0 até 9 números), opcionais </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold text-center"> A </td>
-                     <td> Letras (Maiúsculas ou minúsculas) e dígitos numéricos </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold text-center"> S </td>
-                     <td> Apenas letras (Maiúsculas ou minúsculas) </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold text-center"> U </td>
-                     <td> Apenas letras Maiúsculas </td>
-                  </tr>
-
-                  <tr innerRows>
-                     <td class="align-middle fw-bold text-center"> L </td>
-                     <td> Apenas letras minúsculas </td>
-                  </tr>
-               </lib-table>
-            </div>
-         </div>
-      </div>
-      <!-- #endregion EXEMPLOS E CÓDIGOS -->
-
-
-      <!-- #region MÁSCARA EM TEXTO PURO -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Máscara em elementos texto puro</h5>
-         <p>Para utilizar uma máscara fora de um input nós podemos nos utilizar do NgxMaskPipe, os métodos, propriedades e valores sãoe xatamente iguais a todos citados acima</p>
-
-         <span class="fw-bold">Uso:</span>
-         <div class="row">
-            <div class="col">
-               <!-- está com código 26 pois acabei escrevendo por último... -->
-               <code-snippet [code]="codeSnippets[26]" language="xml" />
-            </div>
-            <div class="col">
-               <!-- está com código 27 pois acabei escrevendo por último... -->
-               <code-snippet [code]="codeSnippets[27]" language="xml" />
-            </div>
-            <div class="col">
-               <!-- está com código 28 pois acabei escrevendo por último... -->
-               <code-snippet [code]="codeSnippets[28]" language="xml" />
-            </div>
-         </div>
-
-         <div class="row">
-            <div class="col">
-               <p>Resultado: {{ documento | mask: 'CPF_CNPJ' }} </p>
-            </div>
-            <div class="col">
-               <p>Resultado: {{ numero | mask: '(00) 0 0000-0000' }} </p>
-            </div>
-            <div class="col">
-               <p>Resultado: {{ data | mask: 'd0/M0/0000' }} </p>
-            </div>
-         </div>
-      </div>
-      <!-- #endregion MÁSCARA EM TEXTO PURO -->
-
-      
-      <!-- #region specialCharacters -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">specialCharacters: string[ ]</h5>
-         <p>É possível permitir que caracteres especiais específicos sejam inseridos no input, sendo eles:
-            <code class="text-code">-</code>,
-            <code class="text-code">/</code>,
-            <code class="text-code">(</code>,
-            <code class="text-code">)</code>,
-            <code class="text-code">.</code>,
-            <code class="text-code">:</code>,
-            <code class="text-code">espaço</code>,
-            <code class="text-code">+</code>,
-            <code class="text-code">,</code>,
-            <code class="text-code">&#64;</code>,
-            <code class="text-code">[</code>,
-            <code class="text-code">]</code>,
-            <code class="text-code">"</code>,
-            <code class="text-code">'</code>.
-         </p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[0]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" [specialCharacters]="[ '[' ,']' , '\\' ]" mask="[00]\[000]" placeholder="Digite 789-874.98" />
-      </div>
-      <!-- #endregion specialCharacters -->
-
-      <!-- #region prefix -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">prefix: string</h5>
-         <p>É possível definirmos um termo, caractere ou palavra como prefixo dentro do valor de um input.</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[1]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" prefix="+55 " mask="(00) 0 0000-0000" placeholder="Digite 5198580912" />
-      </div>
-      <!-- #endregion prefix -->
-
-      <!-- #region suffix -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">suffix: string</h5>
-         <p>É possível definirmos um termo, caractere ou palavra como sufixo dentro do valor de um input.</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[2]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" suffix=" R$" mask="0000" placeholder="Digite 3100" />
-      </div>
-      <!-- #endregion suffix -->
-
-      <!-- #region dropSpecialCharacters -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">dropSpecialCharacters: boolean | string[]</h5>
-         <p>É possível remover ou manter os caracteres especiais informados em um input quando o valor dele passa para a variável (ngModel ou formControl).</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[3]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" [dropSpecialCharacters]="false" mask="000-000.00" placeholder="Digite 789-874.98" />
-      </div>
-      <!-- #endregion dropSpecialCharacters -->
-
-      <!-- #region showMaskedType -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">showMaskedType: boolean</h5>
-         <p>É possível decidir se deseja visualizar a máscara enquanto digita ou não, o valor padrão é false.</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[4]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" prefix="+55 " mask="(00) 0 0000-0000" [showMaskTyped]="true" placeholder="Digite 5198580912" />
-      </div>
-      <!-- #endregion showMaskedType -->
-
-      <!-- #region allowNegativeNumbers -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">allowNegativeNumbers: boolean</h5>
-         <p>É possível permitir a inserção de números negativos, o valor padrão é false.</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[5]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" [allowNegativeNumbers]="true" mask="separator.2" placeholder="Digite -10.000,45" />
-      </div>
-      <!-- #endregion allowNegativeNumbers -->
-
-      <!-- #region placeHolderCharacter -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">placeHolderCharacter: string</h5>
-         <p>Caso o showMaskTyped estiver como <code>true</code>, esta propriedade customiza o caractere usado no placeholder da máscara, o valor padrão é _</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[6]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" prefix="+55 " mask="(00) 0 0000-0000" [showMaskTyped]="true" placeHolderCharacter="*" placeholder="Digite 5198580912" />
-      </div>
-      <!-- #endregion placeHolderCharacter -->
-
-
-      <!-- #region REPETIR MÁSCARA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Repetir máscara inúmeras vezes</h5>
-         <p>É possível repetir um padrão de máscara quantas vezes quiser, para casos onde existem padrões repetidos isso pode ser bem útil.</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[7]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" mask="U{2}-A{3}" placeholder="Digite BR116 (case-sensitive)" />
-      </div>
-      <!-- #endregion REPETIR MÁSCARA -->
-
-      <!-- #region SEPARADOR DE MILHAR -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Separador de milhar</h5>
-         <p>Para definirmos o caractere usado para separar milhares, utilizamos o thousandSeparator, o valor padrão é um espaço em branco</p>
-
-         <span class="fw-bold">Uso básico:</span>
-         <p> <code-snippet [code]="codeSnippets[8]" language="xml" /> </p>
-
-         <span class="fw-bold">Para utilizar um ponto como separador:</span>
-         <p> <code-snippet [code]="codeSnippets[9]" language="xml" /> </p>
-
-         <span class="fw-bold">Para exibir decimais, digite <code class="text-code">.</code> seguido por quantas casas decimais irá utilizar:</span>
-         <p> <code-snippet [code]="codeSnippets[10]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição dos exemplos acima:</span>
-         <div class="row mb-5">
-            <div class="col">
-               <input type="text" class="form-control" mask="separator" placeholder="Digite 1234.56" />
-            </div>
-            <div class="col">
-               <input type="text" class="form-control" mask="separator" thousandSeparator="." placeholder="Digite 1234,56" />
-            </div>
-            <div class="col">
-               <input type="text" class="form-control" mask="separator.2" placeholder="Digite 1234.56" />
-            </div>
-         </div>
-
-         <span class="fw-bold">Colocar 0 na quantidade de decimais irá os prevenir</span>
-         <p> <code-snippet [code]="codeSnippets[11]" language="xml" /> </p>
-
-         <span class="fw-bold">Para adicionar 0 no final, utilizamos a [leadZero]</span>
-         <p> <code-snippet [code]="codeSnippets[12]" language="xml" /> </p>
-
-         <span class="fw-bold">Para limitar a quantidade de números antes do separador de decimais utilizamos o separatorLimit</span>
-         <p> <code-snippet [code]="codeSnippets[13]" language="xml" /> </p>
-      </div>
-      <!-- #endregion SEPARADOR DE MILHAR -->
-
-
-      <!-- #region VALIDAÇÃO DE HORA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Validação de Hora</h5>
-         <p>Para validação de horário em formato 24h (hh:mm:ss)</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[14]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" mask="Hh:m0:s0" placeholder="Digite 144152" />
-      </div>
-      <!-- #endregion VALIDAÇÃO DE HORA -->
-
-      <!-- #region VALIDAÇÃO DE DATA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Validação de Data</h5>
-         <p>Para validação de datas (dd/mm/aaaa)</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[15]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" mask="d0/M0/0000" placeholder="Digite 01122024" />
-      </div>
-      <!-- #endregion VALIDAÇÃO DE DATA -->
-
-
-      <!-- #region leadZeroDateTime  -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">leadZeroDateTime: boolean</h5>
-         <p>Se o valor de leadZeroDateTime for true, símbolos de data ou hora que não forem informados serão substituídos por um 0, o valor padrão é false</p>
-
-         <span class="fw-bold">Uso:</span>
-         <div class="row mb-2">
-            <div class="col">
-               <code-snippet [code]="codeSnippets[16]" language="xml" />
-            </div>
-            <div class="col">
-               <code-snippet [code]="codeSnippets[17]" language="xml" />
-            </div>
-         </div>
-
-         <span class="fw-bold">Exibição dos exemplos acima:</span>
-         <div class="row">
-            <div class="col">
-               <input type="text" class="form-control" mask="Hh:m0:s0" [leadZeroDateTime]="true" placeholder="Digite 666" />
-            </div>
-            <div class="col">
-               <input type="text" class="form-control" mask="d0/M0/0000" [leadZeroDateTime]="true" placeholder="Digite 422020" />
-            </div>
-         </div>
-      </div>
-      <!-- #endregion leadZeroDateTime -->
-
-      <!-- #region VALIDAÇÃO DE PORCENTAGEM -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Validação de porcentagem</h5>
-         <p>Para validação de valores percentuais</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[18]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" mask="percent" suffix="%" placeholder="Digite 101 (ou um valor menor que 100%)" />
-      </div>
-      <!-- #endregion VALIDAÇÃO DE PORCENTAGEM -->
-
-      <!-- #region VALIDAÇÃO DE FORMCONTROL -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Validação de FormControl</h5>
-         <p>Para validação com FormControl para exibir o input como inválido caso a máscara não esteja preenchida corretamente, o valor padrão é true</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[19]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" mask="00 00" [validation]="true" [formControl]="maskControl" placeholder="Digite 4152" [class.is-invalid]="FormUtils.isInvalidField(this.maskControl)" />
-      </div>
-      <!-- #endregion VALIDAÇÃO DE FORMCONTROL -->
-
-      <!-- #region INPUT SEGURO -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Input seguro</h5>
-         <p>Para esconder símbolos no input e receber o valor verdadeiro no formControl</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[20]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" mask="XXX/X0/0000" placeholder="Digite 123654789" />
-      </div>
-      <!-- #endregion INPUT SEGURO -->
-
-      <!-- #region MÁSCARA DE IP -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Máscara de IP</h5>
-         <p>Para utilizar uma máscara de IP</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[21]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" mask="IP" placeholder="Digite 123456789201" />
-      </div>
-      <!-- #endregion MÁSCARA DE IP -->
-
-      <!-- #region MÁSCARA DE CPF_CNPJ -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Máscara de CPF_CNPJ</h5>
-         <p>Para utilizar uma máscara que se adapta para CPF ou CNPJ com base em quantos caracteres foram digitados</p>
-
-         <span class="fw-bold">Uso:</span>
-         <p> <code-snippet [code]="codeSnippets[22]" language="xml" /> </p>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <input type="text" class="form-control w-25" mask="CPF_CNPJ" placeholder="Digite 12345678920 ou 12345678910234" />
-      </div>
-      <!-- #endregion MÁSCARA DE CPF_CNPJ -->
-
-      <!-- #region PERMITIR MÚLTIPLAS MÁSCARAS -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">Permitir múltiplas máscaras</h5>
-         <p>Para utilizar algumas máscaras ao mesmo tempo</p>
-
-         <span class="fw-bold">Uso:</span>
-         <div class="row g-3 mb-3">
-            <div class="col">
-               <code-snippet [code]="codeSnippets[23]" language="xml" />
-            </div>
-            <div class="col">
-               <code-snippet [code]="codeSnippets[24]" language="xml" />
-            </div>
-            <div class="col">
-               <code-snippet [code]="codeSnippets[25]" language="xml" />
-            </div>
-         </div>
-
-         <span class="fw-bold">Exibição do exemplo acima:</span>
-         <div class="row">
-            <div class="col">
-               <input type="text" class="form-control" mask="000.000.000-00||00.000.000/0000-00" placeholder="Digite 12345678920 ou 12345678910234" />
-            </div>
-            <div class="col">
-               <input type="text" class="form-control" mask="(00) 0000-0000||(00) 0 0000-0000" placeholder="Digite 5193487532 ou 51993487532" />
-            </div>
-            <div class="col">
-               <input type="text" class="form-control" mask="00||SS" placeholder="Digite 91 ou 3D" />
-            </div>
-         </div>
-      </div>
-      <!-- #endregion PERMITIR MÚLTIPLAS MÁSCARAS -->
-      
-      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
    </div>
 </div>
+<!-- #endregion EXEMPLOS E CÓDIGOS -->
+
+
+<!-- #region MÁSCARA EM TEXTO PURO -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Máscara em elementos texto puro</h5>
+   <p>Para utilizar uma máscara fora de um input nós podemos nos utilizar do NgxMaskPipe, os métodos, propriedades e valores sãoe xatamente iguais a todos citados acima</p>
+
+   <span class="fw-bold">Uso:</span>
+   <div class="row">
+      <div class="col">
+         <!-- está com código 26 pois acabei escrevendo por último... -->
+         <code-snippet [code]="codeSnippets[26]" language="xml" />
+      </div>
+      <div class="col">
+         <!-- está com código 27 pois acabei escrevendo por último... -->
+         <code-snippet [code]="codeSnippets[27]" language="xml" />
+      </div>
+      <div class="col">
+         <!-- está com código 28 pois acabei escrevendo por último... -->
+         <code-snippet [code]="codeSnippets[28]" language="xml" />
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col">
+         <p>Resultado: {{ documento | mask: 'CPF_CNPJ' }} </p>
+      </div>
+      <div class="col">
+         <p>Resultado: {{ numero | mask: '(00) 0 0000-0000' }} </p>
+      </div>
+      <div class="col">
+         <p>Resultado: {{ data | mask: 'd0/M0/0000' }} </p>
+      </div>
+   </div>
+</div>
+<!-- #endregion MÁSCARA EM TEXTO PURO -->
+
+
+<!-- #region specialCharacters -->
+<div class="content mb-5">
+   <h5 class="fw-bold">specialCharacters: string[ ]</h5>
+   <p>É possível permitir que caracteres especiais específicos sejam inseridos no input, sendo eles:
+      <code class="text-code">-</code>,
+      <code class="text-code">/</code>,
+      <code class="text-code">(</code>,
+      <code class="text-code">)</code>,
+      <code class="text-code">.</code>,
+      <code class="text-code">:</code>,
+      <code class="text-code">espaço</code>,
+      <code class="text-code">+</code>,
+      <code class="text-code">,</code>,
+      <code class="text-code">&#64;</code>,
+      <code class="text-code">[</code>,
+      <code class="text-code">]</code>,
+      <code class="text-code">"</code>,
+      <code class="text-code">'</code>.
+   </p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[0]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" [specialCharacters]="[ '[' ,']' , '\\' ]" mask="[00]\[000]" placeholder="Digite 789-874.98" />
+</div>
+<!-- #endregion specialCharacters -->
+
+<!-- #region prefix -->
+<div class="content mb-5">
+   <h5 class="fw-bold">prefix: string</h5>
+   <p>É possível definirmos um termo, caractere ou palavra como prefixo dentro do valor de um input.</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[1]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" prefix="+55 " mask="(00) 0 0000-0000" placeholder="Digite 5198580912" />
+</div>
+<!-- #endregion prefix -->
+
+<!-- #region suffix -->
+<div class="content mb-5">
+   <h5 class="fw-bold">suffix: string</h5>
+   <p>É possível definirmos um termo, caractere ou palavra como sufixo dentro do valor de um input.</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[2]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" suffix=" R$" mask="0000" placeholder="Digite 3100" />
+</div>
+<!-- #endregion suffix -->
+
+<!-- #region dropSpecialCharacters -->
+<div class="content mb-5">
+   <h5 class="fw-bold">dropSpecialCharacters: boolean | string[]</h5>
+   <p>É possível remover ou manter os caracteres especiais informados em um input quando o valor dele passa para a variável (ngModel ou formControl).</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[3]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" [dropSpecialCharacters]="false" mask="000-000.00" placeholder="Digite 789-874.98" />
+</div>
+<!-- #endregion dropSpecialCharacters -->
+
+<!-- #region showMaskedType -->
+<div class="content mb-5">
+   <h5 class="fw-bold">showMaskedType: boolean</h5>
+   <p>É possível decidir se deseja visualizar a máscara enquanto digita ou não, o valor padrão é false.</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[4]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" prefix="+55 " mask="(00) 0 0000-0000" [showMaskTyped]="true" placeholder="Digite 5198580912" />
+</div>
+<!-- #endregion showMaskedType -->
+
+<!-- #region allowNegativeNumbers -->
+<div class="content mb-5">
+   <h5 class="fw-bold">allowNegativeNumbers: boolean</h5>
+   <p>É possível permitir a inserção de números negativos, o valor padrão é false.</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[5]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" [allowNegativeNumbers]="true" mask="separator.2" placeholder="Digite -10.000,45" />
+</div>
+<!-- #endregion allowNegativeNumbers -->
+
+<!-- #region placeHolderCharacter -->
+<div class="content mb-5">
+   <h5 class="fw-bold">placeHolderCharacter: string</h5>
+   <p>Caso o showMaskTyped estiver como <code>true</code>, esta propriedade customiza o caractere usado no placeholder da máscara, o valor padrão é _</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[6]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" prefix="+55 " mask="(00) 0 0000-0000" [showMaskTyped]="true" placeHolderCharacter="*" placeholder="Digite 5198580912" />
+</div>
+<!-- #endregion placeHolderCharacter -->
+
+
+<!-- #region REPETIR MÁSCARA -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Repetir máscara inúmeras vezes</h5>
+   <p>É possível repetir um padrão de máscara quantas vezes quiser, para casos onde existem padrões repetidos isso pode ser bem útil.</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[7]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" mask="U{2}-A{3}" placeholder="Digite BR116 (case-sensitive)" />
+</div>
+<!-- #endregion REPETIR MÁSCARA -->
+
+<!-- #region SEPARADOR DE MILHAR -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Separador de milhar</h5>
+   <p>Para definirmos o caractere usado para separar milhares, utilizamos o thousandSeparator, o valor padrão é um espaço em branco</p>
+
+   <span class="fw-bold">Uso básico:</span>
+   <p> <code-snippet [code]="codeSnippets[8]" language="xml" /> </p>
+
+   <span class="fw-bold">Para utilizar um ponto como separador:</span>
+   <p> <code-snippet [code]="codeSnippets[9]" language="xml" /> </p>
+
+   <span class="fw-bold">Para exibir decimais, digite <code class="text-code">.</code> seguido por quantas casas decimais irá utilizar:</span>
+   <p> <code-snippet [code]="codeSnippets[10]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição dos exemplos acima:</span>
+   <div class="row mb-5">
+      <div class="col">
+         <input type="text" class="form-control" mask="separator" placeholder="Digite 1234.56" />
+      </div>
+      <div class="col">
+         <input type="text" class="form-control" mask="separator" thousandSeparator="." placeholder="Digite 1234,56" />
+      </div>
+      <div class="col">
+         <input type="text" class="form-control" mask="separator.2" placeholder="Digite 1234.56" />
+      </div>
+   </div>
+
+   <span class="fw-bold">Colocar 0 na quantidade de decimais irá os prevenir</span>
+   <p> <code-snippet [code]="codeSnippets[11]" language="xml" /> </p>
+
+   <span class="fw-bold">Para adicionar 0 no final, utilizamos a [leadZero]</span>
+   <p> <code-snippet [code]="codeSnippets[12]" language="xml" /> </p>
+
+   <span class="fw-bold">Para limitar a quantidade de números antes do separador de decimais utilizamos o separatorLimit</span>
+   <p> <code-snippet [code]="codeSnippets[13]" language="xml" /> </p>
+</div>
+<!-- #endregion SEPARADOR DE MILHAR -->
+
+
+<!-- #region VALIDAÇÃO DE HORA -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Validação de Hora</h5>
+   <p>Para validação de horário em formato 24h (hh:mm:ss)</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[14]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" mask="Hh:m0:s0" placeholder="Digite 144152" />
+</div>
+<!-- #endregion VALIDAÇÃO DE HORA -->
+
+<!-- #region VALIDAÇÃO DE DATA -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Validação de Data</h5>
+   <p>Para validação de datas (dd/mm/aaaa)</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[15]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" mask="d0/M0/0000" placeholder="Digite 01122024" />
+</div>
+<!-- #endregion VALIDAÇÃO DE DATA -->
+
+
+<!-- #region leadZeroDateTime  -->
+<div class="content mb-5">
+   <h5 class="fw-bold">leadZeroDateTime: boolean</h5>
+   <p>Se o valor de leadZeroDateTime for true, símbolos de data ou hora que não forem informados serão substituídos por um 0, o valor padrão é false</p>
+
+   <span class="fw-bold">Uso:</span>
+   <div class="row mb-2">
+      <div class="col">
+         <code-snippet [code]="codeSnippets[16]" language="xml" />
+      </div>
+      <div class="col">
+         <code-snippet [code]="codeSnippets[17]" language="xml" />
+      </div>
+   </div>
+
+   <span class="fw-bold">Exibição dos exemplos acima:</span>
+   <div class="row">
+      <div class="col">
+         <input type="text" class="form-control" mask="Hh:m0:s0" [leadZeroDateTime]="true" placeholder="Digite 666" />
+      </div>
+      <div class="col">
+         <input type="text" class="form-control" mask="d0/M0/0000" [leadZeroDateTime]="true" placeholder="Digite 422020" />
+      </div>
+   </div>
+</div>
+<!-- #endregion leadZeroDateTime -->
+
+<!-- #region VALIDAÇÃO DE PORCENTAGEM -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Validação de porcentagem</h5>
+   <p>Para validação de valores percentuais</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[18]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" mask="percent" suffix="%" placeholder="Digite 101 (ou um valor menor que 100%)" />
+</div>
+<!-- #endregion VALIDAÇÃO DE PORCENTAGEM -->
+
+<!-- #region VALIDAÇÃO DE FORMCONTROL -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Validação de FormControl</h5>
+   <p>Para validação com FormControl para exibir o input como inválido caso a máscara não esteja preenchida corretamente, o valor padrão é true</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[19]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" mask="00 00" [validation]="true" [formControl]="maskControl" placeholder="Digite 4152" [class.is-invalid]="FormUtils.isInvalidField(this.maskControl)" />
+</div>
+<!-- #endregion VALIDAÇÃO DE FORMCONTROL -->
+
+<!-- #region INPUT SEGURO -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Input seguro</h5>
+   <p>Para esconder símbolos no input e receber o valor verdadeiro no formControl</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[20]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" mask="XXX/X0/0000" placeholder="Digite 123654789" />
+</div>
+<!-- #endregion INPUT SEGURO -->
+
+<!-- #region MÁSCARA DE IP -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Máscara de IP</h5>
+   <p>Para utilizar uma máscara de IP</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[21]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" mask="IP" placeholder="Digite 123456789201" />
+</div>
+<!-- #endregion MÁSCARA DE IP -->
+
+<!-- #region MÁSCARA DE CPF_CNPJ -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Máscara de CPF_CNPJ</h5>
+   <p>Para utilizar uma máscara que se adapta para CPF ou CNPJ com base em quantos caracteres foram digitados</p>
+
+   <span class="fw-bold">Uso:</span>
+   <p> <code-snippet [code]="codeSnippets[22]" language="xml" /> </p>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <input type="text" class="form-control w-25" mask="CPF_CNPJ" placeholder="Digite 12345678920 ou 12345678910234" />
+</div>
+<!-- #endregion MÁSCARA DE CPF_CNPJ -->
+
+<!-- #region PERMITIR MÚLTIPLAS MÁSCARAS -->
+<div class="content mb-5">
+   <h5 class="fw-bold">Permitir múltiplas máscaras</h5>
+   <p>Para utilizar algumas máscaras ao mesmo tempo</p>
+
+   <span class="fw-bold">Uso:</span>
+   <div class="row g-3 mb-3">
+      <div class="col">
+         <code-snippet [code]="codeSnippets[23]" language="xml" />
+      </div>
+      <div class="col">
+         <code-snippet [code]="codeSnippets[24]" language="xml" />
+      </div>
+      <div class="col">
+         <code-snippet [code]="codeSnippets[25]" language="xml" />
+      </div>
+   </div>
+
+   <span class="fw-bold">Exibição do exemplo acima:</span>
+   <div class="row">
+      <div class="col">
+         <input type="text" class="form-control" mask="000.000.000-00||00.000.000/0000-00" placeholder="Digite 12345678920 ou 12345678910234" />
+      </div>
+      <div class="col">
+         <input type="text" class="form-control" mask="(00) 0000-0000||(00) 0 0000-0000" placeholder="Digite 5193487532 ou 51993487532" />
+      </div>
+      <div class="col">
+         <input type="text" class="form-control" mask="00||SS" placeholder="Digite 91 ou 3D" />
+      </div>
+   </div>
+</div>
+<!-- #endregion PERMITIR MÚLTIPLAS MÁSCARAS -->
+
+<!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
