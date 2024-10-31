@@ -1,3 +1,4 @@
+@use "../../../../node_modules/ngx-sp-infra/src/assets/styles/variables" as vars;
 @import './colors';
 
 
@@ -65,3 +66,23 @@ textarea.no-resize { resize: none !important; }
 .bg-danger-hover:hover { background-color: #B23737 !important; color: #eeeeee !important; }
 .bg-warning-hover:hover { background-color: #FFC107 !important; color: #212529 !important; }
 // #endregion bg-color:hover
+
+
+// #region CHECKBOX
+input[type="checkbox"].form-check-input:checked:not([role="switch"]) {
+   background-color: vars.$root-sp-default !important;
+}
+
+input[type="checkbox"].form-check-input { border-color: #6C757D !important; }
+input[type="radio"].form-check-input { border-color: #6C757D !important; }
+
+input[role="switch"] {
+   width: 28px;
+   height: 16px;
+}
+ 
+input[role="switch"]:checked {
+   background-color: #41B237;
+   border-color: #41B237;
+}
+// #endregion CHECKBOX

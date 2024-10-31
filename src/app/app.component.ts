@@ -6,7 +6,6 @@ import { InfraModule } from 'ngx-sp-infra';
 
 import menuConfig from "./shared/models/main-sidemenu.json";
 
-import { SideMenuComponent } from './shared/components/side-menu/side-menu.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -18,7 +17,6 @@ import { filter } from 'rxjs';
     CommonModule,
     InfraModule,
 
-    SideMenuComponent,
     NavbarComponent,
 
     RouterModule,

@@ -88,6 +88,7 @@ export class TabelaComponent {
     `<lib-table innerContent1 [list]="recordsList" [counts]="[ 5, 10, 15 ]"
     [useSelection]="true"
     [selection]="selecaoService.selecaoGeral"
+    [selectedCount]="selecaoService.quantidadeSelecionados()"
     [headers]="[
         { name: 'Nome', widthClass: 'w-20' },
         { name: 'Descrição', widthClass: 'w-30' },

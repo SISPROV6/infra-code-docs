@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/shared/styles/code-snippet.scss"],
-  "sourcesContent": [".custom-code {\r\n   color: #f8f8f2;\r\n   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;\r\n\r\n   background-color: #213b7026 !important;\r\n   padding: 4px !important;\r\n   border-radius: 4px !important;\r\n}\r\n\r\n.custom-code .keyword {\r\n   color: #66d9ef;\r\n   font-weight: bold;\r\n}\r\n\r\n.custom-code .string {\r\n   color: #a6e22e;\r\n}\r\n\r\n.custom-code .comment {\r\n   color: #75715e;\r\n}"],
-  "mappings": ";AAAA,CAAA;AACG,SAAA;AACA;IAAA,QAAA;IAAA,MAAA;IAAA,aAAA;IAAA,aAAA;IAAA;AAEA,oBAAA,KAAA,EAAA,EAAA,EAAA,EAAA,GAAA,EAAA;AACA,WAAA;AACA,iBAAA;;AAGH,CATA,YASA,CAAA;AACG,SAAA;AACA,eAAA;;AAGH,CAdA,YAcA,CAAA;AACG,SAAA;;AAGH,CAlBA,YAkBA,CAAA;AACG,SAAA;;",
-  "names": []
-}

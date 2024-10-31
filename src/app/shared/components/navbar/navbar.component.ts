@@ -5,7 +5,6 @@ import { InfraModule } from 'ngx-sp-infra';
 
 import packageJson from "../../../../../package.json";
 
-import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @Component({
@@ -14,8 +13,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
   imports: [
     InfraModule,
     RouterModule,
-    TooltipModule,
-    SideMenuComponent
+    TooltipModule
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'

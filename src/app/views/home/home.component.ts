@@ -5,7 +5,6 @@ import { InfraModule } from "ngx-sp-infra";
 
 import packageJson from "../../../../package.json";
 
-import { SideMenuComponent } from '../../shared/components/side-menu/side-menu.component';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { CodeSnippetComponent } from '../../shared/components/code-snippet/code-snippet.component';
@@ -19,8 +18,6 @@ import { CodeSnippetComponent } from '../../shared/components/code-snippet/code-
     RouterModule,
 
     CodeSnippetComponent,
-
-    SideMenuComponent,
     NavbarComponent
   ],
   templateUrl: './home.component.html',
