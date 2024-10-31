@@ -1,0 +1,141 @@
+[
+   {
+      "name": "Primeiros passos",
+      "icon": "<i class='bi bi-book-half'></i>",
+      "descricao": "Documentação que explica sobre como inicializar com alguns dos padrões e instalações necessárias para o framework",
+      "route": "",
+      "children": [
+         {
+            "name": "Introdução",
+            "descricao": "",
+            "route": "introducao"
+         },
+         {
+            "name": "Instalação",
+            "descricao": "Passo-a-passo para a instalação/atualização do framework completo para a possibilidade de trabalhar com o mesmo",
+            "route": "instalacao"
+         },
+         {
+            "name": "Uso",
+            "descricao": "",
+            "route": "uso"
+         }
+      ]
+   },
+
+   {
+      "name": "Componentes",
+      "icon": "<i class='bi bi-ui-checks-grid'></i>",
+      "descricao": "",
+      "route": "componentes",
+      "children": [
+         {
+            "name": "Header",
+            "descricao": "",
+            "route": "componentes/header"
+         },
+         {
+            "name": "Tabela",
+            "descricao": "",
+            "route": "componentes/tabela"
+         },
+         {
+            "name": "Combobox",
+            "descricao": "",
+            "route": "componentes/combobox"
+         },
+         {
+            "name": "Spinner",
+            "descricao": "",
+            "route": "componentes/spinner"
+         },
+         {
+            "name": "Contâiners",
+            "descricao": "",
+            "route": "componentes/containers"
+         },
+         {
+            "name": "Máscaras",
+            "descricao": "",
+            "route": "componentes/mascaras"
+         },
+         {
+            "name": "Modais",
+            "descricao": "",
+            "route": "componentes/modais"
+         }
+         
+      ]
+   },
+
+   {
+      "name": "Banco de Dados",
+      "icon": "<i class='bi bi-database'></i>",
+      "descricao": "",
+      "route": "banco-de-dados",
+      "children": [
+         
+      ]
+   },
+
+   {
+      "name": "Estrutura",
+      "icon": "<i class='bi bi-diagram-3'></i>",
+      "descricao": "",
+      "route": "estrutura",
+      "children": [
+         
+      ]
+   },
+
+   {
+      "name": "Models e Records",
+      "icon": "<i class='bi bi-box'></i>",
+      "descricao": "",
+      "route": "models",
+      "children": [
+         
+      ]
+   },
+
+   {
+      "name": "Templates",
+      "icon": "<i class='bi bi-layout-text-window-reverse'></i>",
+      "descricao": "",
+      "route": "templates",
+      "children": [
+         
+      ]
+   },
+
+   {
+      "name": "Padrões",
+      "icon": "<i class='bi bi-puzzle'></i>",
+      "descricao": "",
+      "route": "padroes",
+      "children": [
+         
+      ]
+   },
+   
+   {
+      "name": "V41",
+      "icon": "<i class='bi bi-pc-display-horizontal'></i>",
+      "descricao": "",
+      "route": "v41",
+      "children": [
+         
+      ]
+   },
+
+   {
+      "name": "Webservices (APIs)",
+      "icon": "<i class='bi bi-globe'></i>",
+      "descricao": "",
+      "route": "webservices",
+      "children": [
+         
+      ]
+   }
+
+]

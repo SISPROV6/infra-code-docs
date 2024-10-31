@@ -1,434 +1,515 @@
-<navbar currentPage="TABELAS DE LISTAGEM" />
+<div class="content-header mb-5 border-bottom">
+   <h3 class="fw-bold"> TABELAS DE LISTAGEM </h3>
+   <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de table que deve ser utilizado na V6</p>
+</div>
 
-<div class="container-fluid d-flex justify-content-center p-3">
-   <div class="w-75 h-100">
-      <div class="content-header mb-5 border-bottom">
-         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> TABELAS DE LISTAGEM </h3>
-         <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de table que deve ser utilizado na V6</p>
-      </div>
+<!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
 
-      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+<!-- #region ANTES DE COMEÇAR -->
+<div class="content mb-5">
+   <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+   <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
 
-      <!-- #region ANTES DE COMEÇAR -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
-         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+   <ul>
+      <li>Por enquanto as classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
+      <li>Este componente abrange apenas a estrutura externa dos registros e tem como objetivo primário a padronização da estrutura de tabelas. O conteúdo interno é responsabilidade do componente pai.</li>
+      <li>É importante seguir um padrão de estrutura interna dos registros, porém saiba que <b>não</b> é obrigatório utlizar o <b>{{ "@for () {}" }}</b>. A lógica que utilizamos atualmente com o <b>*ngFor</b> resolve perfeitamente</li>
+   </ul>
+</div>
+<!-- #endregion ANTES DE COMECAR -->
 
-         <ul>
-            <li>Por enquanto as classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
-            <li>Este componente abrange apenas a estrutura externa dos registros e tem como objetivo primário a padronização da estrutura de tabelas. O conteúdo interno é responsabilidade do componente pai.</li>
-            <li>É importante seguir um padrão de estrutura interna dos registros, porém saiba que <b>não</b> é obrigatório utlizar o <b>{{ "@for () {}" }}</b>. A lógica que utilizamos atualmente com o <b>*ngFor</b> resolve perfeitamente</li>
-         </ul>
-      </div>
-      <!-- #endregion ANTES DE COMECAR -->
+<!-- #region DICAS -->
+<div class="alert alert-primary mb-5" role="alert">
+   <p class="fw-bold">DICAS</p>
+   <ul>
+      <li>O loop deve sempre iterar sobre o elemento <b>{{"\<tr>"}}</b>.</li>
+      <li>Sempre ter um elemento para casos de lista vazia e a exibição do loading enquanto a propriedade de lista não tiver valor real (geralmente significa que ainda não obteve retorno do webservice) pois é muito importante no feedback para o usuário.</li>
+   </ul>
+</div>
+<!-- #endregion DICAS -->
 
-      <!-- #region DICAS -->
-      <div class="alert alert-primary mb-5" role="alert">
-         <p class="fw-bold">DICAS</p>
-         <ul>
-            <li>O loop deve sempre iterar sobre o elemento <b>{{"\<tr>"}}</b>.</li>
-            <li>Sempre ter um elemento para casos de lista vazia e a exibição do loading enquanto a propriedade de lista não tiver valor real (geralmente significa que ainda não obteve retorno do webservice) pois é muito importante no feedback para o usuário.</li>
-         </ul>
-      </div>
-      <!-- #endregion DICAS -->
+<!-- #region COMO FUNCIONA -->
+<div class="content mb-5">
+   <h5 class="fw-bold">COMO FUNCIONA?</h5>
 
-      <!-- #region INSTALAÇÃO -->
-      <instal-instructions />
-      <!-- #endregion INSTALAÇÃO -->
+   <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">recordsList: any[]</code> (obrigatório) - Lista de registros a serem exibidos na tabela.</li>
+      <li class="my-2"><code class="text-code">countOptions: number[]</code> (obrigatório) - Opções de contagem de itens por página disponíveis para o usuário.</li>
+      <li class="my-2"><code class="text-code">{{"headersList: { name: string, col: number, customClasses?: string }[]"}}</code> (obrigatório) - Lista de cabeçalhos para as colunas da tabela, incluindo o nome, a largura da coluna e classes customizadas.</li>
+      <li class="my-2"><code class="text-code">usePagination: boolean</code> - Determina se a tabela deve usar paginação. Por padrão, assume o valor <code class="fw-bold">true</code>.</li>
+      <li class="my-2"><code class="text-code">emptyMessage?: string</code> - Mensagem customizada para lista vazia.</li>
+      <li class="my-2"><code class="text-code">paginationPlacement: "start" | "center" | "end" | "between"</code> - Posicionamento dos controles de paginação. Por padrão, assume o valor <code class="fw-bold">'end'</code>.</li>
+      <li class="my-2"><code class="text-code">paginationID: string</code> - Informa um ID para a paginação da tabela específica. Deve ser utilizada em caso de múltiplas tabelas na mesma tela.</li>
+      <li class="my-2"><code class="text-code">showCounter: boolean</code> - Informa se o counter de registros deve aparecer ou não. Por padrão, assume o valor <code class="fw-bold">true</code>.</li>
+   </ul>
 
-      <!-- #region COMO FUNCIONA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">COMO FUNCIONA?</h5>
+   <span><b>{{"@Output"}}</b> Lista de eventos:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">itemsPerPageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando o número de itens por página é alterado. <b>O ideal é que seja utilizado sempre que for utilizar paginação</b>.</li>
+      <li class="my-2"><code class="text-code">pageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando a página é alterada. <b>O ideal é que seja utilizado sempre que for utilizar paginação</b>.</li>
+   </ul>
+</div>
+<!-- #endregion COMO FUNCIONA -->
 
-         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">recordsList: any[]</code> (obrigatório) - Lista de registros a serem exibidos na tabela.</li>
-            <li class="my-2"><code class="text-code">countOptions: number[]</code> (obrigatório) - Opções de contagem de itens por página disponíveis para o usuário.</li>
-            <li class="my-2"><code class="text-code">{{"headersList: { name: string, col: number, customClasses?: string }[]"}}</code> (obrigatório) - Lista de cabeçalhos para as colunas da tabela, incluindo o nome, a largura da coluna e classes customizadas.</li>
-            <li class="my-2"><code class="text-code">usePagination: boolean</code> - Determina se a tabela deve usar paginação. Por padrão, assume o valor <code>true</code>.</li>
-            <li class="my-2"><code class="text-code">emptyMessage?: string</code> - Mensagem customizada para lista vazia.</li>
-            <li class="my-2"><code class="text-code">paginationPlacement: "start" | "center" | "end" | "between"</code> - Posicionamento dos controles de paginação. Por padrão, assume o valor <code>'end'</code>.</li>
-            <li class="my-2"><code class="text-code">paginationID: string</code> - Informa um ID para a paginação da tabela específica. Deve ser utilizada em caso de múltiplas tabelas na mesma tela.</li>
-            <li class="my-2"><code class="text-code">showCounter: boolean</code> - Informa se o counter de registros deve aparecer ou não. Por padrão, assume o valor <code>true</code>.</li>
-         </ul>
+<!-- #region RECOMENDAÇÃO -->
+<div class="alert alert-indigo mb-5" role="alert">
+   <p class="fw-bold">RECOMENDAÇÃO</p>
+   
+   <p>Ao declarar a propriedade que populará a lista dos registros da table, não a inicialize por padrão, pois assim o componente exibirá um spinner de carregamento interno enquanto ela não tiver valor.</p>
+</div>
+<!-- #endregion RECOMENDAÇÃO -->
 
-         <span><b>{{"@Output"}}</b> Lista de eventos:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">itemsPerPageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando o número de itens por página é alterado. <b>O ideal é que seja utilizado sempre que for utilizar paginação</b>.</li>
-            <li class="my-2"><code class="text-code">pageChange: EventEmitter&lt;number&gt;</code> - Evento emitido quando a página é alterada. <b>O ideal é que seja utilizado sempre que for utilizar paginação</b>.</li>
-         </ul>
-      </div>
-      <!-- #endregion COMO FUNCIONA -->
+<!-- #region IMPLEMENTAÇÃO BÁSICA -->
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">IMPLEMENTAÇÃO BÁSICA</h5>
 
-      <!-- #region RECOMENDAÇÃO -->
-      <div class="alert alert-indigo mb-5" role="alert">
-         <p class="fw-bold">RECOMENDAÇÃO</p>
-         
-         <p>Ao declarar a propriedade que populará a lista dos registros da table, não a inicialize por padrão, pois assim o componente exibirá um spinner de carregamento interno enquanto ela não tiver valor.</p>
-      </div>
-      <!-- #endregion RECOMENDAÇÃO -->
+   <div class="code-example">
+      <span>Tabela simples (por padrão ela assume o <code class="fw-bold">usePagination = true</code> e <code class="fw-bold">showCounter = true</code>):</span>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+            <lib-container pageTitle="Exemplo">
+               <lib-table innerContent1 [list]="recordsList1" [counts]="[ 5, 10, 15 ]"
+                  [headers]="[
+                     { name: 'Nome', widthClass: 'w-20' },
+                     { name: 'Descrição', widthClass: 'w-30' },
+                     { name: 'Valor', widthClass: 'w-10', customClasses: 'text-end' },
+                     { name: 'Datas', widthClass: 'w-40' },
+                     { name: '', widthClass: 'w-20', customClasses: 'text-end' }
+                  ]"
+                  (itemsPerPageChange)="itemsPerPage1 = $event"
+                  (pageChange)="page1 = $event">
 
-      <!-- #region IMPLEMENTAÇÃO BÁSICA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">IMPLEMENTAÇÃO BÁSICA</h5>
+                  @for (item of recordsList1! | paginate: { itemsPerPage: itemsPerPage1, currentPage: page1 }; track item) {
+                     <tr innerRows class="align-middle">
+                        <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                        <td>{{ item.descricao }}</td>
+                        <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                        <td>
+                           <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                           <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                        </td>
+                        <td>
+                           <div class="d-flex flex-row align-items-center justify-content-end">
+                              <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
+                              <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                           </div>
+                        </td>
+                     </tr>
+                  }
+               </lib-table>
+            </lib-container>
+         </div>
 
-         <div class="code-example">
-            <span>Tabela simples (por padrão ela assume o <code>usePagination = true</code> e <code>showCounter = true</code>):</span>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  <lib-container pageTitle="Exemplo">
-                     <lib-table innerContent1 [list]="recordsList1" [counts]="[ 5, 10, 15 ]"
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[0]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[1]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+
+
+   <div class="code-example">
+      <span>Múltiplas tabelas renderizadas na mesma tela (mesmo separadas entre "tela" e "modal" ainda consta como duas ao mesmo tempo):</span>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+            <lib-container pageTitle="Exemplo">
+               <div innerContent1 class="row">
+                  <div class="col">
+                     <lib-table [list]="recordsList1" [counts]="[ 5, 10, 15 ]"
+                        paginationID="libTablePagination1"
                         [headers]="[
-                           { name: 'Nome', col: 2 },
-                           { name: 'Descrição', col: 3 },
-                           { name: 'Valor', col: 1, customClasses: 'text-end' },
-                           { name: 'Datas', col: 4 },
-                           { name: '', col: 2, customClasses: 'text-end' }
+                           { name: 'Nome', col: 4 },
+                           { name: 'Descrição', col: 4 },
+                           { name: 'Valor', col: 4, customClasses: 'text-end' }
                         ]"
-                        (itemsPerPageChange)="itemsPerPage1 = $event"
-                        (pageChange)="page1 = $event">
+                        (itemsPerPageChange)="itemsPerPage2 = $event"
+                        (pageChange)="page2 = $event">
 
-                        @for (item of recordsList1! | paginate: { itemsPerPage: itemsPerPage1, currentPage: page1 }; track item) {
+                        @for (item of recordsList1! | paginate: { id: 'libTablePagination1', itemsPerPage: itemsPerPage2, currentPage: page2 }; track item) {
                            <tr innerRows class="align-middle">
                               <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
                               <td>{{ item.descricao }}</td>
                               <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
-                              <td>
-                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                              </td>
-                              <td>
-                                 <div class="d-flex flex-row align-items-center justify-content-end">
-                                    <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
-                                    <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
-                                 </div>
-                              </td>
                            </tr>
                         }
                      </lib-table>
-                  </lib-container>
-               </div>
+                  </div>
 
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[0]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[1]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-
-         <div class="code-example">
-            <span>Múltiplas tabelas renderizadas na mesma tela (mesmo separadas entre "tela" e "modal" ainda consta como duas ao mesmo tempo):</span>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  <lib-container pageTitle="Exemplo">
-                     <div innerContent1 class="row">
-                        <div class="col">
-                           <lib-table [list]="recordsList1" [counts]="[ 5, 10, 15 ]"
-                              paginationID="libTablePagination1"
-                              [headers]="[
-                                 { name: 'Nome', col: 4 },
-                                 { name: 'Descrição', col: 4 },
-                                 { name: 'Valor', col: 4, customClasses: 'text-end' }
-                              ]"
-                              (itemsPerPageChange)="itemsPerPage2 = $event"
-                              (pageChange)="page2 = $event">
-
-                              @for (item of recordsList1! | paginate: { id: 'libTablePagination1', itemsPerPage: itemsPerPage2, currentPage: page2 }; track item) {
-                                 <tr innerRows class="align-middle">
-                                    <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
-                                    <td>{{ item.descricao }}</td>
-                                    <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
-                                 </tr>
-                              }
-                           </lib-table>
-                        </div>
-
-                        <div class="col">
-                           <lib-table [list]="recordsList5" [counts]="[ 5, 10, 15 ]"
-                              paginationID="libTablePagination2"
-                              [headers]="[
-                                 { name: 'Nome', col: 4 },
-                                 { name: 'Descrição', col: 4 },
-                                 { name: 'Valor', col: 4, customClasses: 'text-end' }
-                              ]"
-                              (itemsPerPageChange)="itemsPerPage3 = $event"
-                              (pageChange)="page3 = $event">
-
-                              @for (item of recordsList5! | paginate: { id: 'libTablePagination2', itemsPerPage: itemsPerPage3, currentPage: page3 }; track item) {
-                                 <tr innerRows class="align-middle">
-                                    <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
-                                    <td>{{ item.descricao }}</td>
-                                    <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
-                                 </tr>
-                              }
-                           </lib-table>
-                        </div>
-                     </div>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[2]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[3]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-
-
-         <div class="code-example">
-            <span>Customizar mensagem de "nenhum registro encontrado":</span>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  <lib-container pageTitle="Exemplo">
-                     <lib-table innerContent1 [list]="recordsList2" [counts]="[ 5, 10, 20 ]"
+                  <div class="col">
+                     <lib-table [list]="recordsList5" [counts]="[ 5, 10, 15 ]"
+                        paginationID="libTablePagination2"
                         [headers]="[
-                           { name: 'Nome', col: 2 },
-                           { name: 'Descrição', col: 3 },
-                           { name: 'Valor', col: 1, customClasses: 'text-end' },
-                           { name: 'Datas', col: 4 },
-                           { name: '', col: 2, customClasses: 'text-end' }
+                           { name: 'Nome', col: 4 },
+                           { name: 'Descrição', col: 4 },
+                           { name: 'Valor', col: 4, customClasses: 'text-end' }
                         ]"
-                        (itemsPerPageChange)="itemsPerPage4 = $event"
-                        (pageChange)="page4 = $event"
-                        emptyListMessage="Nenhum registro encontrado com a pesquisa atual...">
+                        (itemsPerPageChange)="itemsPerPage3 = $event"
+                        (pageChange)="page3 = $event">
 
-                        @for (item of recordsList2! | paginate: { itemsPerPage: itemsPerPage4, currentPage: page4 }; track item) {
+                        @for (item of recordsList5! | paginate: { id: 'libTablePagination2', itemsPerPage: itemsPerPage3, currentPage: page3 }; track item) {
                            <tr innerRows class="align-middle">
                               <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
                               <td>{{ item.descricao }}</td>
                               <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
-                              <td>
-                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                              </td>
-                              <td>
-                                 <div class="d-flex flex-row align-items-center justify-content-end">
-                                    <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
-                                    <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
-                                 </div>
-                              </td>
                            </tr>
                         }
                      </lib-table>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[4]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[5]" language="typescript" />
+                  </div>
                </div>
             </lib-container>
          </div>
 
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[2]" language="xml" />
+         </div>
 
-         <div class="code-example">
-            <span>Paginação na esquerda:</span>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  <lib-container>
-                     <lib-table innerContent1 [list]="recordsList3"
-                        [counts]="[ 5, 10, 20 ]" placement="start"
-                        [headers]="[
-                           { name: 'Nome', col: 2 },
-                           { name: 'Descrição', col: 3 },
-                           { name: 'Valor', col: 1, customClasses: 'text-end' },
-                           { name: 'Datas', col: 4 },
-                           { name: '', col: 2, customClasses: 'text-end' }
-                        ]"
-                        (itemsPerPageChange)="itemsPerPage5 = $event"
-                        (pageChange)="page5 = $event">
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[3]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
 
-                        @for (item of recordsList3! | paginate: { itemsPerPage: itemsPerPage5, currentPage: page5 }; track item) {
-                           <tr innerRows class="align-middle">
-                              <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
-                              <td>{{ item.descricao }}</td>
-                              <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
-                              <td>
-                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                              </td>
-                              <td>
-                                 <div class="d-flex flex-row align-items-center justify-content-end">
-                                    <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
-                                    <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
-                                 </div>
-                              </td>
-                           </tr>
-                        }
-                     </lib-table>
-                  </lib-container>
-               </div>
 
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[6]" language="xml" />
-               </div>
+   <div class="code-example">
+      <span>Customizar mensagem de "nenhum registro encontrado":</span>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+            <lib-container pageTitle="Exemplo">
+               <lib-table innerContent1 [list]="recordsList2" [counts]="[ 5, 10, 20 ]"
+                  [headers]="[
+                     { name: 'Nome', col: 2 },
+                     { name: 'Descrição', col: 3 },
+                     { name: 'Valor', col: 1, customClasses: 'text-end' },
+                     { name: 'Datas', col: 4 },
+                     { name: '', col: 2, customClasses: 'text-end' }
+                  ]"
+                  (itemsPerPageChange)="itemsPerPage4 = $event"
+                  (pageChange)="page4 = $event"
+                  emptyListMessage="Nenhum registro encontrado com a pesquisa atual...">
 
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[7]" language="typescript" />
-               </div>
+                  @for (item of recordsList2! | paginate: { itemsPerPage: itemsPerPage4, currentPage: page4 }; track item) {
+                     <tr innerRows class="align-middle">
+                        <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                        <td>{{ item.descricao }}</td>
+                        <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                        <td>
+                           <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                           <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                        </td>
+                        <td>
+                           <div class="d-flex flex-row align-items-center justify-content-end">
+                              <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
+                              <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                           </div>
+                        </td>
+                     </tr>
+                  }
+               </lib-table>
             </lib-container>
          </div>
 
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[4]" language="xml" />
+         </div>
 
-         <div class="code-example">
-            <span>Ocultar paginação:</span>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  <lib-container>
-                     <lib-table innerContent1 [list]="recordsList4" [usePagination]="false"
-                        [headers]="[
-                           { name: 'Nome', col: 2 },
-                           { name: 'Descrição', col: 3 },
-                           { name: 'Valor', col: 1, customClasses: 'text-end' },
-                           { name: 'Datas', col: 4 },
-                           { name: '', col: 2, customClasses: 'text-end' }
-                        ]">
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[5]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
 
-                        @for (item of recordsList4; track item) {
-                           <tr innerRows class="align-middle">
-                              <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
-                              <td>{{ item.descricao }}</td>
-                              <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
-                              <td>
-                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                              </td>
-                              <td>
-                                 <div class="d-flex flex-row align-items-center justify-content-end">
-                                    <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
-                                    <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
-                                 </div>
-                              </td>
-                           </tr>
-                        }
-                     </lib-table>
-                  </lib-container>
-               </div>
 
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[8]" language="xml" />
-               </div>
+   <div class="code-example">
+      <span>Paginação na esquerda:</span>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+            <lib-container>
+               <lib-table innerContent1 [list]="recordsList3"
+                  [counts]="[ 5, 10, 20 ]" placement="start"
+                  [headers]="[
+                     { name: 'Nome', col: 2 },
+                     { name: 'Descrição', col: 3 },
+                     { name: 'Valor', col: 1, customClasses: 'text-end' },
+                     { name: 'Datas', col: 4 },
+                     { name: '', col: 2, customClasses: 'text-end' }
+                  ]"
+                  (itemsPerPageChange)="itemsPerPage5 = $event"
+                  (pageChange)="page5 = $event">
+
+                  @for (item of recordsList3! | paginate: { itemsPerPage: itemsPerPage5, currentPage: page5 }; track item) {
+                     <tr innerRows class="align-middle">
+                        <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                        <td>{{ item.descricao }}</td>
+                        <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                        <td>
+                           <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                           <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                        </td>
+                        <td>
+                           <div class="d-flex flex-row align-items-center justify-content-end">
+                              <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
+                              <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                           </div>
+                        </td>
+                     </tr>
+                  }
+               </lib-table>
             </lib-container>
          </div>
 
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[6]" language="xml" />
+         </div>
 
-         <div class="code-example">
-            <span>Ocultar contador de registros:</span>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  <lib-container>
-                     <lib-table innerContent1 [list]="recordsList5"
-                        [usePagination]="false"
-                        [showCounter]="false"
-                        [headers]="[
-                           { name: 'Nome', col: 2 },
-                           { name: 'Descrição', col: 3 },
-                           { name: 'Valor', col: 1, customClasses: 'text-end' },
-                           { name: 'Datas', col: 4 },
-                           { name: '', col: 2, customClasses: 'text-end' }
-                        ]">
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[7]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
 
-                        @for (item of recordsList5; track item) {
-                           <tr innerRows class="align-middle">
-                              <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
-                              <td>{{ item.descricao }}</td>
-                              <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
-                              <td>
-                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                              </td>
-                              <td>
-                                 <div class="d-flex flex-row align-items-center justify-content-end">
-                                    <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
-                                    <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
-                                 </div>
-                              </td>
-                           </tr>
-                        }
-                     </lib-table>
-                  </lib-container>
-               </div>
 
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[9]" language="xml" />
-               </div>
+   <div class="code-example">
+      <span>Ocultar paginação:</span>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+            <lib-container>
+               <lib-table innerContent1 [list]="recordsList4" [usePagination]="false"
+                  [headers]="[
+                     { name: 'Nome', col: 2 },
+                     { name: 'Descrição', col: 3 },
+                     { name: 'Valor', col: 1, customClasses: 'text-end' },
+                     { name: 'Datas', col: 4 },
+                     { name: '', col: 2, customClasses: 'text-end' }
+                  ]">
+
+                  @for (item of recordsList4; track item) {
+                     <tr innerRows class="align-middle">
+                        <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                        <td>{{ item.descricao }}</td>
+                        <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                        <td>
+                           <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                           <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                        </td>
+                        <td>
+                           <div class="d-flex flex-row align-items-center justify-content-end">
+                              <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
+                              <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                           </div>
+                        </td>
+                     </tr>
+                  }
+               </lib-table>
             </lib-container>
          </div>
-      </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[8]" language="xml" />
+         </div>
+      </lib-container>
+   </div>
 
 
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">ORDENAÇÃO</h5>
+   <div class="code-example">
+      <span>Ocultar contador de registros:</span>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+            <lib-container>
+               <lib-table innerContent1 [list]="recordsList5"
+                  [usePagination]="false"
+                  [showCounter]="false"
+                  [headers]="[
+                     { name: 'Nome', col: 2 },
+                     { name: 'Descrição', col: 3 },
+                     { name: 'Valor', col: 1, customClasses: 'text-end' },
+                     { name: 'Datas', col: 4 },
+                     { name: '', col: 2, customClasses: 'text-end' }
+                  ]">
 
-         <div class="code-example">
-            <div class="description mb-5">
-               <p>Para a utilização de ordenação por coluna nas tabelas, usamos uma propriedade opcional que será responsável por tal ação. A propriedade se encontra na lista de headers e recebe o nome da coluna que é usada dentro do objeto.</p>
-               <p>Vamos supor que o nome da coluna na tabela do banco de dados se chama <b>"TxDescricao"</b> e o nome amigável para o usuário que informamos no elemento &lt;table&gt; é <b>"Descrição"</b>, informamos o valor <b>"TxDescricao"</b> para a propriedade de ordenação (orderColumn).</p>
-
-               <p>Exemplo:</p>
-               <code-snippet [code]="codeSnippets[10]" language="xml" />
-            </div>
-
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
-               <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
-                  <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
-                  <lib-container pageTitle="Exemplo">
-
-                     <lib-table innerContent1 [list]="recordsList1" [counts]="[ 5, 10, 15 ]"
-                        [usePagination]="false" [showCounter]="false"
-                        [headers]="[
-                           { name: 'Nome', col: 2, orderColumn: 'nome' },     
-                           { name: 'Descrição', col: 3, orderColumn: 'descricao' },
-                           { name: 'Valor', col: 1, customClasses: 'text-end' },
-                           { name: 'Datas', col: 4 },
-                           { name: '', col: 2, customClasses: 'text-end' }
-                        ]" >
-
-                        @for (item of recordsList1! | paginate: { itemsPerPage: itemsPerPage1, currentPage: page1 }; track item) {
-                           <tr innerRows class="align-middle">
-                              <td class="text-primary fw-bold">
-                                 <a tooltip="Visualizar/Editar"> {{ item.nome }} </a>
-                              </td>
-                              <td>{{ item.descricao }}</td>
-                              <td class="text-end"> {{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }} </td>
-                              <td>
-                                 <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                                 <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
-                              </td>
-                              <td class="text-end">
-                                 <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
-                              </td>
-                           </tr>
-                        }
-                     </lib-table>
-
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[11]" language="xml" />
-               </div>
+                  @for (item of recordsList5; track item) {
+                     <tr innerRows class="align-middle">
+                        <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                        <td>{{ item.descricao }}</td>
+                        <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                        <td>
+                           <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                           <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                        </td>
+                        <td>
+                           <div class="d-flex flex-row align-items-center justify-content-end">
+                              <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
+                              <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                           </div>
+                        </td>
+                     </tr>
+                  }
+               </lib-table>
             </lib-container>
          </div>
-      </div>
-      <!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
-      
-      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[9]" language="xml" />
+         </div>
+      </lib-container>
    </div>
 </div>
+
+
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">ORDENAÇÃO</h5>
+
+   <div class="code-example">
+      <div class="description mb-5">
+         <p>Para a utilização de ordenação por coluna nas tabelas, usamos uma propriedade opcional que será responsável por tal ação. A propriedade se encontra na lista de headers e recebe o nome da coluna que é usada dentro do objeto.</p>
+         <p>Vamos supor que o nome da coluna na tabela do banco de dados se chama <b>"TxDescricao"</b> e o nome amigável para o usuário que informamos no elemento &lt;table&gt; é <b>"Descrição"</b>, informamos o valor <b>"TxDescricao"</b> para a propriedade de ordenação (orderColumn).</p>
+
+         <p>Exemplo:</p>
+         <code-snippet [code]="codeSnippets[10]" language="xml" />
+      </div>
+
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle='Painel de Pessoas' />
+            <lib-container pageTitle="Exemplo">
+
+               <lib-table innerContent1 [list]="recordsList1" [counts]="[ 5, 10, 15 ]"
+                  [usePagination]="false" [showCounter]="false"
+                  [headers]="[
+                     { name: 'Nome', col: 2, orderColumn: 'nome' },     
+                     { name: 'Descrição', col: 3, orderColumn: 'descricao' },
+                     { name: 'Valor', col: 1, customClasses: 'text-end' },
+                     { name: 'Datas', col: 4 },
+                     { name: '', col: 2, customClasses: 'text-end' }
+                  ]" >
+
+                  @for (item of recordsList1! | paginate: { itemsPerPage: itemsPerPage1, currentPage: page1 }; track item) {
+                     <tr innerRows class="align-middle">
+                        <td class="text-primary fw-bold">
+                           <a tooltip="Visualizar/Editar"> {{ item.nome }} </a>
+                        </td>
+                        <td>{{ item.descricao }}</td>
+                        <td class="text-end"> {{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }} </td>
+                        <td>
+                           <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                           <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                        </td>
+                        <td class="text-end">
+                           <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
+                        </td>
+                     </tr>
+                  }
+               </lib-table>
+
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[11]" language="xml" />
+         </div>
+      </lib-container>
+   </div>
+</div>
+
+
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">SELEÇÃO DE REGISTROS</h5>
+
+   <div class="code-example">
+      <div class="description mb-5">
+         <p>Para a utilização da lógica de seleção de registros dentro de uma table utilizaremos algumas propriedades para tal:</p>
+         <ul>
+            <li><code class="text-code">[useSelection]:</code> Informará para o componente se ele deve exibir o checkbox de seleção geral. (Caso <code class="fw-bold">true</code>, deve haver um elemento <code>&lt;td&gt;</code> extra nas rows)</li>
+            <li><code class="text-code">[selection]:</code> Responsável pelo valor em si da seleção geral.</li>
+            <li><code class="text-code">[selectedCount]:</code> Responsável por informar a quantidade de registros atualmente selecionados na tabela. Exibirá um contador acima da table.</li>
+            <li><code class="text-code">(selectionChange):</code> Emitido quando o valor da seleção se modifica.</li>
+         </ul>
+
+         <p>Uma forma simples de fazermos a seleção é a utilização de um <code class="text-code">Map<></code> para armazenar quais IDs estão selecionados.</p>
+
+         <div>
+            <p>Para isso foi também desenvolvido um service na ngx-sp-infra chamado de <b><code>TableSelectionService</code></b> que contém os dados do <code>Map<></code> principal e os métodos responsáveis pelas seleções.</p>
+
+            <p>Os métodos deste serviço são os seguintes:</p>
+            <ul>
+               <li><code class="text-code fw-bold">getOnlySelecionados():</code> - Converterá o <code>Map<></code> em um <code>array[]</code> de valores com apenas os valores selecionados da lista.</li>
+               <li><code class="text-code fw-bold">quantidadeSelecionados():</code> - Trará um número referente a quantidade de registros atualmente selecionados em tempo real.</li>
+               <li><code class="text-code fw-bold">initSelecao(list?: any[], idColumnName: string = "id"):</code> - Usado para inicializar o <code>Map<></code> com os registros da lista, inicializando todos com <code class="fw-bold">false</code> para o valor booleano.</li>
+               <li><code class="text-code fw-bold">inverterSelecao(id: string | number):</code> - Inverte a seleção atual de um registro específico.</li>
+               <li><code class="text-code fw-bold">definirSelecaoTotal(list?: any[], selecao?: boolean, idColumnName: string = "id"):</code> - Atualiza todos os valores do <code>Map<></code> para <code class="fw-bold">true</code> ou <code class="fw-bold">false</code>.</li>
+            </ul>
+         </div>
+
+         <p>Exemplo:</p>
+         <div class="mb-3"><code-snippet [code]="codeSnippets[12]" language="xml" /></div>
+         <div><code-snippet [code]="codeSnippets[13]" language="typescript" /></div>
+      </div>
+
+      <!-- #region AVISO -->
+      <div class="alert alert-warning mb-5" role="alert">
+         <p class="fw-bold">AVISO</p>
+         
+         <p>Deixo aqui avisado que é possível que no futuro este service seja transformado em uma classe comum, isso possibilitará o uso de múltiplas tabelas com seleção ao mesmo tempo.</p>
+      </div>
+      <!-- #endregion AVISO -->
+
+      <lib-container>
+         <div class="p-3 pt-0 rounded bg-secondary" innerContent1>
+            <lib-header [breadcrumbList]="[ 'Painel de Pessoas' ]" pageTitle="Painel de Pessoas" />
+            <lib-container pageTitle="Exemplo">
+
+               <lib-table innerContent1 [list]="recordsList6" [counts]="[ 5, 10, 15 ]"
+                  [useSelection]="true"
+                  [selection]="selecaoService.selecaoGeral"
+                  [selectedCount]="selecaoService.quantidadeSelecionados()"
+                  [headers]="[
+                     { name: 'Nome', widthClass: 'w-20' },
+                     { name: 'Descrição', widthClass: 'w-30' },
+                     { name: 'Valor', widthClass: 'w-10', customClasses: 'text-end' },
+                     { name: 'Datas', widthClass: 'w-40' },
+                     { name: '', widthClass: 'w-20', customClasses: 'text-end' }
+                  ]"
+                  (selectionChange)="selecaoService.definirSelecaoTotal(recordsList6, $event, 'id')"
+                  (itemsPerPageChange)="itemsPerPage6 = $event"
+                  (pageChange)="page6 = $event">
+
+                  @for (item of recordsList6! | paginate: { itemsPerPage: itemsPerPage6, currentPage: page6 }; track item) {
+                     <tr innerRows class="align-middle">
+                        <td>
+                           <div class="form-check"> <input class="form-check-input" type="checkbox"
+                              [ngModel]="selecaoMap6.get(item.id)" (ngModelChange)="selecaoService.inverterSelecao(item.id)"> </div>
+                        </td>
+                        <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>
+                        <td>{{ item.descricao }}</td>
+                        <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>
+                        <td>
+                           <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                           <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>
+                        </td>
+                        <td>
+                           <div class="d-flex flex-row align-items-center justify-content-end">
+                              <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />
+                              <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>
+                           </div>
+                        </td>
+                     </tr>
+                  }
+               </lib-table>
+
+            </lib-container>
+         </div>
+      </lib-container>
+   </div>
+</div>
+<!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
+
+<!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->

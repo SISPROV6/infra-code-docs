@@ -1,197 +1,189 @@
-<navbar currentPage="MODAIS" />
+<div class="content-header mb-5 border-bottom">
+   <h3 class="fw-bold"> MODAIS </h3>
+   <p class="fs-5">Documentação de uso, exemplos e explicações sobre os componentes e padrões para a visualização de modais que devem ser utilizados na V6</p>
+</div>
 
-<div class="container-fluid d-flex justify-content-center p-3">
-   <div class="w-75 h-100">
-      <div class="content-header mb-5 border-bottom">
-         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> MODAIS </h3>
-         <p class="fs-5">Documentação de uso, exemplos e explicações sobre os componentes e padrões para a visualização de modais que devem ser utilizados na V6</p>
+<!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+<!-- #region ANTES DE COMEÇAR -->
+<div class="content mb-5">
+   <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+   <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
+
+   <ul>
+      <li>As classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
+   </ul>
+</div>
+<!-- #endregion ANTES DE COMECAR -->
+
+
+
+<!-- #region COMO FUNCIONA -->
+<div class="content mb-5">
+   <h5 class="fw-bold">COMO FUNCIONA?</h5>
+
+   <span>Injeções no constructor:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">public modalUtils: ModalUtilsService</code> - Serviço com os métodos genéricos de abertura e fechamento dos modais.</li>
+   </ul>
+
+   <span>Estratégias:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">Modal estático</code> - Quando precisar exibir um modal simples de informação ou que peça input do usuário como uma confirmação de exclusão.</li>
+      <li class="my-2"><code class="text-code">Modal dinâmico com {{"@Input/@Output"}}</code> - Quando precisar exibir um modal dinâmico que possua parâmetros de entrada/saída que possam ser preenchidos com o data-binding do Angular.</li>
+      <li class="my-2"><code class="text-code">Modal dinâmico sem {{"@Input/@Output"}}</code> - Quando precisar exibir um modal dinâmico que possua parâmetros de entrada/saída que precisem ser preenchidos via Typescript ou com alguma lógica.</li>
+   </ul>
+</div>
+<!-- #endregion COMO FUNCIONA -->
+
+<!-- #region MODAL ESTÁTICO -->
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">MODAL ESTÁTICO</h5>
+
+   <div class="code-example">
+
+      <div class="description mb-5">
+         <p>
+            Quando o objetivo é exibir um modal simples e (na maior parte das vezes) estático e que não necessariamente precise de valores dinâmicos 
+            vindos do componente pai, podemos utilizar a implementação mais básica recomendada que consiste em:
+         </p>
+         <ol>
+            <li>Injetar o serviço de modais no seu componente com o trecho abaixo:</li>
+            <code-snippet [code]="codeSnippets[0]" language="typescript" />
+
+            <li class="mt-3">Adicionar o template do modal desejado no final do HTML do componente pai:</li>
+            <code-snippet [code]="codeSnippets[1]" language="xml" />
+
+            <li class="mt-3">Chamar o método openModal informando a referência do conteúdo e um ID referente a aquele modal:</li>
+            <code-snippet [code]="codeSnippets[2]" language="xml" />
+         </ol>
       </div>
 
-      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
-
-      <!-- #region ANTES DE COMEÇAR -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
-         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
-
-         <ul>
-            <li>As classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
-         </ul>
-      </div>
-      <!-- #endregion ANTES DE COMECAR -->
-
-      <!-- #region INSTALAÇÃO -->
-      <instal-instructions />
-      <!-- #endregion INSTALAÇÃO -->
-
-      <!-- #region COMO FUNCIONA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">COMO FUNCIONA?</h5>
-
-         <span>Injeções no constructor:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">public modalUtils: ModalUtilsService</code> - Serviço com os métodos genéricos de abertura e fechamento dos modais.</li>
-         </ul>
-
-         <span>Estratégias:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">Modal estático</code> - Quando precisar exibir um modal simples de informação ou que peça input do usuário como uma confirmação de exclusão.</li>
-            <li class="my-2"><code class="text-code">Modal dinâmico com {{"@Input/@Output"}}</code> - Quando precisar exibir um modal dinâmico que possua parâmetros de entrada/saída que possam ser preenchidos com o data-binding do Angular.</li>
-            <li class="my-2"><code class="text-code">Modal dinâmico sem {{"@Input/@Output"}}</code> - Quando precisar exibir um modal dinâmico que possua parâmetros de entrada/saída que precisem ser preenchidos via Typescript ou com alguma lógica.</li>
-         </ul>
-      </div>
-      <!-- #endregion COMO FUNCIONA -->
-
-      <!-- #region MODAL ESTÁTICO -->
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">MODAL ESTÁTICO</h5>
-
-         <div class="code-example">
-
-            <div class="description mb-5">
-               <p>
-                  Quando o objetivo é exibir um modal simples e (na maior parte das vezes) estático e que não necessariamente precise de valores dinâmicos 
-                  vindos do componente pai, podemos utilizar a implementação mais básica recomendada que consiste em:
-               </p>
-               <ol>
-                  <li>Injetar o serviço de modais no seu componente com o trecho abaixo:</li>
-                  <code-snippet [code]="codeSnippets[0]" language="typescript" />
-
-                  <li class="mt-3">Adicionar o template do modal desejado no final do HTML do componente pai:</li>
-                  <code-snippet [code]="codeSnippets[1]" language="xml" />
-
-                  <li class="mt-3">Chamar o método openModal informando a referência do conteúdo e um ID referente a aquele modal:</li>
-                  <code-snippet [code]="codeSnippets[2]" language="xml" />
-               </ol>
+      <p>Código completo das intruções acima:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 rounded bg-secondary" innerContent1>
+            
+            <div class="d-flex flex-row align-items-center justify-content-evenly">
+               <button class="btn btn-outline-danger" (click)="modalUtils.openModal(modalExclusao1, 1)">
+                  <lib-icon iconName="lixeira" /> Confirmação de exclusão
+               </button>
+               <button class="btn btn-outline-primary" (click)="modalUtils.openModal(modalInativacao1, 2)">
+                  <lib-icon iconName="fechar" /> Confirmação de inativação
+               </button>
+               <button class="btn btn-outline-warning" (click)="modalUtils.openModal(modalInformativo1, 3)">
+                  <lib-icon iconName="info" /> Informativo
+               </button>
             </div>
 
-            <p>Código completo das intruções acima:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 rounded bg-secondary" innerContent1>
-                  
-                  <div class="d-flex flex-row align-items-center justify-content-evenly">
-                     <button class="btn btn-outline-danger" (click)="modalUtils.openModal(modalExclusao1, 1)">
-                        <lib-icon iconName="lixeira" /> Confirmação de exclusão
-                     </button>
-                     <button class="btn btn-outline-primary" (click)="modalUtils.openModal(modalInativacao1, 2)">
-                        <lib-icon iconName="fechar" /> Confirmação de inativação
-                     </button>
-                     <button class="btn btn-outline-warning" (click)="modalUtils.openModal(modalInformativo1, 3)">
-                        <lib-icon iconName="info" /> Informativo
+            <!-- #region TEMPLATES -->
+            <ng-template #modalExclusao1>
+               <app-confirm-modal modalType="Excluir" modalSubject="produto" (_closingModal)="modalUtils.closeModal(1)" />
+            </ng-template>
+
+            <ng-template #modalInativacao1>
+               <app-confirm-modal modalType="Inativar" modalSubject="produto" (_closingModal)="modalUtils.closeModal(2)" />
+            </ng-template>
+
+            <ng-template #modalInformativo1>
+               <generic-info-modal />
+            </ng-template>
+            <!-- #endregion TEMPLATES -->
+
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[3]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[4]" language="typescript" />
+         </div>
+      </lib-container>
+   </div>
+</div>
+<!-- #endregion MODAL ESTÁTICO -->
+
+<!-- #region MODAL DINÂMICO COM INPUT -->
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">MODAL DINÂMICO COM INPUT</h5>
+
+   <div class="code-example">
+
+      <div class="description mb-5">
+         <p>
+            Quando o objetivo é exibir um modal simples e dinâmico que tenha parâmetros de entrada/saída ({{ "@Input/@Output, respectivamente" }}) podemos utilizar o seguinte método:
+         </p>
+         <ol>
+            <li>Injetar o serviço de modais no seu componente com o trecho abaixo:</li>
+            <code-snippet [code]="codeSnippets[5]" language="typescript" />
+
+            <li class="mt-3">(opcional) Se o modal tiver uma diferença entre Criação e Edição, adicionamos o template desejado próximo do botão de abertura OU no final do HTML juntamente com outros templates, caso o modal necessite de um ID que está dentro de um ngFor ele DEVE estar no ngFor também:</li>
+            <code-snippet [code]="codeSnippets[6]" language="xml" />
+
+            <li class="mt-3">Adicionar o template do modal desejado no final do HTML do componente pai (seguindo o passo anterior, adicionamos aqui a sua versão de "Criação"):</li>
+            <code-snippet [code]="codeSnippets[7]" language="xml" />
+
+            <li class="mt-3">Chamar o método openModal informando a referência do conteúdo e um ID referente a aquele modal, precisamos informar também o ID do registro da chamada do modal:</li>
+            <code-snippet [code]="codeSnippets[8]" language="xml" />
+         </ol>
+      </div>
+
+      <p>Código completo das intruções acima (clique no lápis à direita dos registros):</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
+         <div class="p-3 rounded bg-secondary" innerContent1>
+
+            <lib-container>
+               <div innerContent1>
+                  <div class="text-end">
+                     <button class="btn btn-sm btn-primary" (click)="modalUtils.openModal(modalCriacao, 2)">
+                        <lib-icon iconName="mais" /> Adicionar
                      </button>
                   </div>
 
-                  <!-- #region TEMPLATES -->
-                  <ng-template #modalExclusao1>
-                     <app-confirm-modal modalType="Excluir" modalSubject="produto" (_closingModal)="modalUtils.closeModal(1)" />
-                  </ng-template>
+                  <lib-table [list]="recordsList1"
+                     [usePagination]="false"
+                     [headers]="[
+                        { name: 'Nome', col: 4 },
+                        { name: 'Descrição', col: 7 },
+                        { name: '', col: 1, customClasses: 'text-end' }
+                     ]" >
 
-                  <ng-template #modalInativacao1>
-                     <app-confirm-modal modalType="Inativar" modalSubject="produto" (_closingModal)="modalUtils.closeModal(2)" />
-                  </ng-template>
-
-                  <ng-template #modalInformativo1>
-                     <generic-info-modal />
-                  </ng-template>
-                  <!-- #endregion TEMPLATES -->
-
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[3]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[4]" language="typescript" />
-               </div>
-            </lib-container>
-         </div>
-      </div>
-      <!-- #endregion MODAL ESTÁTICO -->
-
-      <!-- #region MODAL DINÂMICO COM INPUT -->
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">MODAL DINÂMICO COM INPUT</h5>
-
-         <div class="code-example">
-
-            <div class="description mb-5">
-               <p>
-                  Quando o objetivo é exibir um modal simples e dinâmico que tenha parâmetros de entrada/saída ({{ "@Input/@Output, respectivamente" }}) podemos utilizar o seguinte método:
-               </p>
-               <ol>
-                  <li>Injetar o serviço de modais no seu componente com o trecho abaixo:</li>
-                  <code-snippet [code]="codeSnippets[5]" language="typescript" />
-
-                  <li class="mt-3">(opcional) Se o modal tiver uma diferença entre Criação e Edição, adicionamos o template desejado próximo do botão de abertura OU no final do HTML juntamente com outros templates, caso o modal necessite de um ID que está dentro de um ngFor ele DEVE estar no ngFor também:</li>
-                  <code-snippet [code]="codeSnippets[6]" language="xml" />
-
-                  <li class="mt-3">Adicionar o template do modal desejado no final do HTML do componente pai (seguindo o passo anterior, adicionamos aqui a sua versão de "Criação"):</li>
-                  <code-snippet [code]="codeSnippets[7]" language="xml" />
-
-                  <li class="mt-3">Chamar o método openModal informando a referência do conteúdo e um ID referente a aquele modal, precisamos informar também o ID do registro da chamada do modal:</li>
-                  <code-snippet [code]="codeSnippets[8]" language="xml" />
-               </ol>
-            </div>
-
-            <p>Código completo das intruções acima (clique no lápis à direita dos registros):</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML', 'TS' ]">
-               <div class="p-3 rounded bg-secondary" innerContent1>
-
-                  <lib-container>
-                     <div innerContent1>
-                        <div class="text-end">
-                           <button class="btn btn-sm btn-primary" (click)="modalUtils.openModal(modalCriacao, 2)">
-                              <lib-icon iconName="mais" /> Adicionar
-                           </button>
-                        </div>
-
-                        <lib-table [list]="recordsList1"
-                           [usePagination]="false"
-                           [headers]="[
-                              { name: 'Nome', col: 4 },
-                              { name: 'Descrição', col: 7 },
-                              { name: '', col: 1, customClasses: 'text-end' }
-                           ]" >
-   
-                           @for (item of recordsList1!; track item) {
-                              <tr innerRows class="align-middle">
-                                 <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar" (click)="modalUtils.openModal(modalEdicao, 2)">{{ item.nome }}</a> </td>
-                                 <td> {{ item.descricao }} </td>
-                                 <td class="text-primary text-end">
-                                    <lib-icon iconName="editar" class="cursor-pointer" tooltip="Editar" (click)="modalUtils.openModal(modalEdicao, 2)" />
-                                 </td>
-   
-   
-                                 <ng-template #modalEdicao>
-                                    <generic-form-modal [recordName]="item.nome" />
-                                 </ng-template>
-                              </tr>
-                           }
-                        </lib-table>
-                     </div>
-                  </lib-container>
+                     @for (item of recordsList1!; track item) {
+                        <tr innerRows class="align-middle">
+                           <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar" (click)="modalUtils.openModal(modalEdicao, 2)">{{ item.nome }}</a> </td>
+                           <td> {{ item.descricao }} </td>
+                           <td class="text-primary text-end">
+                              <lib-icon iconName="editar" class="cursor-pointer" tooltip="Editar" (click)="modalUtils.openModal(modalEdicao, 2)" />
+                           </td>
 
 
-                  <!-- #region TEMPLATES -->
-                  <ng-template #modalCriacao>
-                     <generic-form-modal />
-                  </ng-template>
-                  <!-- #endregion TEMPLATES -->
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[9]" language="xml" />
-               </div>
-
-               <div innerContent3>
-                  <code-snippet [code]="codeSnippets[10]" language="typescript" />
+                           <ng-template #modalEdicao>
+                              <generic-form-modal [recordName]="item.nome" />
+                           </ng-template>
+                        </tr>
+                     }
+                  </lib-table>
                </div>
             </lib-container>
-         </div>
-      </div>
-      <!-- #endregion MODAL DINÂMICO COM INPUT -->
 
-      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+
+            <!-- #region TEMPLATES -->
+            <ng-template #modalCriacao>
+               <generic-form-modal />
+            </ng-template>
+            <!-- #endregion TEMPLATES -->
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[9]" language="xml" />
+         </div>
+
+         <div innerContent3>
+            <code-snippet [code]="codeSnippets[10]" language="typescript" />
+         </div>
+      </lib-container>
    </div>
 </div>
+<!-- #endregion MODAL DINÂMICO COM INPUT -->
+
+<!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->

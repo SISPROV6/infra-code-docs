@@ -1,232 +1,224 @@
-<navbar currentPage="CONTÂINERS E ABAS" />
+<div class="content-header mb-5 border-bottom">
+   <h3 class="fw-bold"> CONTÂINERS E ABAS </h3>
+   <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de container que deve ser utilizado na V6</p>
+</div>
 
-<div class="container-fluid d-flex justify-content-center p-3">
-   <div class="w-75 h-100">
-      <div class="content-header mb-5 border-bottom">
-         <h3 class="fw-bold"> <lib-icon class="cursor-pointer" tooltip="Voltar à pagina anterior" iconName="seta-esquerda" (click)="utilsService.back()" /> CONTÂINERS E ABAS </h3>
-         <p class="fs-5">Documentação de uso, exemplos e explicações sobre o componente mais atualizado de container que deve ser utilizado na V6</p>
-      </div>
+<!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
 
-      <!-- #region CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+<!-- #region ANTES DE COMEÇAR -->
+<div class="content mb-5">
+   <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
+   <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
 
-      <!-- #region ANTES DE COMEÇAR -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">ANTES DE COMEÇAR</h5>
-         <span>Aqui estão alguns detalhes importantes antes de prosseguir:</span>
-
-         <ul>
-            <li>As classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
-         </ul>
-      </div>
-      <!-- #endregion ANTES DE COMECAR -->
-
-      <!-- #region INSTALAÇÃO -->
-      <instal-instructions />
-      <!-- #endregion INSTALAÇÃO -->
-
-      <!-- #region COMO FUNCIONA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold">COMO FUNCIONA?</h5>
-
-         <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">tabs: string[]</code> (opcional) - Lista dinâmica de abas a serem exibidas.</li>
-            <li class="my-2"><code class="text-code">containerTitle: string</code> (opcional) - Título do contâiner, só será exibido se for informado não tiver abas, pois é desnecessário repetir o título que já está na aba.</li>
-         </ul>
-
-         <span><b>{{"@Output"}}</b> Lista de eventos:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">onChangeTab: EventEmitter&lt;string&gt;</code> - Emite um evento ao mudar de aba.</li>
-         </ul>
-
-         <span><b>{{"ng-content"}}</b> Lista de seletores para conteúdo:</span>
-         <ul>
-            <li class="my-2"><code class="text-code">innerContent1</code> (obrigatório) - Marca aquele conteúdo como o <b>1°</b> a ser exibido.</li>
-            <li class="my-2"><code class="text-code">innerContent2</code> (opcional) - Marca aquele conteúdo como o <b>2°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-            <li class="my-2"><code class="text-code">innerContent3</code> (opcional) - Marca aquele conteúdo como o <b>3°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-            <li class="my-2"><code class="text-code">innerContent4</code> (opcional) - Marca aquele conteúdo como o <b>4°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-            <li class="my-2"><code class="text-code">innerContent5</code> (opcional) - Marca aquele conteúdo como o <b>5°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-            <li class="my-2"><code class="text-code">innerContent6</code> (opcional) - Marca aquele conteúdo como o <b>6°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-            <li class="my-2"><code class="text-code">innerContent7</code> (opcional) - Marca aquele conteúdo como o <b>7°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-            <li class="my-2"><code class="text-code">innerContent8</code> (opcional) - Marca aquele conteúdo como o <b>8°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-            <li class="my-2"><code class="text-code">innerContent9</code> (opcional) - Marca aquele conteúdo como o <b>9°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-            <li class="my-2"><code class="text-code">innerContent10</code> (opcional) - Marca aquele conteúdo como o <b>10°</b> e último a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
-         </ul>
-      </div>
-      <!-- #endregion COMO FUNCIONA -->
-
-      <!-- #region RECOMENDAÇÃO -->
-      <div class="alert alert-indigo mb-5" role="alert">
-         <p class="fw-bold alert-heading">RECOMENDAÇÃO</p>
-
-         <div class="alert-body">
-            <p> Apesar de não ser uma regra, é preferível que seja utilizada uma &lt;div&gt; que englobe o conteúdo de cada aba e cada seletor seja aplicado nessa &lt;div&gt;.</p>
-
-            <p>Exemplo:</p>
-            <code-snippet [code]="codeSnippets[0]" language="xml" />
-         </div>
-      </div>
-      <!-- #endregion RECOMENDAÇÃO -->
-
-      <!-- #region IMPLEMENTAÇÃO BÁSICA -->
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">IMPLEMENTAÇÃO BÁSICA</h5>
-
-         <div class="code-example">
-            <p>Contâiner simples:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
-               <div class="p-3 rounded bg-secondary" innerContent1>
-                  
-                  <lib-container containerTitle="Conteúdo de exemplo">
-                     <div innerContent1>
-                        Este conteúdo é um exemplo de demonstração
-                     </div>
-                  </lib-container>
-
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[1]" language="xml" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Contâiner com formulário e uma aba:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
-               <div class="p-3 rounded bg-secondary" innerContent1>
-                  
-                  <lib-container containerTitle="Dados do produto">
-                     <div innerContent1>
-                        <form>
-                           <div class="row">
-                              <div class="col">
-                                 <label libRequired class="form-label" for="codBarras1">Código de barras</label>
-                                 <input type="text" id="codBarras1" class="form-control" placeholder="000000000000000 0">
-                              </div>
-                              <div class="col">
-                                 <label libRequired class="form-label" for="nomeProduto1">Nome do produto</label>
-                                 <input type="text" id="nomeProduto1" class="form-control" placeholder="Cadeira de escritório">
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </lib-container>
-
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[2]" language="xml" />
-               </div>
-            </lib-container>
-         </div>
-
-         <div class="code-example">
-            <p>Contâiner com formulário em múltiplas abas:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
-               <div class="p-3 rounded bg-secondary" innerContent1>
-                  
-                  <lib-container [tabs]="[ 'Dados do produto', 'Dados do cliente', 'Dados de entrega' ]">
-                     <div innerContent1>
-                        <form>
-                           <div class="row">
-                              <div class="col">
-                                 <label libRequired class="form-label" for="codBarras2">Código de barras</label>
-                                 <input type="text" id="codBarras2" class="form-control" placeholder="000000000000000 0">
-                              </div>
-                              <div class="col">
-                                 <label libRequired class="form-label" for="nomeProduto2">Nome do produto</label>
-                                 <input type="text" id="nomeProduto2" class="form-control" placeholder="Cadeira de escritório">
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-
-                     <div innerContent2>
-                        <form>
-                           <div class="row">
-                              <div class="col">
-                                 <label libRequired class="form-label" for="cpfPessoa1">Documento</label>
-                                 <input type="text" id="cpfPessoa1" class="form-control" placeholder="000.000.000-00">
-                              </div>
-                              <div class="col">
-                                 <label libRequired class="form-label" for="nomePessoa1">Nome</label>
-                                 <input type="text" id="nomePessoa1" class="form-control" placeholder="João da Silva Gomes">
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-
-                     <div innerContent3>
-                        <form>
-                           <div class="row">
-                              <div class="col">
-                                 <label libRequired class="form-label" for="cepEntrega1">CEP</label>
-                                 <input type="text" id="cepEntrega1" class="form-control" placeholder="00000-000">
-                              </div>
-                              <div class="col">
-                                 <label libRequired class="form-label" for="enderecoEntrega1">Endereço</label>
-                                 <input type="text" id="enderecoEntrega1" class="form-control" placeholder="Av. das Árvores, 8654">
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </lib-container>
-               </div>
-
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[3]" language="xml" />
-               </div>
-            </lib-container>
-         </div>
-      </div>
+   <ul>
+      <li>As classes que estilizam este componente se encontram dentro da nossa bilioteca ngx-sp-infra, se for necessária alguma alteração ela deve ser comunicada ao P&D.</li>
+   </ul>
+</div>
+<!-- #endregion ANTES DE COMECAR -->
 
 
-      <div class="content mb-5">
-         <h5 class="fw-bold mb-3">CONTÂINERS DINÂMICOS</h5>
 
-         <div class="code-example">
-            <div class="description mb-5">
-               <p>Como foi citado anteriormente, uma boa prática a nível de design de telas referente ao título de abas é evitar redundâncias.</p>
-               <p>Logo, caso o contâiner tenha uma ou mais abas, o título daquela aba deve ficar nas opções em cima e não dentro do contâiner em si, evitando repetir o título desnecessariamente e economizando espaço em tela.</p>
-            </div>
+<!-- #region COMO FUNCIONA -->
+<div class="content mb-5">
+   <h5 class="fw-bold">COMO FUNCIONA?</h5>
 
-            <p>Formulários de criação e edição:</p>
-            <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
-               <div class="p-3 rounded bg-secondary" innerContent1>
+   <span><b>{{"@Input"}}</b> Lista de parâmetros:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">tabs: string[]</code> (opcional) - Lista dinâmica de abas a serem exibidas.</li>
+      <li class="my-2"><code class="text-code">containerTitle: string</code> (opcional) - Título do contâiner, só será exibido se for informado não tiver abas, pois é desnecessário repetir o título que já está na aba.</li>
+   </ul>
 
-                  <lib-header [breadcrumbList]="[ 'Painel de Vendas', 'Formulário', editingMode1 ? 'Editar' : 'Novo' ]"
-                     pageTitle="Formulário de Vendas" [mode]="editingMode1 ? 'edit' : 'add'" [hideButtons]="[ 'Cancelar', 'Salvar' ]">
-                     <button customButton1 class="btn btn-primary" (click)="editingMode1 = !editingMode1">
-                        <lib-icon iconName="atualizar" />
-                        Modo {{ editingMode1 ? 'criação' : 'edição' }}
-                     </button>
-                  </lib-header>
-                  
-                  <lib-container [tabs]="editingMode1 ? [ 'Dados do produto', 'Dados do cliente', 'Dados da entrega' ] : [  ]" containerTitle="Dados do produto">
-                     <div innerContent1>
-                        Este conteúdo é um exemplo de demonstração do conteúdo da aba <b>Dados do produto</b>
-                     </div>
+   <span><b>{{"@Output"}}</b> Lista de eventos:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">onChangeTab: EventEmitter&lt;string&gt;</code> - Emite um evento ao mudar de aba.</li>
+   </ul>
 
-                     <div innerContent2>
-                        Este conteúdo é um exemplo de demonstração do conteúdo da aba <b>Dados do cliente</b>
-                     </div>
+   <span><b>{{"ng-content"}}</b> Lista de seletores para conteúdo:</span>
+   <ul>
+      <li class="my-2"><code class="text-code">innerContent1</code> (obrigatório) - Marca aquele conteúdo como o <b>1°</b> a ser exibido.</li>
+      <li class="my-2"><code class="text-code">innerContent2</code> (opcional) - Marca aquele conteúdo como o <b>2°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+      <li class="my-2"><code class="text-code">innerContent3</code> (opcional) - Marca aquele conteúdo como o <b>3°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+      <li class="my-2"><code class="text-code">innerContent4</code> (opcional) - Marca aquele conteúdo como o <b>4°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+      <li class="my-2"><code class="text-code">innerContent5</code> (opcional) - Marca aquele conteúdo como o <b>5°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+      <li class="my-2"><code class="text-code">innerContent6</code> (opcional) - Marca aquele conteúdo como o <b>6°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+      <li class="my-2"><code class="text-code">innerContent7</code> (opcional) - Marca aquele conteúdo como o <b>7°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+      <li class="my-2"><code class="text-code">innerContent8</code> (opcional) - Marca aquele conteúdo como o <b>8°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+      <li class="my-2"><code class="text-code">innerContent9</code> (opcional) - Marca aquele conteúdo como o <b>9°</b> a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+      <li class="my-2"><code class="text-code">innerContent10</code> (opcional) - Marca aquele conteúdo como o <b>10°</b> e último a ser exibido, irá seguir a ordem de abas informadas na propriedade <code class="text-code">tabs</code> e será exibido APENAS se houverem abas.</li>
+   </ul>
+</div>
+<!-- #endregion COMO FUNCIONA -->
 
-                     <div innerContent3>
-                        Este conteúdo é um exemplo de demonstração do conteúdo da aba <b>Dados da entrega</b>
-                     </div>
-                  </lib-container>
+<!-- #region RECOMENDAÇÃO -->
+<div class="alert alert-indigo mb-5" role="alert">
+   <p class="fw-bold alert-heading">RECOMENDAÇÃO</p>
 
-               </div>
+   <div class="alert-body">
+      <p> Apesar de não ser uma regra, é preferível que seja utilizada uma &lt;div&gt; que englobe o conteúdo de cada aba e cada seletor seja aplicado nessa &lt;div&gt;.</p>
 
-               <div innerContent2>
-                  <code-snippet [code]="codeSnippets[4]" language="xml" />
-               </div>
-            </lib-container>
-         </div>
-      </div>
-      <!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
-
-      <!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->
+      <p>Exemplo:</p>
+      <code-snippet [code]="codeSnippets[0]" language="xml" />
    </div>
 </div>
+<!-- #endregion RECOMENDAÇÃO -->
+
+<!-- #region IMPLEMENTAÇÃO BÁSICA -->
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">IMPLEMENTAÇÃO BÁSICA</h5>
+
+   <div class="code-example">
+      <p>Contâiner simples:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+         <div class="p-3 rounded bg-secondary" innerContent1>
+            
+            <lib-container containerTitle="Conteúdo de exemplo">
+               <div innerContent1>
+                  Este conteúdo é um exemplo de demonstração
+               </div>
+            </lib-container>
+
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[1]" language="xml" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Contâiner com formulário e uma aba:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+         <div class="p-3 rounded bg-secondary" innerContent1>
+            
+            <lib-container containerTitle="Dados do produto">
+               <div innerContent1>
+                  <form>
+                     <div class="row">
+                        <div class="col">
+                           <label libRequired class="form-label" for="codBarras1">Código de barras</label>
+                           <input type="text" id="codBarras1" class="form-control" placeholder="000000000000000 0">
+                        </div>
+                        <div class="col">
+                           <label libRequired class="form-label" for="nomeProduto1">Nome do produto</label>
+                           <input type="text" id="nomeProduto1" class="form-control" placeholder="Cadeira de escritório">
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </lib-container>
+
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[2]" language="xml" />
+         </div>
+      </lib-container>
+   </div>
+
+   <div class="code-example">
+      <p>Contâiner com formulário em múltiplas abas:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+         <div class="p-3 rounded bg-secondary" innerContent1>
+            
+            <lib-container [tabs]="[ 'Dados do produto', 'Dados do cliente', 'Dados de entrega' ]">
+               <div innerContent1>
+                  <form>
+                     <div class="row">
+                        <div class="col">
+                           <label libRequired class="form-label" for="codBarras2">Código de barras</label>
+                           <input type="text" id="codBarras2" class="form-control" placeholder="000000000000000 0">
+                        </div>
+                        <div class="col">
+                           <label libRequired class="form-label" for="nomeProduto2">Nome do produto</label>
+                           <input type="text" id="nomeProduto2" class="form-control" placeholder="Cadeira de escritório">
+                        </div>
+                     </div>
+                  </form>
+               </div>
+
+               <div innerContent2>
+                  <form>
+                     <div class="row">
+                        <div class="col">
+                           <label libRequired class="form-label" for="cpfPessoa1">Documento</label>
+                           <input type="text" id="cpfPessoa1" class="form-control" placeholder="000.000.000-00">
+                        </div>
+                        <div class="col">
+                           <label libRequired class="form-label" for="nomePessoa1">Nome</label>
+                           <input type="text" id="nomePessoa1" class="form-control" placeholder="João da Silva Gomes">
+                        </div>
+                     </div>
+                  </form>
+               </div>
+
+               <div innerContent3>
+                  <form>
+                     <div class="row">
+                        <div class="col">
+                           <label libRequired class="form-label" for="cepEntrega1">CEP</label>
+                           <input type="text" id="cepEntrega1" class="form-control" placeholder="00000-000">
+                        </div>
+                        <div class="col">
+                           <label libRequired class="form-label" for="enderecoEntrega1">Endereço</label>
+                           <input type="text" id="enderecoEntrega1" class="form-control" placeholder="Av. das Árvores, 8654">
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </lib-container>
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[3]" language="xml" />
+         </div>
+      </lib-container>
+   </div>
+</div>
+
+
+<div class="content mb-5">
+   <h5 class="fw-bold mb-3">CONTÂINERS DINÂMICOS</h5>
+
+   <div class="code-example">
+      <div class="description mb-5">
+         <p>Como foi citado anteriormente, uma boa prática a nível de design de telas referente ao título de abas é evitar redundâncias.</p>
+         <p>Logo, caso o contâiner tenha uma ou mais abas, o título daquela aba deve ficar nas opções em cima e não dentro do contâiner em si, evitando repetir o título desnecessariamente e economizando espaço em tela.</p>
+      </div>
+
+      <p>Formulários de criação e edição:</p>
+      <lib-container [tabs]="[ 'EXIBIÇÃO', 'HTML' ]">
+         <div class="p-3 rounded bg-secondary" innerContent1>
+
+            <lib-header [breadcrumbList]="[ 'Painel de Vendas', 'Formulário', editingMode1 ? 'Editar' : 'Novo' ]"
+               pageTitle="Formulário de Vendas" [mode]="editingMode1 ? 'edit' : 'add'" [hideButtons]="[ 'Cancelar', 'Salvar' ]">
+               <button customButton1 class="btn btn-primary" (click)="editingMode1 = !editingMode1">
+                  <lib-icon iconName="atualizar" />
+                  Modo {{ editingMode1 ? 'criação' : 'edição' }}
+               </button>
+            </lib-header>
+            
+            <lib-container [tabs]="editingMode1 ? [ 'Dados do produto', 'Dados do cliente', 'Dados da entrega' ] : [  ]" containerTitle="Dados do produto">
+               <div innerContent1>
+                  Este conteúdo é um exemplo de demonstração do conteúdo da aba <b>Dados do produto</b>
+               </div>
+
+               <div innerContent2>
+                  Este conteúdo é um exemplo de demonstração do conteúdo da aba <b>Dados do cliente</b>
+               </div>
+
+               <div innerContent3>
+                  Este conteúdo é um exemplo de demonstração do conteúdo da aba <b>Dados da entrega</b>
+               </div>
+            </lib-container>
+
+         </div>
+
+         <div innerContent2>
+            <code-snippet [code]="codeSnippets[4]" language="xml" />
+         </div>
+      </lib-container>
+   </div>
+</div>
+<!-- #endregion IMPLEMENTAÇÃO BÁSICA -->
+
+<!-- #endregion CONTEÚDO - TODO: Trocar para JSON quando estiver pronto -->

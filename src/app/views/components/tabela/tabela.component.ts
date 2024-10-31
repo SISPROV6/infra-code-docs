@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { InfraModule } from 'ngx-sp-infra';
+import { InfraModule, TableSelectionService } from 'ngx-sp-infra';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { NavbarComponent } from '../../../shared/components/navbar/navbar.component';
@@ -13,7 +13,6 @@ import { UtilsService } from '../../../shared/services/utils.service';
 import { RecordsListModel } from './models/lista.model';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxMaskPipe } from 'ngx-mask';
-import { InstallationInstructionsComponent } from "../../../shared/components/installation-instructions/installation-instructions.component";
 import { TabelaDemonstracaoService } from './tabela-demonstracao.service';
 
 @Component({
@@ -25,11 +24,11 @@ import { TabelaDemonstracaoService } from './tabela-demonstracao.service';
     CommonModule,
     InfraModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule,
     TooltipModule,
     NgxPaginationModule,
-    NgxMaskPipe,
-    InstallationInstructionsComponent
+    NgxMaskPipe
 ],
   templateUrl: './tabela.component.html',
   styleUrl: './tabela.component.scss'
@@ -43,11 +42,14 @@ export class TabelaComponent {
   // #endregion PRIVATE
 
   // #region PUBLIC
+  public selecaoMap6: Map<string | number, boolean> = new Map<string, boolean>();
+
   public recordsList1?: RecordsListModel[];  // Lista a ser usada, pode ser de qualquer tipo
   public recordsList2?: RecordsListModel[];  // Lista a ser usada, pode ser de qualquer tipo
   public recordsList3?: RecordsListModel[];  // Lista a ser usada, pode ser de qualquer tipo
   public recordsList4?: RecordsListModel[];  // Lista a ser usada, pode ser de qualquer tipo
   public recordsList5?: RecordsListModel[];  // Lista a ser usada, pode ser de qualquer tipo
+  public recordsList6?: RecordsListModel[];  // Lista a ser usada, pode ser de qualquer tipo
 
   public page1: number = 1;  // Propriedade necessária para explicitar qual página está selecionada atualmente
 	public itemsPerPage1: number = 5;  // Propriedade necessária para renderizar apenas determinada quantidade por página inicialmente
@@ -64,6 +66,9 @@ export class TabelaComponent {
   public page5: number = 1;  // Propriedade necessária para explicitar qual página está selecionada atualmente
 	public itemsPerPage5: number = 5;  // Propriedade necessária para renderizar apenas determinada quantidade por página inicialmente
 
+  public page6: number = 1;  // Propriedade necessária para explicitar qual página está selecionada atualmente
+	public itemsPerPage6: number = 5;  // Propriedade necessária para renderizar apenas determinada quantidade por página inicialmente
+
 
   public codeSnippets: string[] = [
     `<lib-table [list]="recordsList"\n  [counts]="[ 5, 10, 15 ]"\n  [headers]="[\n    { name: 'Nome', col: 2 },\n    { name: 'Descrição', col: 3 },\n    { name: 'Valor', col: 1, customClasses: 'text-end' },\n    { name: 'Datas', col: 4 },\n    { name: '', col: 2, customClasses: 'text-end' }\n  ]"\n  (itemsPerPageChange)="itemsPerPage = $event"\n  (pageChange)="page1 = $event">\n\n  @for (item of recordsList! | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; track item) {\n    <tr innerRows class="align-middle">\n      <td> <a class="text-primary text-decoration-none fw-bold" tooltip="Editar/Visualizar">{{ item.nome }}</a> </td>\n      <td>{{ item.descricao }}</td>\n      <td class="text-end">{{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }}</td>\n      <td>\n        <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>\n        <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>\n      </td>\n      <td>\n        <div class="d-flex flex-row align-items-center justify-content-end">\n          <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />\n          <div class="form-check form-switch ms-2"> <input class="form-check-input" type="checkbox" role="switch" [checked]="item.isAtivo"> </div>\n        </div>\n      </td>\n    </tr>\n  }\n</lib-table>`,
@@ -79,6 +84,55 @@ export class TabelaComponent {
 
     `<lib-table [list]="recordsList1" [counts]="[ 5, 10, 15 ]"\n  [usePagination]="false" [showCounter]="false"\n  [headers]="[\n    { name: 'Nome', col: 2, orderColumn: 'nome' },     \n    { name: 'Descrição', col: 3, orderColumn: 'descricao' },\n    { name: 'Valor', col: 1, customClasses: 'text-end' },\n    { name: 'Datas', col: 4 },\n    { name: '', col: 2, customClasses: 'text-end' }\n  ]" >\n\n  @for (item of recordsList1!; track item) {\n    <!-- CONTEÚDO DA ROW -->\n  }\n</lib-table>`,
     `<lib-table [list]="recordsList1" [counts]="[ 5, 10, 15 ]"\n  [usePagination]="false" [showCounter]="false"\n  [headers]="[\n    { name: 'Nome', col: 2, orderColumn: 'nome' },     \n    { name: 'Descrição', col: 3, orderColumn: 'descricao' },\n    { name: 'Valor', col: 1, customClasses: 'text-end' },\n    { name: 'Datas', col: 4 },\n    { name: '', col: 2, customClasses: 'text-end' }\n  ]" >\n\n  @for (item of recordsList1!; track item) {\n    <tr innerRows class="align-middle">\n      <td class="text-primary fw-bold">\n        <a tooltip="Visualizar/Editar"> {{ item.nome }} </a>\n      </td>\n      <td>{{ item.descricao }}</td>\n      <td class="text-end"> {{ item.valorTotal | mask: 'separator': {  thousandSeparator: '.', suffix: ' R$' } }} </td>\n      <td>\n        <p class="my-0"><b>Criado em: </b> {{ item.dataCriacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>\n        <p class="my-0"><b>Última alteração em: </b> {{ (item.dataUltimaModificacao | date: 'dd/MM/yyyy') == "01/01/1900" ? "Nenhuma alteração recente" : item.dataUltimaModificacao | date: 'dd/MM/yyyy, HH:mm:ss' }}</p>\n      </td>\n      <td class="text-end">\n        <lib-icon iconName="editar" iconColor="blue" tooltip="Visualizar/Editar" />\n      </td>\n    </tr>\n  }\n</lib-table>`,
+
+    `<lib-table innerContent1 [list]="recordsList" [counts]="[ 5, 10, 15 ]"
+    [useSelection]="true"
+    [selection]="selecaoService.selecaoGeral"
+    [selectedCount]="selecaoService.quantidadeSelecionados()"
+    [headers]="[
+        { name: 'Nome', widthClass: 'w-20' },
+        { name: 'Descrição', widthClass: 'w-30' },
+        { name: 'Valor', widthClass: 'w-10', customClasses: 'text-end' },
+        { name: 'Datas', widthClass: 'w-40' },
+        { name: '', widthClass: 'w-20', customClasses: 'text-end' }
+    ]"
+    (selectionChange)="selecaoService.definirSelecaoTotal(recordsList, $event, 'id')"
+    (itemsPerPageChange)="itemsPerPage = $event"
+    (pageChange)="page = $event">
+
+    @for (item of recordsList! | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; track item) {
+        <tr innerRows class="align-middle">
+          <td>
+              <!-- Neste caso nós precisamos utilizar o [ngModel] e o (ngModelChange) para ter o funcionamento correto -->
+              <div class="form-check"> <input class="form-check-input" type="checkbox"
+                [ngModel]="selecaoMap.get(item.id)" (ngModelChange)="selecaoService.inverterSelecao(item.id)"> </div>
+          </td>
+          <!-- restante das colunas... -->
+        </tr>
+    }
+</lib-table>`,
+    `public recordsList?: RecordsListModel[];  // Lista a ser usada, pode ser de qualquer tipo
+public selecaoMap: Map<string | number, boolean> = new Map<string, boolean>();
+
+public page: number = 1;  // Propriedade necessária para explicitar qual página está selecionada atualmente
+public itemsPerPage: number = 5;  // Propriedade necessária para renderizar apenas determinada quantidade por página inicialmente
+
+constructor(
+    public selecaoService: TableSelectionService, // Injetamos o serviço no constructor
+) { }
+    
+
+public getListaTableLarge(): void {
+  this._tableDemo.getListaTableLarge().subscribe({
+    next: response => {
+      this.recordsList = response.RecordsList;
+
+      // Precisamos inicializar a nossa seleção com o método "initSeleção" que está no serviço injetado...
+      this.selecaoMap = this.selecaoService.initSelecao(response.RecordsList, 'id');
+    }
+  });
+}`,
+    `s`,
   ];
 
 
@@ -95,6 +149,7 @@ export class TabelaComponent {
   // #region ==========> INITIALIZATION <==========
   constructor(
     public utilsService: UtilsService,
+    public selecaoService: TableSelectionService,
     private _tableDemo: TabelaDemonstracaoService
   ) { }
 
@@ -125,6 +180,9 @@ export class TabelaComponent {
     this._tableDemo.getListaTableLarge().subscribe({
       next: response => {
         this.recordsList5 = response.RecordsList;
+        this.recordsList6 = response.RecordsList;
+
+        this.selecaoMap6 = this.selecaoService.initSelecao(response.RecordsList, 'id');
       }
     });
   }

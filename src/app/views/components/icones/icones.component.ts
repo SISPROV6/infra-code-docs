@@ -13,7 +13,6 @@ import { UtilsService } from '../../../shared/services/utils.service';
 import { IconFilterPipe } from '../../../shared/pipes/icon-filter.pipe';
 import { IconeModalComponent } from './icone-modal/icone-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { InstallationInstructionsComponent } from "../../../shared/components/installation-instructions/installation-instructions.component";
 
 @Component({
   selector: 'app-icones',
@@ -22,7 +21,6 @@ import { InstallationInstructionsComponent } from "../../../shared/components/in
     CodeSnippetComponent,
     IconFilterPipe,
     IconeModalComponent,
-    InstallationInstructionsComponent,
     NavbarComponent,
     VersionTagsComponent,
 

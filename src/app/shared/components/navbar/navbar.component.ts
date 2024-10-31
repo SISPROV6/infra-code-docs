@@ -3,7 +3,9 @@ import { RouterModule } from '@angular/router';
 
 import { InfraModule } from 'ngx-sp-infra';
 
-import { SideMenuComponent } from '../side-menu/side-menu.component';
+import packageJson from "../../../../../package.json";
+
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @Component({
   selector: 'navbar',
@@ -11,11 +13,14 @@ import { SideMenuComponent } from '../side-menu/side-menu.component';
   imports: [
     InfraModule,
     RouterModule,
-    SideMenuComponent
+    TooltipModule
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
   @Input() currentPage?: string;
+
+  public version = packageJson.version;
+  public theme: 'dark' | 'light' = 'light';
 }

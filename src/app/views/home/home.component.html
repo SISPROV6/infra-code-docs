@@ -1,20 +1,23 @@
-<navbar />
+<div class="content d-flex flex-column align-items-center justify-content-center p-3 border text-center">
+   <img src="assets/icons/logotipo-sispro-dark.svg" alt="logo-sispro" class="offcanvas-title"
+      id="main-logo" title="Logo SISPRO" height="120px" />
 
-<div class="p-3">
-   <div class="d-flex flex-row flex-wrap gap-3">
-      @for (card of cards; track $index) {
-         <div class="col">
-            <div class="card" [class.border-danger]="!card.implementado">
-               <div class="card-header fw-bold d-flex align-items-center justify-content-between" [class.text-danger]="!card.implementado">
-                  <span>{{ card.nome }}</span>
-                  <a *ngIf="card.implementado" class="btn btn-sm btn-primary" routerLink="/{{card.rota}}" routerLinkActive="router-link-active" > ACESSAR </a>
-                  <span *ngIf="!card.implementado" class="badge text-bg-danger">Não implementado</span>
-               </div>
-               <div class="card-body" [class.text-danger]="!card.implementado">
-                  <p class="card-text mb-1" [innerHTML]="card.descricao"></p>
-               </div>
-             </div>
-         </div>
-      }
+   <div class="w-75 text-center mt-5">
+      <p class="fs-1">Bem-vindo ao framework Sispro V6</p>
+      <p class="fs-5">Aqui, você encontrará os padrões visuais e de código que guiam nosso desenvolvimento em Angular e C# .NET, além de toda a biblioteca de componentes genéricos criados para garantir consistência e eficiência em nossos projetos.</p>
    </div>
+
+   <div class="w-50 d-flex flex-row my-5">
+      <div class="col-6">
+         <code-snippet [code]="installCode" language="coffeescript" />
+      </div>
+
+      <div class="col-6">
+         <button class="btn btn-lg btn-primary" routerLink="/introducao" routerLinkActive="active">
+            <i class="bi bi-book-half"></i> Leia a documentação
+         </button>
+      </div>
+   </div>
+
+   <span class="text-gray-600">Atualmente na versão v{{ currentVersion }}</span>
 </div>
